@@ -1,6 +1,6 @@
-import React from "react";
-import Tile from "./Tile";
-import "./scss/App.scss";
+import React from 'react';
+import Tile from './Tile';
+import './scss/App.scss';
 
 function App() {
   return (
