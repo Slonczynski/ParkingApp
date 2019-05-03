@@ -36,8 +36,8 @@ function App() {
       <div className="permanent-spots">
         <div className="container-fluid">
           <div className="row justify-content-center">
-            <Tile car="Miejsce jeden" />
-            <Tile car="Miejsce dwa" />
+            <Tile car="1." />
+            <Tile car="2." />
             <Tile car="Miejsce trzy" />
           </div>
         </div>
