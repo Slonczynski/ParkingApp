@@ -33,8 +33,25 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="parking-spots">
-        <Tile />
+      <div className="permanent-spots">
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <Tile car="Miejsce jeden" />
+            <Tile car="Miejsce dwa" />
+            <Tile car="Miejsce trzy" />
+          </div>
+        </div>
+      </div>
+      <div className="temporary-spots">
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <Tile car="Miejsce cztery" />
+            <Tile car="Miejsce pięć" />
+            <Tile car="Miejsce sześć" />
+            <Tile car="Miejsce siedem" />
+            <Tile car="Miejsce osiem" />
+          </div>
+        </div>
       </div>
     </div>
   );
