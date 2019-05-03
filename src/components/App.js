@@ -34,16 +34,7 @@ function App() {
         </div>
       </div>
       <div className="parking-spots">
-        <div className="d-flex flex-column justify-content-center align-items-center">
-          <div className="p-2">Flex item 1</div>
-          <div className="p-2">Flex item 1</div>
-          <div className="p-2">Flex item 1</div>
-          <div className="p-2">Flex item 1</div>
-          <div className="p-2">Flex item 1</div>
-          <div className="p-2">Flex item 1</div>
-          <div className="p-2">Flex item 1</div>
-          <div className="p-2">Flex item 1</div>
-        </div>
+        <Tile />
       </div>
     </div>
   );

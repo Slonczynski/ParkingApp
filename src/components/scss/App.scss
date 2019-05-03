@@ -1,7 +1,10 @@
 * {
   box-sizing: border-box;
-  background-color: hsla(0, 0%, 0%, 0.73);
   color: white;
+}
+
+body {
+  background-color: hsla(0, 0%, 0%, 0.73);
 }
 
 .App {
@@ -10,5 +13,5 @@
 }
 
 .parking-spots {
-  margin-top: 400px;
+  margin-top: 100px;
 }
