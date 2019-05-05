@@ -1,13 +1,18 @@
 import React from "react";
 import Tile from "./Tile";
-// import Date from "./Date";
+// import CurrentDate from "./CurrentDate";
 import "./scss/App.scss";
 import DayButton from "./DayButton";
-import firebase from "firebase";
 
-const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-//   const dzien = dzien1.toDate();
-console.log({ timestamp });
+const getCurrentDate = () => {
+  fetch("http://worldtimeapi.org/api/timezone/Europe/Warsaw")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(myJson) {
+      console.log(JSON.stringify(myJson));
+    });
+};
 
 function App() {
   return (
