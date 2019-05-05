@@ -11,12 +11,15 @@ const dayConfig = {
   }
 };
 
+const getDate = () => {
+  const dayMonthYear = new Date().format("m-d-Y");
+};
+
 const DayButton = props => {
-  const
-    return (
+  return (
     <div className="text-center">
-      <i
-        className={`circular inverted teal large arrow ${arrowDirection} icon`}
+      {/* <i
+        className={`circular inverted teal large arrow ${arrowDirection} icon`} */}
       />
       <div className="yesterday">
         Wczoraj

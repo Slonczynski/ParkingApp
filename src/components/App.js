@@ -1,18 +1,25 @@
 import React from "react";
 import Tile from "./Tile";
+// import Date from "./Date";
 import "./scss/App.scss";
+import DayButton from "./DayButton";
+import firebase from "firebase";
+
+const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+//   const dzien = dzien1.toDate();
+console.log({ timestamp });
 
 function App() {
   return (
     <div className="App">
       <div className="d-flex justify-content-between align-items-center">
+        <DayButton day="yesterday" />
         <div className="previous-day">
           <div className="text-center">
             <i className="circular inverted teal large arrow left icon" />
             <div className="yesterday">
               Wczoraj
               <br />
-              30.04.2019
             </div>
           </div>
         </div>
