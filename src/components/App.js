@@ -1,18 +1,8 @@
 import React from "react";
 import Tile from "./Tile";
-// import CurrentDate from "./CurrentDate";
+import CurrentDate from "./CurrentDate";
 import "./scss/App.scss";
 import DayButton from "./DayButton";
-
-const getCurrentDate = () => {
-  fetch("http://worldtimeapi.org/api/timezone/Europe/Warsaw")
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(myJson) {
-      console.log(JSON.stringify(myJson));
-    });
-};
 
 function App() {
   return (
@@ -25,6 +15,7 @@ function App() {
             <div className="yesterday">
               Wczoraj
               <br />
+              <CurrentDate />
             </div>
           </div>
         </div>

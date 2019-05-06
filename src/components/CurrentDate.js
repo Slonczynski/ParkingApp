@@ -1,16 +1,10 @@
-// import React from "react";
+import React from "react";
 
-// const getCurrentDate = () => {
-//   fetch("http://worldtimeapi.org/api/timezone/Europe/Warsaw")
-//     .then(function(response) {
-//       return response.json();
-//     })
-//     .then(function(myJson) {
-//       console.log(JSON.stringify(myJson));
-//     });
-// };
+const d = new Date();
+const activeDy = [d.getDate(), d.getMonth() + 1, d.getFullYear()].join("-");
 
-// const CurrentDate = () => {
-//   return getCurrentDate();
-// };
-// export default CurrentDate;
+const CurentDate = activeDay => {
+  return { activeDay };
+};
+
+export default CurrentDate;
