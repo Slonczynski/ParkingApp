@@ -11,10 +11,6 @@ const dayConfig = {
   }
 };
 
-const getDate = () => {
-  const dayMonthYear = new Date().format("m-d-Y");
-};
-
 const DayButton = props => {
   return (
     <div className="text-center">
