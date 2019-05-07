@@ -1,6 +1,5 @@
 import React from "react";
 import Tile from "./Tile";
-import CurrentDate from "./CurrentDate";
 import "./scss/App.scss";
 import DayButton from "./DayButton";
 
@@ -9,32 +8,9 @@ function App() {
     <div className="App">
       <div className="d-flex justify-content-between align-items-center">
         <DayButton day="yesterday" />
-        <div className="previous-day">
-          <div className="text-center">
-            <i className="circular inverted teal large arrow left icon" />
-            <div className="yesterday">
-              Wczoraj
-              <br />
-              <CurrentDate />
-            </div>
-          </div>
-        </div>
-        <div className="text-center">
-          <div className="today">
-            Dzisiaj
-            <br /> 01.05.2019
-          </div>
-        </div>
-        <div className="next-day">
-          <div className="text-center">
-            <i className="circular inverted teal large arrow right icon" />
-            <div className="tomorrow">
-              Jutro
-              <br />
-              02.05.2019
-            </div>
-          </div>
-        </div>
+
+        <DayButton day="today" />
+        <DayButton day="tomorrow" />
       </div>
       <div className="permanent-spots">
         <div className="container-fluid">

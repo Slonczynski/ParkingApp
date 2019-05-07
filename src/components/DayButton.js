@@ -1,26 +1,31 @@
 import React from "react";
+import RequestedDate from "./RequestedDate";
 
 const dayConfig = {
   yesterday: {
     arrowDirection: "left",
-    text: "yesterday"
+    text: "Wczoraj"
+  },
+  today: {
+    text: "Dzisiaj"
   },
   tomorrow: {
     arrowDirection: "right",
-    text: "tomorrow"
+    text: "Jutro"
   }
 };
 
 const DayButton = props => {
+  const { arrowDirection, text } = dayConfig[props.day];
   return (
     <div className="text-center">
-      {/* <i
-        className={`circular inverted teal large arrow ${arrowDirection} icon`} */}
+      <i
+        className={`circular inverted teal large arrow ${arrowDirection} icon`}
       />
-      <div className="yesterday">
-        Wczoraj
+      <div className={text}>
+        {text}
         <br />
-        30.04.2019
+        <RequestedDate day={props.day} />
       </div>
     </div>
   );
