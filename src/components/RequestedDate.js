@@ -15,8 +15,7 @@ const dateConfig = {
 const RequestedDate = props => {
   const { offset } = dateConfig[props.day];
   const d = new Date();
-  const RequestedDate = 
-  
+
   //   [("0" + d.getDate()).slice(-2),
   //   ("0" + (d.getMonth() + 1)).slice(-2) + 1,
   //   d.getFullYear()
