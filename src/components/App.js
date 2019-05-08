@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <div className="d-flex justify-content-between align-items-center">
         <DayButton day="yesterday" />
-
         <DayButton day="today" />
         <DayButton day="tomorrow" />
       </div>

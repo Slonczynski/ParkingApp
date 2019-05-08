@@ -22,7 +22,7 @@ const DayButton = props => {
       <i
         className={`circular inverted teal large arrow ${arrowDirection} icon`}
       />
-      <div className={text}>
+      <div className={props.day}>
         {text}
         <br />
         <RequestedDate day={props.day} />

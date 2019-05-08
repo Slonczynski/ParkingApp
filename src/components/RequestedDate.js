@@ -1,34 +1,30 @@
 import React from "react";
-
-const dateConfig = {
-  yesterday: {
-    offset: -1
-  },
-  today: {
-    offset: 0
-  },
-  tomorrow: {
-    offset: +6
-  }
-};
+import { DateTime } from "luxon";
 
 const RequestedDate = props => {
-  const { offset } = dateConfig[props.day];
-  const d = new Date();
-
-  //   [("0" + d.getDate()).slice(-2),
-  //   ("0" + (d.getMonth() + 1)).slice(-2) + 1,
-  //   d.getFullYear()
-  // ].join("-");
-
-  const dd = (d.getDate() < 10 ? "0" : "") + (d.getDate() + offset);
-  const MM = (d.getMonth() + 1 < 10 ? "0" : "") + (d.getMonth() + 1);
-  const yyyy = d.getFullYear();
-
-  const ww = dd + "-" + MM + "-" + yyyy;
-  console.log(ww);
-
-  return <div className="current-date">{RequestedDate}</div>;
+  if (props.day === "yesterday") {
+    const dt = DateTime.local()
+      .minus({ days: 1 })
+      .setZone("Europe/Warsaw")
+      .toISODate();
+    const RequestedDate = DateTime.fromISO(dt).toFormat("dd-MM-yyyy");
+    return <div className="current-date">{RequestedDate}</div>;
+  }
+  if (props.day === "today") {
+    const dt = DateTime.local()
+      .setZone("Europe/Warsaw")
+      .toISODate();
+    const RequestedDate = DateTime.fromISO(dt).toFormat("dd-MM-yyyy");
+    return <div className="current-date">{RequestedDate}</div>;
+  }
+  if (props.day === "tomorrow") {
+    const dt = DateTime.local()
+      .plus({ days: 1 })
+      .setZone("Europe/Warsaw")
+      .toISODate();
+    const RequestedDate = DateTime.fromISO(dt).toFormat("dd-MM-yyyy");
+    return <div className="current-date">{RequestedDate}</div>;
+  }
 };
 
 export default RequestedDate;
