@@ -14,7 +14,7 @@ class App extends React.Component {
           <DayButton day="tomorrow" />
         </div>
         <div className="temporary-spots">
-          <Separator spotsType="Miejsca tymczasowe" />
+          <Separator spotsType="Miejsca tymczasowe:" />
           <div className="container-fluid">
             <div className="row justify-content-center">
               <Tile car="1." />
@@ -24,7 +24,7 @@ class App extends React.Component {
           </div>
         </div>
         <div className="permanent-spots">
-          <Separator spotsType="Miejsca stałe" />
+          <Separator spotsType="Miejsca stałe:" />
           <div className="container-fluid">
             <div className="row justify-content-center">
               <Tile car="4." />
