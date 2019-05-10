@@ -1,15 +1,25 @@
 * {
   box-sizing: border-box;
-  color: white;
 }
 
 body {
   background-color: hsla(0, 0%, 0%, 0.73);
+  font-family: 'Open Sans', sans-serif;
 }
 
 .App {
-  margin: 3%;
+  color: white;
+  margin: 2%;
   padding: 1%;
+}
+
+.separator {
+  font-size: 2rem;
+  margin-top: 7vh;
+  padding-bottom: 1%;
+  margin-bottom: 4%;
+  border-bottom: 5px solid rgb(231, 152, 60);
+  border-spacing: 5%;
 }
 
 .parking-spot {
@@ -22,10 +32,18 @@ body {
   margin-bottom: 50px;
 }
 
+.spot-number {
+  margin-bottom: 2%;
+  font-size: 1.5rem;
+}
 .parking-place {
-  fill: black;
+  max-height: 40vh;
+  max-width: 20vh;
+  min-width: 5vh;
+  min-height: 10vh;
 }
 
 .parking-place:hover {
-  fill: orange;
+  cursor: pointer;
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
 }

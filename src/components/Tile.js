@@ -1,12 +1,18 @@
-import React from "react";
+import React from 'react';
 
 const Tile = props => {
   return (
     <div className="col">
       <div className="parking-spot">
         <div className="text-center">
-          {props.car}
-          <img src={require("./tile.svg")} alt="Kiwi standing on oval" />
+          <div className="spot-number"> {props.car}</div>
+        </div>
+        <div className="text-center">
+          <img
+            className="parking-place"
+            src={require('./tile.svg')}
+            alt="parking-pace"
+          />
         </div>
       </div>
     </div>

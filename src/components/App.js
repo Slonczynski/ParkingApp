@@ -1,7 +1,8 @@
-import React from "react";
-import Tile from "./Tile";
-import "./scss/App.scss";
-import DayButton from "./DayButton";
+import React from 'react';
+import Tile from './Tile';
+import Separator from './Separator';
+import DayButton from './DayButton';
+import './scss/App.scss';
 
 class App extends React.Component {
   render() {
@@ -12,23 +13,25 @@ class App extends React.Component {
           <DayButton day="today" />
           <DayButton day="tomorrow" />
         </div>
-        <div className="permanent-spots">
+        <div className="temporary-spots">
+          <Separator spotsType="Miejsca tymczasowe" />
           <div className="container-fluid">
             <div className="row justify-content-center">
               <Tile car="1." />
               <Tile car="2." />
-              <Tile car="Miejsce trzy" />
+              <Tile car="3." />
             </div>
           </div>
         </div>
-        <div className="temporary-spots">
+        <div className="permanent-spots">
+          <Separator spotsType="Miejsca stałe" />
           <div className="container-fluid">
             <div className="row justify-content-center">
-              <Tile car="Miejsce cztery" />
-              <Tile car="Miejsce pięć" />
-              <Tile car="Miejsce sześć" />
-              <Tile car="Miejsce siedem" />
-              <Tile car="Miejsce osiem" />
+              <Tile car="4." />
+              <Tile car="5." />
+              <Tile car="6." />
+              <Tile car="7." />
+              <Tile car="8." />
             </div>
           </div>
         </div>
