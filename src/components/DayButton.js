@@ -19,7 +19,7 @@ const DayButton = props => {
   const { arrowDirection, text } = dayConfig[props.day];
   return (
     <div className="text-center">
-      <div className="switcher" onClick="./">
+      <div className="switcher">
         <i
           className={`circular inverted teal large arrow ${arrowDirection} icon`}
         />
