@@ -5,6 +5,12 @@ import DayButton from "./DayButton";
 import "./scss/App.scss";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { currentDate: null };
+  }
+
   render() {
     return (
       <div className="App">
