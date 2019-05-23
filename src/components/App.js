@@ -10,21 +10,11 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      yesterday: null,
-      today: null,
-      tomorrow: null
-    };
-  }
-
-  componentDidMount() {
-    this.setState = {
       yesterday: <RequestedDate day="yesterday" />,
       today: <RequestedDate day="today" />,
       tomorrow: <RequestedDate day="tomorrow" />
     };
   }
-
-  componentDidUpdate() {}
 
   render() {
     return (
@@ -33,6 +23,7 @@ class App extends React.Component {
           <DayButton day="yesterday" />
           <DayButton day="today" />
           <DayButton day="tomorrow" />
+          <div className="this">{this.state.today}</div>
         </div>
         <div className="temporary-spots">
           <Separator spotsType="Miejsca tymczasowe:" />

@@ -8,7 +8,7 @@ const RequestedDate = props => {
       .setZone("Europe/Warsaw")
       .toISODate();
     const RequestedDate = DateTime.fromISO(dt).toFormat("dd-MM-yyyy");
-    return <div className="current-date">{RequestedDate}</div>;
+    return <div className="past-date">{RequestedDate}</div>;
   }
   if (props.day === "today") {
     const dt = DateTime.local()
@@ -23,7 +23,7 @@ const RequestedDate = props => {
       .setZone("Europe/Warsaw")
       .toISODate();
     const RequestedDate = DateTime.fromISO(dt).toFormat("dd-MM-yyyy");
-    return <div className="current-date">{RequestedDate}</div>;
+    return <div className="next-date">{RequestedDate}</div>;
   }
 };
 
