@@ -45,5 +45,6 @@ body {
 
 .parking-place:hover {
   cursor: pointer;
-  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+  filter: invert(75%) sepia(55%) saturate(4330%) hue-rotate(100deg)
+    brightness(94%) contrast(103%);
 }

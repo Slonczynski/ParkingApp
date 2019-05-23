@@ -1,10 +1,21 @@
-import React from 'react';
-import Tile from './Tile';
-import Separator from './Separator';
-import DayButton from './DayButton';
-import './scss/App.scss';
+import React from "react";
+import Tile from "./Tile";
+import Separator from "./Separator";
+import DayButton from "./DayButton";
+import RequestedDate from "./RequestedDate";
+import "./scss/App.scss";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      yesterday: <RequestedDate day="yesterday" />,
+      today: <RequestedDate day="today" />,
+      tomorrow: <RequestedDate day="tomorrow" />
+    };
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,6 +23,7 @@ class App extends React.Component {
           <DayButton day="yesterday" />
           <DayButton day="today" />
           <DayButton day="tomorrow" />
+          <div className="this">{this.state.today}</div>
         </div>
         <div className="temporary-spots">
           <Separator spotsType="Miejsca tymczasowe:" />
