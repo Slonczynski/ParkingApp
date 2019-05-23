@@ -30,9 +30,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="d-flex justify-content-between align-items-center">
-          <DayButton day="back" />
-          <DayButton day="now" />
-          <DayButton day="forward" />
+          <DayButton day="yesterday" />
+          <DayButton day="today" />
+          <DayButton day="tomorrow" />
         </div>
         <div className="temporary-spots">
           <Separator spotsType="Miejsca tymczasowe:" />

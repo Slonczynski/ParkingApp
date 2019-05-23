@@ -2,14 +2,14 @@ import React from "react";
 import RequestedDate from "./RequestedDate";
 
 const dayConfig = {
-  back: {
+  yesterday: {
     arrowDirection: "left",
     text: "Wczoraj"
   },
-  now: {
+  today: {
     text: "Dzisiaj"
   },
-  forward: {
+  tomorrow: {
     arrowDirection: "right",
     text: "Jutro"
   }
@@ -26,7 +26,6 @@ const DayButton = props => {
         <div className={props.day}>
           {text}
           <br />
-          {/* fix this */}
           <RequestedDate day={props.day} />
         </div>
       </div>
