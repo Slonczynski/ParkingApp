@@ -23,7 +23,6 @@ class App extends React.Component {
           <DayButton day="yesterday" />
           <DayButton day="today" />
           <DayButton day="tomorrow" />
-          <div className="this">{this.state.today}</div>
         </div>
         <div className="temporary-spots">
           <Separator spotsType="Miejsca tymczasowe:" />
