@@ -1,17 +1,17 @@
-import React from "react";
-import RequestedDate from "./RequestedDate";
+import React from 'react';
+import RequestedDate from './RequestedDate';
 
 const dayConfig = {
   yesterday: {
-    arrowDirection: "left",
-    text: "Wczoraj"
+    arrowDirection: 'left',
+    text: 'Wczoraj'
   },
   today: {
-    text: "Dzisiaj"
+    text: 'Dzisiaj'
   },
   tomorrow: {
-    arrowDirection: "right",
-    text: "Jutro"
+    arrowDirection: 'right',
+    text: 'Jutro'
   }
 };
 
