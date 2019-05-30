@@ -1,6 +1,4 @@
-import React from 'react';
 import { combineReducers } from 'redux';
-// import RequestedDate from '../../RequestedDate';
 import { DateTime } from 'luxon';
 
 const RequestedDate = () => {
