@@ -2,20 +2,10 @@ import React from 'react';
 import Tile from './Tile';
 import Separator from './Separator';
 import DayButton from './DayButton';
-import RequestedDate from './RequestedDate';
+// import RequestedDate from './RequestedDate';
 import './scss/App.scss';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      yesterday: <RequestedDate day="yesterday" />,
-      today: <RequestedDate day="today" />,
-      tomorrow: <RequestedDate day="tomorrow" />
-    };
-  }
-
   render() {
     return (
       <div className="App">
