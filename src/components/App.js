@@ -6,14 +6,21 @@ import DayButton from './DayButton';
 import './scss/App.scss';
 
 class App extends React.Component {
-  render() {
+  // Helper methods
+
+  renderButtons() {
     return (
-      <div className="App">
-        <div className="d-flex justify-content-between align-items-center">
-          <DayButton day="yesterday" />
-          <DayButton day="today" />
-          <DayButton day="tomorrow" />
-        </div>
+      <div className="d-flex justify-content-between align-items-center">
+        <DayButton day="yesterday" />
+        <DayButton day="today" />
+        <DayButton day="tomorrow" />
+      </div>
+    );
+  }
+
+  renderTiles() {
+    return (
+      <div className="spots">
         <div className="temporary-spots">
           <Separator spotsType="Miejsca tymczasowe:" />
           <div className="container-fluid">
@@ -36,6 +43,15 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.renderButtons()}
+        {this.renderTiles()}
       </div>
     );
   }
