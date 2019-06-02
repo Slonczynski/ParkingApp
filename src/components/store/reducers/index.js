@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import previousDateReducer from './previousDateReducer';
-import currentDateReducer from './currentDateReducer';
-import nextDateReducer from './nextDateReducer';
+import previousDayReducer from './previousDayReducer';
+import currentDayReducer from './currentDayReducer';
+import nextDayReducer from './nextDayReducer';
 
 export default combineReducers({
-  previousDate: previousDateReducer,
-  currentDate: currentDateReducer,
-  nextDate: nextDateReducer
+  previousDay: previousDayReducer,
+  currentDay: currentDayReducer,
+  nextDay: nextDayReducer
 });

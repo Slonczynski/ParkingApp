@@ -21,7 +21,6 @@ export default (state = initialState(), action) => {
     case 'UPDATE_CURRENT_DATE':
       return action.payload;
     default:
-      console.log(state);
       return state;
   }
 };
