@@ -11,9 +11,9 @@ class App extends React.Component {
   renderButtons() {
     return (
       <div className="d-flex justify-content-between align-items-center">
-        <DayButton day="yesterday" />
-        <DayButton day="today" />
-        <DayButton day="tomorrow" />
+        <DayButton arrowDirection="left" text="yesterday" day="" />
+        <DayButton text="today" />
+        <DayButton arrowDirection="right" text="tomorrow" />
       </div>
     );
   }
