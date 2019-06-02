@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Tile = props => {
   return (
@@ -10,7 +10,7 @@ const Tile = props => {
         <div className="text-center">
           <img
             className="parking-place"
-            src={require("./tile.svg")}
+            src={require('./tile.svg')}
             alt="parking-pace"
           />
         </div>

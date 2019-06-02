@@ -17,7 +17,6 @@ const dayConfig = {
 
 const DayButton = props => {
   const { arrowDirection, text } = dayConfig[props.day];
-  // console.log(this.props.currentDate);
   return (
     <div className="text-center">
       <div className="switcher">
@@ -27,7 +26,7 @@ const DayButton = props => {
         <div className={props.day}>
           {text}
           <br />
-          {/* fill with date */}
+          {Object.values(props.currentDate)}
         </div>
       </div>
     </div>

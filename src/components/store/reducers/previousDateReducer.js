@@ -5,6 +5,7 @@ import { DateTime } from 'luxon';
 // ------------------------------------
 const initialState = () => {
   const dt = DateTime.local()
+    .minus({ days: 1 })
     .setZone('Europe/Warsaw')
     .toISODate();
   const RequestedDate = DateTime.fromISO(dt).toFormat('dd-MM-yyyy');
