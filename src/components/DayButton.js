@@ -26,7 +26,8 @@ const DayButton = props => {
         <div className={props.day}>
           {text}
           <br />
-          {Object.values(props.currentDate)}
+          {console.log(props)}
+          {Object.values(props.currentDay)}
         </div>
       </div>
     </div>
@@ -34,7 +35,11 @@ const DayButton = props => {
 };
 
 const mapStateToProps = state => {
-  return { currentDate: state.currentDate };
+  return {
+    currentDay: state.currentDay,
+    nextDay: state.nextDay,
+    previousDay: state.previousDay
+  };
 };
 
 export default connect(mapStateToProps)(DayButton);

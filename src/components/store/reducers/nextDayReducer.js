@@ -3,8 +3,7 @@ import { DateTime } from 'luxon';
 // ------------------------------------
 // Initial state
 // ------------------------------------
-
-const initialState = offset => {
+const initialState = () => {
   const dt = DateTime.local()
     .plus({ days: 1 })
     .setZone('Europe/Warsaw')
