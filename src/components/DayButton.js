@@ -1,21 +1,6 @@
 import React from 'react';
 
-// const dayConfig = {
-//   yesterday: {
-//     arrowDirection: 'left',
-//     text: 'Wczoraj'
-//   },
-//   today: {
-//     text: 'Dzisiaj'
-//   },
-//   tomorrow: {
-//     arrowDirection: 'right',
-//     text: 'Jutro'
-//   }
-// };
-
-const DayButton = (props, arrowDirection, text) => {
-  // const { arrowDirection, text } = dayConfig[props.day];
+const DayButton = props => {
   return (
     <div className="text-center">
       <div className="switcher">
