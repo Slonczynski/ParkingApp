@@ -4,6 +4,7 @@ import Separator from './Separator';
 import DayButton from './DayButton';
 // import RequestedDate from './RequestedDate';
 import './scss/App.scss';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
   // Helper methods
@@ -11,9 +12,20 @@ class App extends React.Component {
   renderButtons() {
     return (
       <div className="d-flex justify-content-between align-items-center">
-        <DayButton arrowDirection="left" text="yesterday" day="" />
-        <DayButton text="today" />
-        <DayButton arrowDirection="right" text="tomorrow" />
+        <DayButton
+          arrowDirection="left"
+          text="Poprzednia"
+          requestedDay={Object.values(this.props.previousDay)}
+        />
+        <DayButton
+          text="Aktywna"
+          requestedDay={Object.values(this.props.currentDay)}
+        />
+        <DayButton
+          arrowDirection="right"
+          text="Następna"
+          requestedDay={Object.values(this.props.nextDay)}
+        />
       </div>
     );
   }
@@ -56,4 +68,13 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    currentDay: state.currentDay,
+    nextDay: state.nextDay,
+    previousDay: state.previousDay
+  };
+};
+
+export default connect(mapStateToProps)(App);

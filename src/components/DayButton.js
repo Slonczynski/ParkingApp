@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 // const dayConfig = {
 //   yesterday: {
@@ -28,20 +27,11 @@ const DayButton = (props, arrowDirection, text) => {
         <div className={props.day}>
           {props.text}
           <br />
-          {console.log(props)}
-          {Object.values(props.day)}
+          {props.requestedDay}
         </div>
       </div>
     </div>
   );
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     currentDay: state.currentDay,
-//     nextDay: state.nextDay,
-//     previousDay: state.previousDay
-//   };
-// };
-
-export default connect(mapStateToProps)(DayButton);
+export default DayButton;
