@@ -14,16 +14,16 @@ class App extends React.Component {
       <div className="d-flex justify-content-between align-items-center">
         <DayButton
           arrowDirection="left"
-          text="Poprzednia"
+          text="Poprzedni"
           requestedDay={Object.values(this.props.previousDay)}
         />
         <DayButton
-          text="Aktywna"
+          text="Aktywny"
           requestedDay={Object.values(this.props.currentDay)}
         />
         <DayButton
           arrowDirection="right"
-          text="Następna"
+          text="Następny"
           requestedDay={Object.values(this.props.nextDay)}
         />
       </div>
