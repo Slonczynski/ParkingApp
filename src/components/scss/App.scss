@@ -27,11 +27,6 @@ body {
   padding: 5px;
 }
 
-// .temporary-spots {
-//   margin-top: 100px;
-//   margin-bottom: 50px;
-// }
-
 .spot-number {
   margin-bottom: 2%;
   font-size: 1.5rem;
@@ -47,4 +42,8 @@ body {
   cursor: pointer;
   filter: invert(75%) sepia(55%) saturate(4330%) hue-rotate(100deg)
     brightness(94%) contrast(103%);
+}
+
+.switcher:hover {
+  cursor: pointer;
 }
