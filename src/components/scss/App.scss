@@ -44,6 +44,7 @@ body {
     brightness(94%) contrast(103%);
 }
 
-.switcher:hover {
+#previous:hover,
+#next:hover {
   cursor: pointer;
 }

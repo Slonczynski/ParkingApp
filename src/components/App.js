@@ -16,15 +16,24 @@ class App extends React.Component {
           arrowDirection="left"
           text="Poprzedni"
           requestedDay={Object.values(this.props.previousDay)}
+          id="previous"
+          onClickValue={() => {
+            alert('works!');
+          }}
         />
         <DayButton
           text="Aktywny"
           requestedDay={Object.values(this.props.currentDay)}
+          id="active"
         />
         <DayButton
           arrowDirection="right"
           text="Następny"
           requestedDay={Object.values(this.props.nextDay)}
+          id="next"
+          onClickValue={() => {
+            alert('works!');
+          }}
         />
       </div>
     );
