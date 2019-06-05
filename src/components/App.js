@@ -1,10 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import Tile from './Tile';
 import Separator from './Separator';
 import DayButton from './DayButton';
-// import RequestedDate from './RequestedDate';
 import './scss/App.scss';
-import { connect } from 'react-redux';
 
 class App extends React.Component {
   // Helper methods
@@ -15,7 +15,7 @@ class App extends React.Component {
         <DayButton
           arrowDirection="left"
           text="Poprzedni"
-          requestedDay={Object.values(this.props.previousDay)}
+          requestedDay={Object.values(this.props.previousDay.date)}
           id="previous"
           onClickValue={() => {
             alert('works!');
@@ -23,13 +23,13 @@ class App extends React.Component {
         />
         <DayButton
           text="Aktywny"
-          requestedDay={Object.values(this.props.currentDay)}
+          requestedDay={Object.values(this.props.currentDay.date)}
           id="active"
         />
         <DayButton
           arrowDirection="right"
           text="Następny"
-          requestedDay={Object.values(this.props.nextDay)}
+          requestedDay={Object.values(this.props.nextDay.date)}
           id="next"
           onClickValue={() => {
             alert('works!');
