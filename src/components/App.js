@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { updateDate } from './store/actions/actionCreator';
 import Tile from './Tile';
 import Separator from './Separator';
 import DayButton from './DayButton';
@@ -16,21 +18,21 @@ class App extends React.Component {
         <DayButton
           arrowDirection="left"
           text="Poprzedni"
-          requestedDay={Object.values(this.props.dates.previousDay.value)}
+          requestedDay={Object.values(this.props.previousDay.value)}
           id="previous"
           onClickValue={() => {
-            alert('works!');
+            this.props.updateDate(this.props.previousDay.value);
           }}
         />
         <DayButton
           text="Aktywny"
-          requestedDay={Object.values(this.props.dates.currentDay.value)}
+          requestedDay={Object.values(this.props.currentDay.value)}
           id="active"
         />
         <DayButton
           arrowDirection="right"
           text="Następny"
-          requestedDay={Object.values(this.props.dates.nextDay.value)}
+          requestedDay={Object.values(this.props.nextDay.value)}
           id="next"
           onClickValue={() => {
             alert('works!');
@@ -80,9 +82,19 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    dates: state.dates
-  };
+  return state;
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      updateDate
+    },
+    dispatch
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
