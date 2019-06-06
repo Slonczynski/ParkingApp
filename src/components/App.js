@@ -16,7 +16,7 @@ class App extends React.Component {
         <DayButton
           arrowDirection="left"
           text="Poprzedni"
-          requestedDay={Object.values(this.props.dates.previousDay)}
+          requestedDay={Object.values(this.props.dates.previousDay.value)}
           id="previous"
           onClickValue={() => {
             alert('works!');
@@ -24,13 +24,13 @@ class App extends React.Component {
         />
         <DayButton
           text="Aktywny"
-          requestedDay={Object.values(this.props.dates.currentDay)}
+          requestedDay={Object.values(this.props.dates.currentDay.value)}
           id="active"
         />
         <DayButton
           arrowDirection="right"
           text="Następny"
-          requestedDay={Object.values(this.props.dates.nextDay)}
+          requestedDay={Object.values(this.props.dates.nextDay.value)}
           id="next"
           onClickValue={() => {
             alert('works!');
