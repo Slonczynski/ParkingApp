@@ -10,12 +10,13 @@ class App extends React.Component {
   // Helper methods
 
   renderButtons() {
+    console.log(this.props);
     return (
       <div className="d-flex justify-content-between align-items-center">
         <DayButton
           arrowDirection="left"
           text="Poprzedni"
-          requestedDay={Object.values(this.props.previousDay.date)}
+          requestedDay={Object.values(this.props.previousDate.previousDay)}
           id="previous"
           onClickValue={() => {
             alert('works!');
@@ -23,13 +24,13 @@ class App extends React.Component {
         />
         <DayButton
           text="Aktywny"
-          requestedDay={Object.values(this.props.currentDay.date)}
+          requestedDay={Object.values(this.props.currentDate.currentDay)}
           id="active"
         />
         <DayButton
           arrowDirection="right"
           text="Następny"
-          requestedDay={Object.values(this.props.nextDay.date)}
+          requestedDay={Object.values(this.props.nextDate.nextDay)}
           id="next"
           onClickValue={() => {
             alert('works!');
@@ -80,9 +81,9 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentDay: state.currentDay,
-    nextDay: state.nextDay,
-    previousDay: state.previousDay
+    currentDate: state.currentDate,
+    nextDate: state.nextDate,
+    previousDate: state.previousDate
   };
 };
 

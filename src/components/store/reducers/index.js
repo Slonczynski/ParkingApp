@@ -5,7 +5,7 @@ import currentDayReducer from './currentDayReducer';
 import nextDayReducer from './nextDayReducer';
 
 export default combineReducers({
-  previousDay: previousDayReducer,
-  currentDay: currentDayReducer,
-  nextDay: nextDayReducer
+  previousDate: previousDayReducer,
+  currentDate: currentDayReducer,
+  nextDate: nextDayReducer
 });

@@ -8,7 +8,7 @@ const initialState = () => {
     .setZone('Europe/Warsaw')
     .toISODate();
   const RequestedDate = DateTime.fromISO(dt).toFormat('dd-MM-yyyy');
-  return { date: RequestedDate, initialDate: dt };
+  return { currentDay: RequestedDate, initialDate: dt };
 };
 
 // ------------------------------------
