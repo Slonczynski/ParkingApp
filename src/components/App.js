@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { updateDate } from './store/actions/actionCreator';
+import {
+  previousToCurrentDay,
+  nextToCurrentDay
+} from './store/actions/actionCreator';
 import Tile from './Tile';
 import Separator from './Separator';
 import DayButton from './DayButton';
@@ -21,7 +24,10 @@ class App extends React.Component {
           requestedDay={Object.values(this.props.previousDay.value)}
           id="previous"
           onClickValue={() => {
-            this.props.updateDate(this.props.previousDay.value);
+            this.props.previousToCurrentDay(
+              this.props.previousDay.value,
+              this.props.currentDay.value
+            );
           }}
         />
         <DayButton
@@ -35,7 +41,7 @@ class App extends React.Component {
           requestedDay={Object.values(this.props.nextDay.value)}
           id="next"
           onClickValue={() => {
-            alert('works!');
+            this.props.update;
           }}
         />
       </div>
@@ -88,7 +94,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      updateDate
+      previousToCurrentDay,
+      nextToCurrentDay
     },
     dispatch
   );

@@ -1,6 +1,9 @@
-import { UPDATE_DATE } from './actionTypes';
+import { PREVIOUS_TO_CURRENT_DAY, NEXT_TO_CURRENT_DAY } from './actionTypes';
 
-export const updateDate = day => ({
-  type: 'UPDATE_DATE',
-  currentDay: day
+export const previousToCurrentDay = (day1, day2) => ({
+  type: 'PREVIOUS_TO_CURRENT_DAY',
+  previousDay: day1,
+  currentDay: day2
 });
+
+export const nextToCurrentDay = 

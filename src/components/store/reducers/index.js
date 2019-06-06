@@ -37,12 +37,16 @@ const initialState = () => {
 // ------------------------------------
 export default (state = initialState(), action) => {
   switch (action.type) {
-    case 'UPDATE_DATE':
+    case 'PREVIOUS_TO_CURRENT_DAY':
       return {
         ...state,
+        nextDay: {
+          ...state.nextDay,
+          value: action.currentDay
+        },
         currentDay: {
           ...state.currentDay,
-          value: action.currentDay
+          value: action.previousDay
         }
       };
     default:
