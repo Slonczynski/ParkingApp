@@ -5,17 +5,13 @@ import { DateTime } from 'luxon';
 // ------------------------------------
 const initialState = () => {
   const dt = DateTime.local().setZone('Europe/Warsaw');
-
   const dtPlus = dt.plus({ days: 1 }).setZone('Europe/Warsaw');
-
   const dtMinus = dt.minus({ days: 1 }).setZone('Europe/Warsaw');
 
   const nextDay = DateTime.fromISO(dtPlus.toISODate()).toFormat('dd-MM-yyyy');
-
   const previousDay = DateTime.fromISO(dtMinus.toISODate()).toFormat(
     'dd-MM-yyyy'
   );
-
   const currentDay = DateTime.fromISO(dt).toFormat('dd-MM-yyyy');
 
   return {
