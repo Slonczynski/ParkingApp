@@ -44,7 +44,8 @@ class App extends React.Component {
           onClickValue={() => {
             this.props.nextToCurrentDay(
               this.props.nextDay.value,
-              this.props.currentDay.value
+              this.props.currentDay.value,
+              this.props.nextDay.count
             );
           }}
         />

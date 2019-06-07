@@ -7,8 +7,9 @@ export const previousToCurrentDay = (day1, day2, clicks) => ({
   count: clicks
 });
 
-export const nextToCurrentDay = (day1, day2) => ({
+export const nextToCurrentDay = (day1, day2, clicks) => ({
   type: 'NEXT_TO_CURRENT_DAY',
   nextDay: day1,
-  currentDay: day2
+  currentDay: day2,
+  count: clicks
 });

@@ -23,7 +23,8 @@ const initialState = () => {
     },
     nextDay: {
       value: nextDay,
-      timestamp: dtPlus
+      timestamp: dtPlus,
+      count: 0
     },
     previousDay: {
       value: previousDay,
@@ -65,7 +66,10 @@ export default (state = initialState(), action) => {
           ...state.currentDay,
           value: action.nextDay
         },
-        nextDay: {}
+        nextDay: {
+          ...state.nextDay,
+          count: action.count + 1
+        }
       };
     default:
       return state;
