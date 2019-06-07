@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import {
+  previousToCurrentDay,
+  nextToCurrentDay
+} from './store/actions/actionCreator';
 import Tile from './Tile';
 import Separator from './Separator';
 import DayButton from './DayButton';
@@ -16,24 +21,32 @@ class App extends React.Component {
         <DayButton
           arrowDirection="left"
           text="Poprzedni"
-          requestedDay={Object.values(this.props.previousDate.previousDay)}
+          requestedDay={Object.values(this.props.previousDay.value)}
           id="previous"
           onClickValue={() => {
-            alert('works!');
+            this.props.previousToCurrentDay(
+              this.props.previousDay.value,
+              this.props.currentDay.value,
+              this.props.previousDay.count
+            );
           }}
         />
         <DayButton
           text="Aktywny"
-          requestedDay={Object.values(this.props.currentDate.currentDay)}
+          requestedDay={Object.values(this.props.currentDay.value)}
           id="active"
         />
         <DayButton
           arrowDirection="right"
           text="Następny"
-          requestedDay={Object.values(this.props.nextDate.nextDay)}
+          requestedDay={Object.values(this.props.nextDay.value)}
           id="next"
           onClickValue={() => {
-            alert('works!');
+            this.props.nextToCurrentDay(
+              this.props.nextDay.value,
+              this.props.currentDay.value,
+              this.props.nextDay.count
+            );
           }}
         />
       </div>
@@ -80,11 +93,20 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    currentDate: state.currentDate,
-    nextDate: state.nextDate,
-    previousDate: state.previousDate
-  };
+  return state;
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      previousToCurrentDay,
+      nextToCurrentDay
+    },
+    dispatch
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

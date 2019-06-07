@@ -1,11 +1,77 @@
 import { combineReducers } from 'redux';
 
-import previousDayReducer from './previousDayReducer';
-import currentDayReducer from './currentDayReducer';
-import nextDayReducer from './nextDayReducer';
+import { DateTime } from 'luxon';
 
-export default combineReducers({
-  previousDate: previousDayReducer,
-  currentDate: currentDayReducer,
-  nextDate: nextDayReducer
-});
+// ------------------------------------
+// Initial state
+// ------------------------------------
+const initialState = () => {
+  const dt = DateTime.local().setZone('Europe/Warsaw');
+  const dtPlus = dt.plus({ days: 1 }).setZone('Europe/Warsaw');
+  const dtMinus = dt.minus({ days: 1 }).setZone('Europe/Warsaw');
+
+  const nextDay = DateTime.fromISO(dtPlus.toISODate()).toFormat('dd-MM-yyyy');
+  const previousDay = DateTime.fromISO(dtMinus.toISODate()).toFormat(
+    'dd-MM-yyyy'
+  );
+  const currentDay = DateTime.fromISO(dt).toFormat('dd-MM-yyyy');
+
+  return {
+    currentDay: {
+      value: currentDay,
+      timestamp: dt
+    },
+    nextDay: {
+      value: nextDay,
+      timestamp: dtPlus,
+      count: 0
+    },
+    previousDay: {
+      value: previousDay,
+      timestamp: dtMinus,
+      count: 0
+    }
+  };
+};
+
+// ------------------------------------
+// Reducer
+// ------------------------------------
+export default (state = initialState(), action) => {
+  switch (action.type) {
+    case 'PREVIOUS_TO_CURRENT_DAY':
+      return {
+        ...state,
+        nextDay: {
+          ...state.nextDay,
+          value: action.currentDay
+        },
+        currentDay: {
+          ...state.currentDay,
+          value: action.previousDay
+        },
+        previousDay: {
+          ...state.previousDay,
+          count: action.count + 1
+        }
+      };
+    case 'NEXT_TO_CURRENT_DAY':
+      return {
+        ...state,
+        previousDay: {
+          ...state.previousDay,
+          value: action.currentDay
+        },
+        currentDay: {
+          ...state.currentDay,
+          value: action.nextDay
+        },
+        nextDay: {
+          ...state.nextDay,
+          count: action.count + 1
+        }
+      };
+    default:
+      return state;
+  }
+};
