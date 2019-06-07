@@ -49,6 +49,18 @@ export default (state = initialState(), action) => {
           value: action.previousDay
         }
       };
+    case 'NEXT_TO_CURRENT_DAY':
+      return {
+        ...state,
+        previousDay: {
+          ...state.previousDay,
+          value: action.currentDay
+        },
+        currentDay: {
+          ...state.currentDay,
+          value: action.nextDay
+        }
+      };
     default:
       return state;
   }

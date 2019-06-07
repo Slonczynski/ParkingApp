@@ -41,7 +41,10 @@ class App extends React.Component {
           requestedDay={Object.values(this.props.nextDay.value)}
           id="next"
           onClickValue={() => {
-            this.props.update;
+            this.props.nextToCurrentDay(
+              this.props.nextDay.value,
+              this.props.currentDay.value
+            );
           }}
         />
       </div>

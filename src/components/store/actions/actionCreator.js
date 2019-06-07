@@ -6,4 +6,8 @@ export const previousToCurrentDay = (day1, day2) => ({
   currentDay: day2
 });
 
-export const nextToCurrentDay = 
+export const nextToCurrentDay = (day1, day2) => ({
+  type: 'NEXT_TO_CURRENT_DAY',
+  nextDay: day1,
+  currentDay: day2
+});
