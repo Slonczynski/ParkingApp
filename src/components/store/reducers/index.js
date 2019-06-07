@@ -27,7 +27,8 @@ const initialState = () => {
     },
     previousDay: {
       value: previousDay,
-      timestamp: dtMinus
+      timestamp: dtMinus,
+      count: 0
     }
   };
 };
@@ -47,6 +48,10 @@ export default (state = initialState(), action) => {
         currentDay: {
           ...state.currentDay,
           value: action.previousDay
+        },
+        previousDay: {
+          ...state.previousDay,
+          count: action.count + 1
         }
       };
     case 'NEXT_TO_CURRENT_DAY':
@@ -59,7 +64,8 @@ export default (state = initialState(), action) => {
         currentDay: {
           ...state.currentDay,
           value: action.nextDay
-        }
+        },
+        nextDay: {}
       };
     default:
       return state;
