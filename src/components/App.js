@@ -31,7 +31,6 @@ class App extends React.Component {
             this.props.previousToCurrentDay(
               this.props.previousDay.value,
               this.props.currentDay.value,
-              this.props.previousDay.count,
               this.props.previousDay.timestamp,
               this.props.currentDay.timestamp
             );
@@ -65,7 +64,7 @@ class App extends React.Component {
             this.props.nextToCurrentDay(
               this.props.nextDay.value,
               this.props.currentDay.value,
-              this.props.nextDay.count,
+              this.props.nextDay.timestamp,
               this.props.currentDay.timestamp
             );
             if (

@@ -48,16 +48,14 @@ export default (state = initialState(), action) => {
         ...state,
         previousDay: {
           ...state.previousDay,
-          value: action.currentDay
+          timestamp: action.currTimestamp
         },
         currentDay: {
           ...state.currentDay,
-          value: action.nextDay,
-          timestamp: action.timestamp
+          timestamp: action.nextTimestamp
         },
         nextDay: {
-          ...state.nextDay,
-          count: action.count + 1
+          ...state.nextDay
         }
       };
     case 'UPDATE_PREVIOUS_DAY':

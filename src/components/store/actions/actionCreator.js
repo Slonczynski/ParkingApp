@@ -8,24 +8,22 @@ import {
 export const previousToCurrentDay = (
   day1,
   day2,
-  clicks,
   prevTimestamp,
   currTimestamp
 ) => ({
   type: 'PREVIOUS_TO_CURRENT_DAY',
   previousDay: day1,
   currentDay: day2,
-  count: clicks,
   prevTimestamp: prevTimestamp,
   currTimestamp: currTimestamp
 });
 
-export const nextToCurrentDay = (day1, day2, clicks, timestamp) => ({
+export const nextToCurrentDay = (day1, day2, nextTimestamp, currTimestamp) => ({
   type: 'NEXT_TO_CURRENT_DAY',
   nextDay: day1,
   currentDay: day2,
-  count: clicks,
-  timestamp: timestamp
+  nextTimestamp: nextTimestamp,
+  currTimestamp: currTimestamp
 });
 
 export const updatePreviousDay = value => ({
