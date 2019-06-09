@@ -6,10 +6,10 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import reducers from './components/store/reducers';
+import MainReducer from './components/store/reducers/MainReducer';
 
 ReactDOM.render(
-  <Provider store={createStore(reducers, composeWithDevTools())}>
+  <Provider store={createStore(MainReducer, composeWithDevTools())}>
     <App />
   </Provider>,
   document.getElementById('root')

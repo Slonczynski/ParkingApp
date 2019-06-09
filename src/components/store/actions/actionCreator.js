@@ -11,7 +11,7 @@ export const previousToCurrentDay = (
   prevTimestamp,
   currTimestamp
 ) => ({
-  type: 'PREVIOUS_TO_CURRENT_DAY',
+  type: PREVIOUS_TO_CURRENT_DAY,
   previousDay: day1,
   currentDay: day2,
   prevTimestamp: prevTimestamp,
@@ -19,7 +19,7 @@ export const previousToCurrentDay = (
 });
 
 export const nextToCurrentDay = (day1, day2, nextTimestamp, currTimestamp) => ({
-  type: 'NEXT_TO_CURRENT_DAY',
+  type: NEXT_TO_CURRENT_DAY,
   nextDay: day1,
   currentDay: day2,
   nextTimestamp: nextTimestamp,
@@ -27,11 +27,11 @@ export const nextToCurrentDay = (day1, day2, nextTimestamp, currTimestamp) => ({
 });
 
 export const updatePreviousDay = value => ({
-  type: 'UPDATE_PREVIOUS_DAY',
+  type: UPDATE_PREVIOUS_DAY,
   value: value
 });
 
 export const updateNextDay = value => ({
-  type: 'UPDATE_NEXT_DAY',
+  type: UPDATE_NEXT_DAY,
   value: value
 });

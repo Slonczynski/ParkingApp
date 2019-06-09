@@ -24,22 +24,22 @@ class App extends React.Component {
           arrowDirection="left"
           text="Poprzedni"
           requestedDay={DateTime.fromISO(
-            this.props.previousDay.timestamp
+            this.props.SwitcherReducer.previousDay.timestamp
           ).toFormat('dd-MM-yyyy')}
           id="previous"
           onClickValue={() => {
             this.props.previousToCurrentDay(
-              this.props.previousDay.value,
-              this.props.currentDay.value,
-              this.props.previousDay.timestamp,
-              this.props.currentDay.timestamp
+              this.props.SwitcherReducer.previousDay.value,
+              this.props.SwitcherReducer.currentDay.value,
+              this.props.SwitcherReducer.previousDay.timestamp,
+              this.props.SwitcherReducer.currentDay.timestamp
             );
             if (
-              this.props.previousDay.timestamp !==
-              this.props.currentDay.timestamp
+              this.props.SwitcherReducer.previousDay.timestamp !==
+              this.props.SwitcherReducer.currentDay.timestamp
             ) {
               this.props.updatePreviousDay(
-                this.props.previousDay.timestamp
+                this.props.SwitcherReducer.previousDay.timestamp
                   .minus({ days: 1 })
                   .setZone('Europe/Warsaw')
               );
@@ -49,29 +49,30 @@ class App extends React.Component {
         <DayButton
           text="Aktywny"
           requestedDay={DateTime.fromISO(
-            this.props.currentDay.timestamp
+            this.props.SwitcherReducer.currentDay.timestamp
           ).toFormat('dd-MM-yyyy')}
           id="active"
         />
         <DayButton
           arrowDirection="right"
           text="Następny"
-          requestedDay={DateTime.fromISO(this.props.nextDay.timestamp).toFormat(
-            'dd-MM-yyyy'
-          )}
+          requestedDay={DateTime.fromISO(
+            this.props.SwitcherReducer.nextDay.timestamp
+          ).toFormat('dd-MM-yyyy')}
           id="next"
           onClickValue={() => {
             this.props.nextToCurrentDay(
-              this.props.nextDay.value,
-              this.props.currentDay.value,
-              this.props.nextDay.timestamp,
-              this.props.currentDay.timestamp
+              this.props.SwitcherReducer.nextDay.value,
+              this.props.SwitcherReducer.currentDay.value,
+              this.props.SwitcherReducer.nextDay.timestamp,
+              this.props.SwitcherReducer.currentDay.timestamp
             );
             if (
-              this.props.nextDay.timestamp !== this.props.currentDay.timestamp
+              this.props.SwitcherReducer.nextDay.timestamp !==
+              this.props.SwitcherReducer.currentDay.timestamp
             ) {
               this.props.updateNextDay(
-                this.props.nextDay.timestamp
+                this.props.SwitcherReducer.nextDay.timestamp
                   .plus({ days: 1 })
                   .setZone('Europe/Warsaw')
               );
