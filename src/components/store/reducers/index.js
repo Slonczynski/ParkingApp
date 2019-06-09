@@ -10,26 +10,15 @@ const initialState = () => {
   const dtPlus = dt.plus({ days: 1 }).setZone('Europe/Warsaw');
   const dtMinus = dt.minus({ days: 1 }).setZone('Europe/Warsaw');
 
-  const nextDay = DateTime.fromISO(dtPlus.toISODate()).toFormat('dd-MM-yyyy');
-  const previousDay = DateTime.fromISO(dtMinus.toISODate()).toFormat(
-    'dd-MM-yyyy'
-  );
-  const currentDay = DateTime.fromISO(dt).toFormat('dd-MM-yyyy');
-
   return {
     currentDay: {
-      value: currentDay,
       timestamp: dt
     },
     nextDay: {
-      value: nextDay,
-      timestamp: dtPlus,
-      count: 0
+      timestamp: dtPlus
     },
     previousDay: {
-      value: previousDay,
-      timestamp: dtMinus,
-      count: 0
+      timestamp: dtMinus
     }
   };
 };
@@ -44,16 +33,14 @@ export default (state = initialState(), action) => {
         ...state,
         nextDay: {
           ...state.nextDay,
-          value: action.currentDay
+          timestamp: action.currTimestamp
         },
         currentDay: {
           ...state.currentDay,
-          value: action.previousDay,
-          timestamp: action.timestamp
+          timestamp: action.prevTimestamp
         },
         previousDay: {
-          ...state.previousDay,
-          count: action.count + 1
+          ...state.previousDay
         }
       };
     case 'NEXT_TO_CURRENT_DAY':
@@ -65,7 +52,8 @@ export default (state = initialState(), action) => {
         },
         currentDay: {
           ...state.currentDay,
-          value: action.nextDay
+          value: action.nextDay,
+          timestamp: action.timestamp
         },
         nextDay: {
           ...state.nextDay,

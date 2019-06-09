@@ -16,24 +16,6 @@ import './scss/App.scss';
 class App extends React.Component {
   // Helper methods
 
-  componentWillUpdate() {
-    console.log(this.props.previousDay.count);
-    if (this.props.previousDay.timestamp !== this.props.currentDay.timestamp) {
-      this.props.updatePreviousDay(
-        this.props.previousDay.timestamp
-          .minus({ days: 1 })
-          .setZone('Europe/Warsaw')
-      );}
-      if (this.props.nextDay.timestamp !== this.props.currentDay.timestamp) {
-        this.props.updateNextDay(
-          this.props.nextDay.timestamp
-            .plus({ days: 1 })
-            .setZone('Europe/Warsaw')
-        );
-      }
-    }
-  }
-
   renderButtons() {
     console.log(this.props);
     return (
@@ -50,8 +32,19 @@ class App extends React.Component {
               this.props.previousDay.value,
               this.props.currentDay.value,
               this.props.previousDay.count,
-              this.props.previousDay.timestamp
+              this.props.previousDay.timestamp,
+              this.props.currentDay.timestamp
             );
+            if (
+              this.props.previousDay.timestamp !==
+              this.props.currentDay.timestamp
+            ) {
+              this.props.updatePreviousDay(
+                this.props.previousDay.timestamp
+                  .minus({ days: 1 })
+                  .setZone('Europe/Warsaw')
+              );
+            }
           }}
         />
         <DayButton
@@ -72,8 +65,18 @@ class App extends React.Component {
             this.props.nextToCurrentDay(
               this.props.nextDay.value,
               this.props.currentDay.value,
-              this.props.nextDay.count
+              this.props.nextDay.count,
+              this.props.currentDay.timestamp
             );
+            if (
+              this.props.nextDay.timestamp !== this.props.currentDay.timestamp
+            ) {
+              this.props.updateNextDay(
+                this.props.nextDay.timestamp
+                  .plus({ days: 1 })
+                  .setZone('Europe/Warsaw')
+              );
+            }
           }}
         />
       </div>

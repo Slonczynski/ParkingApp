@@ -5,19 +5,27 @@ import {
   UPDATE_NEXT_DAY
 } from './actionTypes';
 
-export const previousToCurrentDay = (day1, day2, clicks, timestamp) => ({
+export const previousToCurrentDay = (
+  day1,
+  day2,
+  clicks,
+  prevTimestamp,
+  currTimestamp
+) => ({
   type: 'PREVIOUS_TO_CURRENT_DAY',
   previousDay: day1,
   currentDay: day2,
   count: clicks,
-  timestamp: timestamp
+  prevTimestamp: prevTimestamp,
+  currTimestamp: currTimestamp
 });
 
-export const nextToCurrentDay = (day1, day2, clicks) => ({
+export const nextToCurrentDay = (day1, day2, clicks, timestamp) => ({
   type: 'NEXT_TO_CURRENT_DAY',
   nextDay: day1,
   currentDay: day2,
-  count: clicks
+  count: clicks,
+  timestamp: timestamp
 });
 
 export const updatePreviousDay = value => ({
