@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { DateTime } from 'luxon';
 import {
   previousToCurrentDay,
-  nextToCurrentDay
+  nextToCurrentDay,
+  updatePreviousDay,
+  updateNextDay
 } from './store/actions/actionCreator';
 import Tile from './Tile';
 import Separator from './Separator';
@@ -21,32 +23,59 @@ class App extends React.Component {
         <DayButton
           arrowDirection="left"
           text="Poprzedni"
-          requestedDay={Object.values(this.props.previousDay.value)}
+          requestedDay={DateTime.fromISO(
+            this.props.previousDay.timestamp
+          ).toFormat('dd-MM-yyyy')}
           id="previous"
           onClickValue={() => {
             this.props.previousToCurrentDay(
               this.props.previousDay.value,
               this.props.currentDay.value,
-              this.props.previousDay.count
+              this.props.previousDay.timestamp,
+              this.props.currentDay.timestamp
             );
+            if (
+              this.props.previousDay.timestamp !==
+              this.props.currentDay.timestamp
+            ) {
+              this.props.updatePreviousDay(
+                this.props.previousDay.timestamp
+                  .minus({ days: 1 })
+                  .setZone('Europe/Warsaw')
+              );
+            }
           }}
         />
         <DayButton
           text="Aktywny"
-          requestedDay={Object.values(this.props.currentDay.value)}
+          requestedDay={DateTime.fromISO(
+            this.props.currentDay.timestamp
+          ).toFormat('dd-MM-yyyy')}
           id="active"
         />
         <DayButton
           arrowDirection="right"
           text="Następny"
-          requestedDay={Object.values(this.props.nextDay.value)}
+          requestedDay={DateTime.fromISO(this.props.nextDay.timestamp).toFormat(
+            'dd-MM-yyyy'
+          )}
           id="next"
           onClickValue={() => {
             this.props.nextToCurrentDay(
               this.props.nextDay.value,
               this.props.currentDay.value,
-              this.props.nextDay.count
+              this.props.nextDay.timestamp,
+              this.props.currentDay.timestamp
             );
+            if (
+              this.props.nextDay.timestamp !== this.props.currentDay.timestamp
+            ) {
+              this.props.updateNextDay(
+                this.props.nextDay.timestamp
+                  .plus({ days: 1 })
+                  .setZone('Europe/Warsaw')
+              );
+            }
           }}
         />
       </div>
@@ -100,7 +129,9 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       previousToCurrentDay,
-      nextToCurrentDay
+      nextToCurrentDay,
+      updatePreviousDay,
+      updateNextDay
     },
     dispatch
   );
