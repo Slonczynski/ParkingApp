@@ -5,7 +5,8 @@ import { DateTime } from 'luxon';
 import {
   previousToCurrentDay,
   nextToCurrentDay,
-  updatePreviousDay
+  updatePreviousDay,
+  updateNextDay
 } from './store/actions/actionCreator';
 import Tile from './Tile';
 import Separator from './Separator';
@@ -15,17 +16,21 @@ import './scss/App.scss';
 class App extends React.Component {
   // Helper methods
 
-  componentDidUpdate() {
+  componentWillUpdate() {
     console.log(this.props.previousDay.count);
     if (this.props.previousDay.timestamp !== this.props.currentDay.timestamp) {
       this.props.updatePreviousDay(
-        console.log(
-          this.props.previousDay.timestamp
-            .minus({ days: this.props.previousDay.count })
+        this.props.previousDay.timestamp
+          .minus({ days: 1 })
+          .setZone('Europe/Warsaw')
+      );}
+      if (this.props.nextDay.timestamp !== this.props.currentDay.timestamp) {
+        this.props.updateNextDay(
+          this.props.nextDay.timestamp
+            .plus({ days: 1 })
             .setZone('Europe/Warsaw')
-            .toFormat('dd-MM-yyyy')
-        )
-      );
+        );
+      }
     }
   }
 
@@ -123,7 +128,8 @@ const mapDispatchToProps = dispatch => {
     {
       previousToCurrentDay,
       nextToCurrentDay,
-      updatePreviousDay
+      updatePreviousDay,
+      updateNextDay
     },
     dispatch
   );

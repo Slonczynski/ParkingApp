@@ -77,7 +77,15 @@ export default (state = initialState(), action) => {
         ...state,
         previousDay: {
           ...state.previousDay,
-          value: action.value
+          timestamp: action.value
+        }
+      };
+    case 'UPDATE_NEXT_DAY':
+      return {
+        ...state,
+        nextDay: {
+          ...state.nextDay,
+          timestamp: action.value
         }
       };
     default:
