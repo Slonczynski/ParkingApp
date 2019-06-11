@@ -10,9 +10,11 @@ import {
   updateNextDay,
   fetchData
 } from './store/actions/actionCreator';
+
 import Tile from './Tile';
 import Separator from './Separator';
 import DayButton from './DayButton';
+import ActionModal from './ActionModal';
 import './scss/App.scss';
 
 class App extends React.Component {
@@ -95,7 +97,7 @@ class App extends React.Component {
           <Separator spotsType="Miejsca tymczasowe:" />
           <div className="container-fluid">
             <div className="row justify-content-center">
-              <Tile car="1." />
+              <Tile car="1." onClickValue={() => <ActionModal />} />
               <Tile car="2." />
               <Tile car="3." />
             </div>

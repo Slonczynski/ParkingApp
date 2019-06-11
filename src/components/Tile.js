@@ -1,4 +1,5 @@
 import React from 'react';
+import ActionModal from './ActionModal';
 
 const Tile = props => {
   return (
@@ -12,7 +13,6 @@ const Tile = props => {
             className="parking-place"
             src={require('./tile.svg')}
             alt="parking-pace"
-            onClick={props.onClickValue}
           />
         </div>
       </div>
