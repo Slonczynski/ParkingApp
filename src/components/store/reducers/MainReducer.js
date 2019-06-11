@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import SwitcherReducer from './SwitcherReducer';
+import switcherReducer from './switcherReducer';
+import databaseReducer from './databaseReducer';
 
 export default combineReducers({
-  SwitcherReducer
+  switcherReducer,
+  databaseReducer
 });

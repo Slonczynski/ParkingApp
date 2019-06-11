@@ -2,7 +2,8 @@ import {
   PREVIOUS_TO_CURRENT_DAY,
   NEXT_TO_CURRENT_DAY,
   UPDATE_PREVIOUS_DAY,
-  UPDATE_NEXT_DAY
+  UPDATE_NEXT_DAY,
+  FETCH_DATA
 } from './actionTypes';
 
 export const previousToCurrentDay = (
@@ -34,4 +35,10 @@ export const updatePreviousDay = value => ({
 export const updateNextDay = value => ({
   type: UPDATE_NEXT_DAY,
   value: value
+});
+
+export const fetchData = data => ({
+  type: FETCH_DATA,
+  data: data
+  // Make async call to db
 });

@@ -12,6 +12,7 @@ const Tile = props => {
             className="parking-place"
             src={require('./tile.svg')}
             alt="parking-pace"
+            onClick={props.onClickValue}
           />
         </div>
       </div>
