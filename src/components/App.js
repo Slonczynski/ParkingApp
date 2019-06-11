@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import 'semantic-ui-css/semantic.min.css';
 import { bindActionCreators } from 'redux';
 import { DateTime } from 'luxon';
 import {
