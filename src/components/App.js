@@ -19,6 +19,12 @@ import './scss/App.scss';
 
 class App extends React.Component {
   // Helper methods
+
+  constructor(props) {
+    super(props);
+  }
+  this.state
+
   componentWillMount() {
     this.props.fetchData();
   }
@@ -97,7 +103,13 @@ class App extends React.Component {
           <Separator spotsType="Miejsca tymczasowe:" />
           <div className="container-fluid">
             <div className="row justify-content-center">
-              <Tile car="1." onClickValue={() => <ActionModal />} />
+              <Tile
+                car="1."
+                onClickValue={this.setState({
+                  isParentOpen: !this.state.isOpen
+                })}
+              />
+              ;)}
               <Tile car="2." />
               <Tile car="3." />
             </div>
