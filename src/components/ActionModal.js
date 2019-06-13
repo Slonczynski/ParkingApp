@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Header, Image, Modal } from 'semantic-ui-react';
+import { Header, Image, Modal } from 'semantic-ui-react';
 
-const ActionModal = () => (
-  <Modal trigger={<Button>Show Modal</Button>}>
+const ActionModal = props => (
+  <Modal size="small" trigger={<div>{props.tile}</div>}>
     <Modal.Header>Select a Photo</Modal.Header>
     <Modal.Content image>
       <Image
