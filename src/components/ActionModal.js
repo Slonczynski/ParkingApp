@@ -1,37 +1,16 @@
 import React from 'react';
-import { Button, Header, Input, Modal } from 'semantic-ui-react';
+import { Button, Header, Input } from 'semantic-ui-react';
 
-class ActionModal extends React.Component {
-  state = {
-    isParentOpen: false,
-    isChildOpen: false
-  };
+const Modal = ({ handleClose, show, children }) => {
+  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
-  handleClick = () => {
-    this.setState({
-      isParentOpen: !this.state.isOpen
-    });
-  };
-
-  handleFocus = () => {
-    this.setState({
-      isChildOpen: true
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <Modal open={this.state.isParentOpen} size="large">
-          ...
-          <Input onFocus={this.handleFocus} />
-        </Modal>
-        <Modal open={this.state.isChildOpen} size="small">
-          ...
-        </Modal>
-        <Button onClick={this.handleClick} />
-      </div>
-    );
-  }
-}
-export default ActionModal;
+  return (
+    <div className={'showHideClassname'}>
+      <section className="modal-main">
+        {children}
+        <button onClick={handleClose}>close</button>
+      </section>
+    </div>
+  );
+};
+export default Modal;

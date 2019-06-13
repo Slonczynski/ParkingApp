@@ -17,9 +17,12 @@ const store = createStore(
   )
 );
 
+const container = document.createElement('div');
+document.body.appendChild(container);
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App />, container
   </Provider>,
   document.getElementById('root')
 );

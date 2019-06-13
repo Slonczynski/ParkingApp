@@ -20,10 +20,15 @@ import './scss/App.scss';
 class App extends React.Component {
   // Helper methods
 
-  constructor(props) {
-    super(props);
-  }
-  this.state
+  state = { show: false };
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
   componentWillMount() {
     this.props.fetchData();
@@ -103,13 +108,11 @@ class App extends React.Component {
           <Separator spotsType="Miejsca tymczasowe:" />
           <div className="container-fluid">
             <div className="row justify-content-center">
-              <Tile
-                car="1."
-                onClickValue={this.setState({
-                  isParentOpen: !this.state.isOpen
-                })}
-              />
-              ;)}
+              <ActionModal show={this.state.show} handleClose={this.hideModal}>
+                <p>Modal</p>
+                <p>Data</p>
+              </ActionModal>
+              <Tile car="1." onClickValue={this.showModal} />
               <Tile car="2." />
               <Tile car="3." />
             </div>
