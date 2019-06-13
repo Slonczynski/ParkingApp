@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, Header, Icon, Button } from 'semantic-ui-react';
 
 import Tile from './Tile';
+import './scss/ActionModal.scss';
 
 const ActionModal = props => (
   <Modal
