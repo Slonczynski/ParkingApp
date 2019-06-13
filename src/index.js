@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 
 import App from './components/App';
 import mainReducer from './components/store/reducers/mainReducer';
+import ActionModal from './components/ActionModal';
 
 const store = createStore(
   mainReducer,
@@ -22,7 +23,9 @@ document.body.appendChild(container);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />, container
+    <App>
+      <ActionModal />
+    </App>
   </Provider>,
   document.getElementById('root')
 );

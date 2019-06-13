@@ -10,6 +10,7 @@ import {
   updateNextDay,
   fetchData
 } from './store/actions/actionCreator';
+import { Button, Header, Image, Modal } from 'semantic-ui-react';
 
 import Tile from './Tile';
 import Separator from './Separator';
@@ -19,16 +20,6 @@ import './scss/App.scss';
 
 class App extends React.Component {
   // Helper methods
-
-  state = { show: false };
-
-  showModal = () => {
-    this.setState({ show: true });
-  };
-
-  hideModal = () => {
-    this.setState({ show: false });
-  };
 
   componentWillMount() {
     this.props.fetchData();
@@ -108,11 +99,7 @@ class App extends React.Component {
           <Separator spotsType="Miejsca tymczasowe:" />
           <div className="container-fluid">
             <div className="row justify-content-center">
-              <ActionModal show={this.state.show} handleClose={this.hideModal}>
-                <p>Modal</p>
-                <p>Data</p>
-              </ActionModal>
-              <Tile car="1." onClickValue={this.showModal} />
+              <Tile car="1." />
               <Tile car="2." />
               <Tile car="3." />
             </div>
@@ -122,6 +109,7 @@ class App extends React.Component {
           <Separator spotsType="Miejsca stałe:" />
           <div className="container-fluid">
             <div className="row justify-content-center">
+              <ActionModal />
               <Tile car="4." />
               <Tile car="5." />
               <Tile car="6." />
@@ -143,6 +131,27 @@ class App extends React.Component {
     );
   }
 }
+
+const ModalModalExample = () => (
+  <Modal trigger={<Button>Show Modal</Button>}>
+    <Modal.Header>Select a Photo</Modal.Header>
+    <Modal.Content image>
+      <Image
+        wrapped
+        size="medium"
+        src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
+      />
+      <Modal.Description>
+        <Header>Default Profile Image</Header>
+        <p>
+          We've found the following gravatar image associated with your e-mail
+          address.
+        </p>
+        <p>Is it okay to use this photo?</p>
+      </Modal.Description>
+    </Modal.Content>
+  </Modal>
+);
 
 const mapStateToProps = state => {
   return state;
