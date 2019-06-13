@@ -1,24 +1,35 @@
 import React from 'react';
-import { Header, Image, Modal } from 'semantic-ui-react';
+import { Modal, Header, Icon, Button } from 'semantic-ui-react';
+
+import Tile from './Tile';
 
 const ActionModal = props => (
-  <Modal size="small" trigger={<div>{props.tile}</div>}>
-    <Modal.Header>Select a Photo</Modal.Header>
-    <Modal.Content image>
-      <Image
-        wrapped
-        size="medium"
-        src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
-      />
-      <Modal.Description>
-        <Header>Default Profile Image</Header>
-        <p>
-          We've found the following gravatar image associated with your e-mail
-          address.
-        </p>
-        <p>Is it okay to use this photo?</p>
-      </Modal.Description>
+  <Modal
+    centered
+    size="small"
+    trigger={
+      <div>
+        <Tile car={props.car} />
+      </div>
+    }
+    closeIcon={{
+      style: { top: '1.0535rem', right: '1rem' },
+      color: 'black',
+      name: 'close'
+    }}
+  >
+    <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
+    <Modal.Content>
+      <p />
     </Modal.Content>
+    <Modal.Actions>
+      <Button color="red">
+        <Icon name="remove" /> Odrzuć
+      </Button>
+      <Button color="green">
+        <Icon name="checkmark" /> Zajmij
+      </Button>
+    </Modal.Actions>
   </Modal>
 );
 

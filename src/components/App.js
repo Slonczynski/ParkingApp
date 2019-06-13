@@ -10,12 +10,11 @@ import {
   updateNextDay,
   fetchData
 } from './store/actions/actionCreator';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
-import Tile from './Tile';
+import ActionModal from './ActionModal';
 import Separator from './Separator';
 import DayButton from './DayButton';
-import TileWithModal from './TileWithModal';
 import './scss/App.scss';
 
 class App extends React.Component {
@@ -99,13 +98,13 @@ class App extends React.Component {
           <Separator spotsType="Miejsca tymczasowe:" />
           <Grid stackable centered relaxed columns={3}>
             <Grid.Column>
-              <TileWithModal car="1." />
+              <ActionModal car="1." />
             </Grid.Column>
             <Grid.Column>
-              <TileWithModal car="2." />
+              <ActionModal car="2." />
             </Grid.Column>
             <Grid.Column>
-              <TileWithModal car="3." />
+              <ActionModal car="3." />
             </Grid.Column>
           </Grid>
         </div>
@@ -113,19 +112,19 @@ class App extends React.Component {
           <Separator spotsType="Miejsca stałe:" />
           <Grid stackable centered relaxed columns={5}>
             <Grid.Column>
-              <TileWithModal car="4." />
+              <ActionModal car="4." />
             </Grid.Column>
             <Grid.Column>
-              <TileWithModal car="5." />
+              <ActionModal car="5." />
             </Grid.Column>
             <Grid.Column>
-              <TileWithModal car="6." />
+              <ActionModal car="6." />
             </Grid.Column>
             <Grid.Column>
-              <TileWithModal car="7." />
+              <ActionModal car="7." />
             </Grid.Column>
             <Grid.Column>
-              <TileWithModal car="8." />
+              <ActionModal car="8." />
             </Grid.Column>
           </Grid>
         </div>
