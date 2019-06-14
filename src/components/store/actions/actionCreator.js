@@ -3,9 +3,15 @@ import {
   NEXT_TO_CURRENT_DAY,
   UPDATE_PREVIOUS_DAY,
   UPDATE_NEXT_DAY,
-  FETCH_DATA,
-  OCCUPY_SPOT
+  SEND_DATA,
+  SEND_DATA_ERROR
 } from './actionTypes';
+
+import { reduxFirestore, getFirestore } from 'redux-firestore';
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import fbConfig from '../../config/fbConfig';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 export const previousToCurrentDay = (
   day1,
@@ -37,11 +43,10 @@ export const updateNextDay = value => ({
   type: UPDATE_NEXT_DAY,
   value: value
 });
-
-
-export const sendData = data => {
-  return (data, { getFirebase, getFirestore }) => {
-    const firestore = getFirestore();
+firebase.firestore();
+// const firestore = getFirestore(fbConfig);
+export const sendData = (data, firestore) => {
+  return (data, firestore, { getFirebase, getFirestore }) => {
     firestore
       .collection('spots')
       .add({
@@ -64,4 +69,3 @@ export const sendData = data => {
 //   data: data
 //   Make async call to db
 // });
-
