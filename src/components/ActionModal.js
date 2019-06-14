@@ -22,7 +22,7 @@ const ActionModal = props => (
   >
     <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
     <Modal.Content>
-      <Input disabled="true" value={this.} />
+      <Input disabled="true" />
     </Modal.Content>
     <Modal.Actions>
       <Button color="red">
@@ -34,7 +34,5 @@ const ActionModal = props => (
     </Modal.Actions>
   </Modal>
 );
-
-
 
 export default ActionModal;
