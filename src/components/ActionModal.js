@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, Header, Icon, Button } from 'semantic-ui-react';
 
 import Tile from './Tile';
+import Input from './Input';
 import './scss/ActionModal.scss';
 
 const ActionModal = props => (
@@ -21,7 +22,7 @@ const ActionModal = props => (
   >
     <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
     <Modal.Content>
-      <p />
+      <Input disabled="true" value={this.} />
     </Modal.Content>
     <Modal.Actions>
       <Button color="red">
@@ -33,5 +34,7 @@ const ActionModal = props => (
     </Modal.Actions>
   </Modal>
 );
+
+
 
 export default ActionModal;
