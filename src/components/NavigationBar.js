@@ -7,7 +7,7 @@ import {
   nextToCurrentDay,
   updatePreviousDay,
   updateNextDay,
-  fetchData
+  sendData
 } from './store/actions/actionCreator';
 
 import './scss/App.scss';
@@ -32,6 +32,7 @@ class NavigationBar extends React.Component {
               this.props.switcherReducer.previousDay.timestamp,
               this.props.switcherReducer.currentDay.timestamp
             );
+            this.props.sendData();
             if (
               this.props.switcherReducer.previousDay.timestamp !==
               this.props.switcherReducer.currentDay.timestamp
@@ -92,7 +93,7 @@ const mapDispatchToProps = dispatch => {
       nextToCurrentDay,
       updatePreviousDay,
       updateNextDay,
-      fetchData
+      sendData
     },
     dispatch
   );

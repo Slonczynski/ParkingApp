@@ -6,8 +6,7 @@ import {
   previousToCurrentDay,
   nextToCurrentDay,
   updatePreviousDay,
-  updateNextDay,
-  fetchData
+  updateNextDay
 } from './store/actions/actionCreator';
 
 import './scss/App.scss';
@@ -35,8 +34,7 @@ const mapDispatchToProps = dispatch => {
       previousToCurrentDay,
       nextToCurrentDay,
       updatePreviousDay,
-      updateNextDay,
-      fetchData
+      updateNextDay
     },
     dispatch
   );
