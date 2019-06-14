@@ -25,7 +25,7 @@ const ActionModal = props => (
     </Modal.Content>
     <Modal.Actions>
       <Button color="red">
-        <Icon name="remove" /> Odrzuć
+        <Icon name="remove" /> Wróć
       </Button>
       <Button color="green">
         <Icon name="checkmark" /> Zajmij
