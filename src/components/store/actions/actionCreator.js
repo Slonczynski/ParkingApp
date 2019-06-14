@@ -3,7 +3,8 @@ import {
   NEXT_TO_CURRENT_DAY,
   UPDATE_PREVIOUS_DAY,
   UPDATE_NEXT_DAY,
-  FETCH_DATA
+  FETCH_DATA,
+  OCCUPY_SPOT
 } from './actionTypes';
 
 export const previousToCurrentDay = (
@@ -41,4 +42,9 @@ export const fetchData = data => ({
   type: FETCH_DATA,
   data: data
   // Make async call to db
+});
+
+export const occupySpot = (data, { getFirebase, getFirestore }) => ({
+  type: OCCUPY_SPOT,
+  data: data
 });
