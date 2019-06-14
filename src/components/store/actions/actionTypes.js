@@ -3,3 +3,4 @@ export const NEXT_TO_CURRENT_DAY = 'NEXT_TO_CURRENT_DAY';
 export const UPDATE_PREVIOUS_DAY = 'UPDATE_PREVIOUS_DAY';
 export const UPDATE_NEXT_DAY = 'UPDATE_NEXT_DAY';
 export const FETCH_DATA = 'FETCH_DATA';
+export const OCCUPY_SPOT = 'OCCUPY_SPOT';
