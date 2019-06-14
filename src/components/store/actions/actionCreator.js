@@ -37,8 +37,28 @@ export const updateNextDay = value => ({
   value: value
 });
 
-export const fetchData = data => ({
-  type: FETCH_DATA,
-  data: data
-  // Make async call to db
-});
+export const sendData = data => {
+  return (data, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection('spots')
+      .add({
+        ...data,
+        data: '14-06-2019',
+        holder: 'Szymon',
+        isEmpty: false,
+        spotId: 4
+      })
+      .then(() => ({
+        type: 'SEND_DATA',
+        data: data
+      }))
+      .catch(err => ({ type: 'SEND_DATA_ERROR', err }));
+  };
+};
+
+// export const fetchData = data => ({
+//   type: FETCH_DATA,
+//   data: data
+//   Make async call to db
+// });

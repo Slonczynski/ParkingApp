@@ -10,8 +10,11 @@ const initialState = {
 // ------------------------------------
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_DATA':
-      console.log('data was fetched', action.data);
+    case 'SEND_DATA':
+      console.log('data was send', action.data);
+      return state;
+    case 'SEND_DATA_ERROR':
+      console.log('send data error', action.err);
       return state;
     default:
       return state;
