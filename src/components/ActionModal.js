@@ -25,7 +25,7 @@ class ActionModal extends React.Component {
         }}
       >
         <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
-        <Modal.Content centered>
+        <Modal.Content>
           <AdjustableInput
             label="Data"
             disabled={true}
