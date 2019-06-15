@@ -1,38 +1,60 @@
 import React from 'react';
 import { Modal, Header, Icon, Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { DateTime } from 'luxon';
 
 import Tile from './Tile';
-import Input from './Input';
+import AdjustableInput from './AdjustableInput';
 import './scss/ActionModal.scss';
 
-const ActionModal = props => (
-  <Modal
-    centered
-    size="small"
-    trigger={
-      <div>
-        <Tile car={props.car} />
-      </div>
-    }
-    closeIcon={{
-      style: { top: '1.0535rem', right: '1rem' },
-      color: 'black',
-      name: 'close'
-    }}
-  >
-    <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
-    <Modal.Content>
-      <Input disabled="true" />
-    </Modal.Content>
-    <Modal.Actions>
-      <Button color="red">
-        <Icon name="remove" /> Wróć
-      </Button>
-      <Button color="green">
-        <Icon name="checkmark" /> Zajmij
-      </Button>
-    </Modal.Actions>
-  </Modal>
-);
+class ActionModal extends React.Component {
+  render() {
+    return (
+      <Modal
+        centered
+        size="small"
+        trigger={
+          <div>
+            <Tile car={this.props.car} />
+          </div>
+        }
+        closeIcon={{
+          style: { top: '1.0535rem', right: '1rem' },
+          color: 'black',
+          name: 'close'
+        }}
+      >
+        <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
+        <Modal.Content centered>
+          <AdjustableInput
+            inputHeader="Data: "
+            disabled={true}
+            value={DateTime.fromISO(
+              this.props.switcherReducer.currentDay.timestamp
+            ).toFormat('dd-MM-yyyy')}
+            placeholder={false}
+          />
+          <AdjustableInput
+            inputHeader="Imię: "
+            disabled={false}
+            value=""
+            placeholder="Nazwa"
+          />
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color="red">
+            <Icon name="remove" /> Wróć
+          </Button>
+          <Button color="green">
+            <Icon name="checkmark" /> Zajmij
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    );
+  }
+}
+const mapStateToProps = state => {
+  return state;
+};
 
-export default ActionModal;
+export default connect(mapStateToProps)(ActionModal);
