@@ -8,6 +8,8 @@ import {
   updatePreviousDay,
   updateNextDay
 } from './store/actions/actionCreator';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 
 import './scss/App.scss';
 import NavigationBar from './NavigationBar';
@@ -25,22 +27,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return state;
 };
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      previousToCurrentDay,
-      nextToCurrentDay,
-      updatePreviousDay,
-      updateNextDay
-    },
-    dispatch
-  );
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    firestoreConnect([{ collection: 'spots' }])
+  )
 )(App);
