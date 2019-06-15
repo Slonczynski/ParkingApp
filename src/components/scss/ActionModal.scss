@@ -2,8 +2,11 @@
   position: relative;
   height: auto;
 }
-.input {
+.ui.input {
   padding: 1%;
+  margin: 1%;
+  font-weight: 700;
+  font-size: 1.05em;
 }
 .span {
   padding: 100px;

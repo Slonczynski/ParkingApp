@@ -27,7 +27,7 @@ class ActionModal extends React.Component {
         <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
         <Modal.Content centered>
           <AdjustableInput
-            inputHeader="Data: "
+            label="Data"
             disabled={true}
             value={DateTime.fromISO(
               this.props.switcherReducer.currentDay.timestamp
@@ -35,7 +35,7 @@ class ActionModal extends React.Component {
             placeholder={false}
           />
           <AdjustableInput
-            inputHeader="Imię: "
+            label="Imię"
             disabled={false}
             value=""
             placeholder="Nazwa"
