@@ -32,7 +32,6 @@ class ActionModal extends React.Component {
             value={DateTime.fromISO(
               this.props.switcherReducer.currentDay.timestamp
             ).toFormat('dd-MM-yyyy')}
-            placeholder={false}
           />
           <AdjustableInput
             label="Imię"

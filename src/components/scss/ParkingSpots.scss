@@ -16,11 +16,20 @@
 
 .parking-place:hover {
   cursor: pointer;
-  filter: invert(75%) sepia(55%) saturate(4330%) hue-rotate(100deg)
-    brightness(94%) contrast(103%);
+  filter: invert(52%) sepia(56%) saturate(1050%) hue-rotate(194deg)
+    brightness(103%) contrast(94%);
+}
+.parking-place-free {
+  filter: invert(70%) sepia(62%) saturate(4020%) hue-rotate(103deg)
+    brightness(97%) contrast(102%);
+}
+.parking-place-occupied {
+  filter: invert(12%) sepia(95%) saturate(3770%) hue-rotate(353deg)
+    brightness(97%) contrast(103%);
 }
 
 #previous:hover,
 #next:hover {
   cursor: pointer;
+  color: #619df8;
 }
