@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Label, Icon } from 'semantic-ui-react';
 import './scss/Tile.scss';
 
 const Tile = props => {
@@ -14,6 +14,10 @@ const Tile = props => {
           src={require('./tile.svg')}
           alt="parking-pace"
         />
+        <Label className="spot-occupant" size="large">
+          Konrad
+          <Icon name="delete" />
+        </Label>
       </div>
     </div>
   );
