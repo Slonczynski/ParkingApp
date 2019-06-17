@@ -1,9 +1,11 @@
 import React from 'react';
 
+import './scss/Separator.scss';
+
 const Separator = props => {
   return (
     <div className="text-center">
-      <div className="separatora">{props.spotsType}</div>
+      <div className="separator">{props.spotsType}</div>
     </div>
   );
 };

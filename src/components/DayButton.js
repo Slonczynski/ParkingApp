@@ -1,32 +1,17 @@
-import React from "react";
-import RequestedDate from "./RequestedDate";
-
-const dayConfig = {
-  yesterday: {
-    arrowDirection: "left",
-    text: "Wczoraj"
-  },
-  today: {
-    text: "Dzisiaj"
-  },
-  tomorrow: {
-    arrowDirection: "right",
-    text: "Jutro"
-  }
-};
+import React from 'react';
 
 const DayButton = props => {
-  const { arrowDirection, text } = dayConfig[props.day];
   return (
     <div className="text-center">
-      <div className="switcher">
+      <div className="switcher" id={props.id} onClick={props.onClickValue}>
         <i
-          className={`circular inverted teal large arrow ${arrowDirection} icon`}
+          className={`circular inverted teal large arrow 
+          ${props.arrowDirection} icon`}
         />
         <div className={props.day}>
-          {text}
+          {props.text}
           <br />
-          <RequestedDate day={props.day} />
+          {props.requestedDay}
         </div>
       </div>
     </div>

@@ -1,0 +1,35 @@
+.parking-spot {
+  margin: 5px;
+  padding: 5px;
+}
+
+.spot-number {
+  margin-bottom: 2%;
+  font-size: 1.5rem;
+}
+.parking-place {
+  max-height: 40vh;
+  max-width: 20vh;
+  min-width: 5vh;
+  min-height: 10vh;
+}
+
+.parking-place:hover {
+  cursor: pointer;
+  filter: invert(52%) sepia(56%) saturate(1050%) hue-rotate(194deg)
+    brightness(103%) contrast(94%);
+}
+.parking-place-free {
+  filter: invert(70%) sepia(62%) saturate(4020%) hue-rotate(103deg)
+    brightness(97%) contrast(102%);
+}
+.parking-place-occupied {
+  filter: invert(12%) sepia(95%) saturate(3770%) hue-rotate(353deg)
+    brightness(97%) contrast(103%);
+}
+
+#previous:hover,
+#next:hover {
+  cursor: pointer;
+  color: #619df8;
+}

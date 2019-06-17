@@ -1,54 +1,32 @@
 import React from 'react';
-import Tile from './Tile';
-import Separator from './Separator';
-import DayButton from './DayButton';
-import RequestedDate from './RequestedDate';
+import { connect } from 'react-redux';
+import 'semantic-ui-css/semantic.min.css';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+
 import './scss/App.scss';
+import NavigationBar from './NavigationBar';
+import ParkingSpots from './ParkingSpots';
+import SpotsCounter from './SpotsCounter';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      yesterday: <RequestedDate day="yesterday" />,
-      today: <RequestedDate day="today" />,
-      tomorrow: <RequestedDate day="tomorrow" />
-    };
-  }
-
   render() {
     return (
       <div className="App">
-        <div className="d-flex justify-content-between align-items-center">
-          <DayButton day="yesterday" />
-          <DayButton day="today" />
-          <DayButton day="tomorrow" />
-          <div className="this">{this.state.today}</div>
-        </div>
-        <div className="temporary-spots">
-          <Separator spotsType="Miejsca tymczasowe:" />
-          <div className="container-fluid">
-            <div className="row justify-content-center">
-              <Tile car="1." />
-              <Tile car="2." />
-              <Tile car="3." />
-            </div>
-          </div>
-        </div>
-        <div className="permanent-spots">
-          <Separator spotsType="Miejsca stałe:" />
-          <div className="container-fluid">
-            <div className="row justify-content-center">
-              <Tile car="4." />
-              <Tile car="5." />
-              <Tile car="6." />
-              <Tile car="7." />
-              <Tile car="8." />
-            </div>
-          </div>
-        </div>
+        <NavigationBar />
+        <SpotsCounter />
+        <ParkingSpots />
       </div>
     );
   }
 }
-export default App;
+
+const mapStateToProps = state => {
+  console.log(state);
+  return state;
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: 'spots-collection' }])
+)(App);
