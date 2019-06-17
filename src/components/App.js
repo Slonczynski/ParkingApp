@@ -27,6 +27,6 @@ const mapStateToProps = state => {
 };
 
 export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: 'spots' }])
+  firestoreConnect([{ collection: 'spots-collection' }]),
+  connect(mapStateToProps)
 )(App);
