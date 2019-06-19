@@ -19,7 +19,7 @@ class NavigationBar extends React.Component {
     return (
       <div className="d-flex justify-content-between align-items-center">
         <DayButton
-          arrowDirection="left"
+          icon="left"
           text="Poprzedni"
           requestedDay={DateTime.fromISO(
             this.props.switcherReducer.previousDay.timestamp
@@ -47,13 +47,14 @@ class NavigationBar extends React.Component {
         />
         <DayButton
           text="Aktywny"
+          icon="home"
           requestedDay={DateTime.fromISO(
             this.props.switcherReducer.currentDay.timestamp
           ).toFormat('dd-MM-yyyy')}
           id="active"
         />
         <DayButton
-          arrowDirection="right"
+          icon="right"
           text="Następny"
           requestedDay={DateTime.fromISO(
             this.props.switcherReducer.nextDay.timestamp
