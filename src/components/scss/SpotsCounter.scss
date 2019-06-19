@@ -1,3 +1,10 @@
 .free-spots {
-  //   color: green;
+  line-height: 4.5vh;
+  margin-top: 4vh;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1cdf1c;
+  .no-free-spots {
+    color: #ff5252;
+  }
 }

@@ -43,12 +43,7 @@ class SpotsCounter extends React.Component {
     // return else with div => all spots avaiable!
   }
 
-  // if (this.occupiedSpotsNumber < 8) {
-  //   return 'Wolnych miejsc: {occupiedSpotsNumber - 8}';
-  // } else return 'Brak wolnych miejsc';}
-
-  render() {
-    console.log(this.state.occupiedSpotsNumber);
+  freeSpots() {
     return (
       <div className="text-center">
         {this.state.occupiedSpotsNumber < 8 ? (
@@ -64,6 +59,11 @@ class SpotsCounter extends React.Component {
         )}
       </div>
     );
+  }
+
+  render() {
+    console.log(this.state.occupiedSpotsNumber);
+    return this.freeSpots();
   }
 }
 const mapStateToProps = state => {
