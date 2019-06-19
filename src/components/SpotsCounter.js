@@ -17,21 +17,30 @@ class SpotsCounter extends React.Component {
     ).toFormat('dd-MM-yyyy');
 
     if (
-      this.state.occupiedSpotsNumber !==
-      Object.keys(
-        this.props.firestoreReducer.ordered['spots-collection']['0'][
-          currentData
-        ]
-      ).length
+      this.props.firestoreReducer.ordered['spots-collection']['0'][
+        currentData
+      ] !== undefined ||
+      null
     ) {
-      this.setState({
-        occupiedSpotsNumber: Object.keys(
+      if (
+        this.state.occupiedSpotsNumber !==
+        Object.keys(
           this.props.firestoreReducer.ordered['spots-collection']['0'][
             currentData
           ]
         ).length
-      });
+      ) {
+        this.setState({
+          occupiedSpotsNumber: Object.keys(
+            this.props.firestoreReducer.ordered['spots-collection']['0'][
+              currentData
+            ]
+          ).length
+        });
+      }
     }
+    // TODO:
+    // return else with div => all spots avaiable!
   }
 
   // if (this.occupiedSpotsNumber < 8) {
