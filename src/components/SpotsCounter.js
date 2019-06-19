@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
+import { Grid, Segment } from 'semantic-ui-react';
 
 import '../components/scss/SpotsCounter.scss';
 
@@ -45,20 +46,26 @@ class SpotsCounter extends React.Component {
 
   freeSpots() {
     return (
-      <div className="text-center">
-        {this.state.occupiedSpotsNumber < 8 ? (
-          <div className="free-spots">
-            <span>
-              Wolnych miejsc: <br />
-              <span className="free-spots-number">
-                {8 - this.state.occupiedSpotsNumber}
-              </span>
-            </span>
-          </div>
-        ) : (
-          <div className="no-free-spots">Brak wolnych miejsc</div>
-        )}
-      </div>
+      <Grid centered>
+        <div className="segment">
+          {this.state.occupiedSpotsNumber < 8 ? (
+            <Segment compact padded textAlign="center" inverted color="green">
+              <div className="free-spots">
+                <span>
+                  Wolnych miejsc: <br />
+                  <span className="free-spots-number">
+                    {8 - this.state.occupiedSpotsNumber}
+                  </span>
+                </span>
+              </div>
+            </Segment>
+          ) : (
+            <Segment compact padded textAlign="center" inverted color="red">
+              <div className="no-free-spots">Brak wolnych miejsc</div>
+            </Segment>
+          )}
+        </div>
+      </Grid>
     );
   }
 
