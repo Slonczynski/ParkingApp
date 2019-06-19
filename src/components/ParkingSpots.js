@@ -11,7 +11,7 @@ class ParkingSpots extends React.Component {
     return (
       <div className="spots">
         <div className="temporary-spots">
-          <Separator spotsType="Miejsca tymczasowe:" />
+          <Separator spotsType="Tymczasowe:" />
           <Grid stackable centered relaxed columns={3}>
             <Grid.Column>
               <ActionModal car="1." />
@@ -25,7 +25,7 @@ class ParkingSpots extends React.Component {
           </Grid>
         </div>
         <div className="permanent-spots">
-          <Separator spotsType="Miejsca stałe:" />
+          <Separator spotsType="Stałe:" />
           <Grid stackable centered relaxed columns={5}>
             <Grid.Column>
               <ActionModal car="4." />
