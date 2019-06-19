@@ -1,13 +1,16 @@
 .free-spots {
-  margin-top: 6vh;
+  margin-top: 7vh;
   font-size: 1.7rem;
   line-height: 4.5vh;
   color: #1cdf1c;
-  .free-spots-number {
-    font-weight: 700;
-    font-size: 2.8rem;
-  }
-  .no-free-spots {
-    color: #ff5252;
-  }
+}
+.free-spots-number {
+  font-weight: 700;
+  font-size: 2.8rem;
+}
+.no-free-spots {
+  margin-top: 7vh;
+  font-size: 1.8rem;
+  line-height: 4.5vh;
+  color: #ff5252;
 }

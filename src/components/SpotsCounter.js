@@ -56,9 +56,7 @@ class SpotsCounter extends React.Component {
             </span>
           </div>
         ) : (
-          <div className="no-free-spots">
-            Na ten dzień nie ma już wolnych miejsc
-          </div>
+          <div className="no-free-spots">Brak wolnych miejsc</div>
         )}
       </div>
     );
