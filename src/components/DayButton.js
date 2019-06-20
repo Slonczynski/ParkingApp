@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './scss/DayButton.scss';
+
 const DayButton = props => {
   return (
     <div className="text-center">
@@ -8,7 +10,7 @@ const DayButton = props => {
           className={`circular inverted teal large arrow 
           ${props.icon} icon`}
         />
-        <div className={props.day}>
+        <div className="day-button-text">
           {props.text}
           <br />
           {props.requestedDay}
