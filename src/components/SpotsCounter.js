@@ -53,9 +53,9 @@ class SpotsCounter extends React.Component {
               <div className="free-spots">
                 <span>
                   Wolnych miejsc: <br />
-                  <span className="free-spots-number">
-                    {8 - this.state.occupiedSpotsNumber}
-                  </span>
+                </span>
+                <span className="free-spots-number">
+                  {8 - this.state.occupiedSpotsNumber}
                 </span>
               </div>
             </Segment>

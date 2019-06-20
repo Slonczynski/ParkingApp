@@ -3,11 +3,12 @@
 }
 .free-spots {
   font-size: 1.7rem;
-  line-height: 4.8vh;
 }
 .free-spots-number {
+  display: inline-block;
   font-weight: 700;
   font-size: 2.8rem;
+  margin-top: 2.5vh;
 }
 .no-free-spots {
   font-size: 1.8rem;
