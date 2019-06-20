@@ -52,7 +52,14 @@ class SpotsCounter extends React.Component {
       <Grid centered>
         <div className="segment">
           {this.state.occupiedSpotsNumber < 8 ? (
-            <Segment compact padded textAlign="center" inverted color="green">
+            <Segment
+              compact
+              padded
+              size="large"
+              textAlign="center"
+              inverted
+              color="green"
+            >
               <div className="free-spots">
                 <span>
                   Wolnych miejsc: <br />
@@ -63,7 +70,14 @@ class SpotsCounter extends React.Component {
               </div>
             </Segment>
           ) : (
-            <Segment compact padded textAlign="center" inverted color="red">
+            <Segment
+              compact
+              padded
+              size="large"
+              textAlign="center"
+              inverted
+              color="red"
+            >
               <div className="no-free-spots">Brak wolnych miejsc</div>
             </Segment>
           )}
