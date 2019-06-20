@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 import { Grid } from 'semantic-ui-react';
 
@@ -49,4 +50,8 @@ class ParkingSpots extends React.Component {
   }
 }
 
-export default ParkingSpots;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps)(ParkingSpots);
