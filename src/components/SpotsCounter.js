@@ -20,8 +20,10 @@ class SpotsCounter extends React.Component {
     if (
       this.props.firestoreReducer.ordered['spots-collection']['0'][
         currentData
-      ] !== undefined ||
-      null
+      ] !== null &&
+      this.props.firestoreReducer.ordered['spots-collection']['0'][
+        currentData
+      ] !== undefined
     ) {
       if (
         this.state.occupiedSpotsNumber !==
@@ -39,9 +41,10 @@ class SpotsCounter extends React.Component {
           ).length
         });
       }
-    }
-    // TODO:
-    // return else with div => all spots avaiable!
+    } else if (this.state.occupiedSpotsNumber !== 0)
+      this.setState({
+        occupiedSpotsNumber: 0
+      });
   }
 
   freeSpots() {
@@ -70,7 +73,6 @@ class SpotsCounter extends React.Component {
   }
 
   render() {
-    console.log(this.state.occupiedSpotsNumber);
     return this.freeSpots();
   }
 }
