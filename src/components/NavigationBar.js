@@ -52,6 +52,11 @@ class NavigationBar extends React.Component {
             this.props.switcherReducer.currentDay.timestamp
           ).toFormat('dd-MM-yyyy')}
           id="active"
+          // TODO:
+          // Shouldn't reload the app
+          onClickValue={() => {
+            window.location.reload();
+          }}
         />
         <DayButton
           icon="right"
