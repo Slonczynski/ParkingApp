@@ -16,7 +16,7 @@ class ParkingSpots extends React.Component {
       occupiedSpotIds: []
     };
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevState) {
     const currentData = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
@@ -34,6 +34,24 @@ class ParkingSpots extends React.Component {
           freeSpotIds: ['1', '2', '3', '4', '5', '6', '7', '8']
         });
       }
+    } else if (
+      Object.keys(
+        this.props.firestoreReducer.ordered['spots-collection']['0'][
+          currentData
+        ]
+      ) !== prevState.freeSpotIds
+    ) {
+      this.setState({
+        ...this.state,
+        freeSpotIds: [
+          Object.keys(
+            this.props.firestoreReducer.ordered['spots-collection']['0'][
+              currentData
+            ]
+          )
+        ]
+      });
+      console.log(this.state);
     }
   }
 
