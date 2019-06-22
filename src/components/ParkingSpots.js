@@ -54,10 +54,24 @@ class ParkingSpots extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="2." />
+              <ActionModal
+                car="2."
+                className={
+                  this.state.freeSpotIds.includes('2')
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="3." />
+              <ActionModal
+                car="3."
+                className={
+                  this.state.freeSpotIds.includes('3')
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
           </Grid>
         </div>
@@ -65,19 +79,54 @@ class ParkingSpots extends React.Component {
           <Separator spotsType="Stałe:" />
           <Grid stackable centered relaxed columns={5}>
             <Grid.Column>
-              <ActionModal car="4." />
+              <ActionModal
+                car="4."
+                className={
+                  this.state.freeSpotIds.includes('4')
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="5." />
+              <ActionModal
+                car="5."
+                className={
+                  this.state.freeSpotIds.includes('5')
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="6." />
+              <ActionModal
+                car="6."
+                className={
+                  this.state.freeSpotIds.includes('6')
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="7." />
+              <ActionModal
+                car="7."
+                className={
+                  this.state.freeSpotIds.includes('7')
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="8." />
+              <ActionModal
+                car="8."
+                className={
+                  this.state.freeSpotIds.includes('8')
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
           </Grid>
         </div>

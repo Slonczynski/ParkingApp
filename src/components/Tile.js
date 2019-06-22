@@ -13,7 +13,7 @@ class Tile extends React.Component {
           <img
             className={this.props.className}
             src={require('./tile.svg')}
-            alt="parking-pace"
+            alt="parking-place"
           />
           <Label className="spot-occupant" size="large">
             Konrad
