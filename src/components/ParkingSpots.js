@@ -29,7 +29,7 @@ class ParkingSpots extends React.Component {
         currentData
       ] === undefined
     ) {
-      if (this.state.freeSpotIds.length === 0) {
+      if (this.state.freeSpotIds.length < 7) {
         this.setState({
           freeSpotIds: ['1', '2', '3', '4', '5', '6', '7', '8']
         });
