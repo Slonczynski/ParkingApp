@@ -2,9 +2,7 @@ import {
   PREVIOUS_TO_CURRENT_DAY,
   NEXT_TO_CURRENT_DAY,
   UPDATE_PREVIOUS_DAY,
-  UPDATE_NEXT_DAY,
-  SEND_DATA,
-  SEND_DATA_ERROR
+  UPDATE_NEXT_DAY
 } from './actionTypes';
 
 import { reduxFirestore, getFirestore } from 'redux-firestore';
@@ -43,29 +41,3 @@ export const updateNextDay = value => ({
   type: UPDATE_NEXT_DAY,
   value: value
 });
-firebase.firestore();
-// const firestore = getFirestore(fbConfig);
-export const sendData = (data, firestore) => {
-  return (data, firestore, { getFirebase, getFirestore }) => {
-    firestore
-      .collection('spots')
-      .add({
-        ...data,
-        data: '14-06-2019',
-        holder: 'Szymon',
-        isEmpty: false,
-        spotId: 4
-      })
-      .then(() => ({
-        type: 'SEND_DATA',
-        data: data
-      }))
-      .catch(err => ({ type: 'SEND_DATA_ERROR', err }));
-  };
-};
-
-// export const fetchData = data => ({
-//   type: FETCH_DATA,
-//   data: data
-//   Make async call to db
-// });

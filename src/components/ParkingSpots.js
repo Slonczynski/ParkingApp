@@ -7,20 +7,22 @@ import { Grid } from 'semantic-ui-react';
 import Separator from './Separator';
 import ActionModal from './ActionModal';
 import './scss/ParkingSpots.scss';
+import { objectTypeAnnotation } from '@babel/types';
 
 class ParkingSpots extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      freeSpotIds: [],
-      occupiedSpotIds: []
+      freeSpotIds: {}
     };
   }
-  componentDidUpdate(prevState) {
+
+  componentDidUpdate(prevProps, prevState) {
     const currentData = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
 
+    // Check if current date array not exist
     if (
       this.props.firestoreReducer.ordered['spots-collection']['0'][
         currentData
@@ -29,29 +31,66 @@ class ParkingSpots extends React.Component {
         currentData
       ] === undefined
     ) {
-      if (this.state.freeSpotIds.length < 7) {
+      if (
+        Object.entries(this.state.freeSpotIds).length === 0 &&
+        this.state.freeSpotIds.constructor === Object
+      ) {
         this.setState({
-          freeSpotIds: ['1', '2', '3', '4', '5', '6', '7', '8']
+          freeSpotIds: {
+            1: true,
+            2: true,
+            3: true,
+            4: true,
+            5: true,
+            6: true,
+            7: true,
+            8: true
+          }
         });
       }
     } else if (
-      Object.keys(
+      // Check if object is empty
+      Object.entries(
         this.props.firestoreReducer.ordered['spots-collection']['0'][
           currentData
         ]
-      ) !== prevState.freeSpotIds
+      ).length === 0 &&
+      this.props.firestoreReducer.ordered['spots-collection']['0'][currentData]
+        .constructor === Object &&
+      Object.entries(this.state.freeSpotIds).length === 0 &&
+      this.state.freeSpotIds.constructor === Object
     ) {
       this.setState({
-        ...this.state,
-        freeSpotIds: [
+        freeSpotIds: {
+          1: true,
+          2: true,
+          3: true,
+          4: true,
+          5: true,
+          6: true,
+          7: true,
+          8: true
+        }
+      });
+    } else {
+      for (
+        let i = 0;
+        i <
+        Object.keys(
+          this.props.firestoreReducer.ordered['spots-collection']['0'][
+            currentData
+          ]
+        ).length;
+        i++
+      ) {
+        console.log(
           Object.keys(
             this.props.firestoreReducer.ordered['spots-collection']['0'][
               currentData
             ]
-          )
-        ]
-      });
-      console.log(this.state);
+          )[i]
+        );
+      }
     }
   }
 
@@ -65,7 +104,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="1."
                 className={
-                  this.state.freeSpotIds.includes('1')
+                  this.state.freeSpotIds[1] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -75,7 +114,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="2."
                 className={
-                  this.state.freeSpotIds.includes('2')
+                  this.state.freeSpotIds[2] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -85,7 +124,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="3."
                 className={
-                  this.state.freeSpotIds.includes('3')
+                  this.state.freeSpotIds[3] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -100,7 +139,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="4."
                 className={
-                  this.state.freeSpotIds.includes('4')
+                  this.state.freeSpotIds[4] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -110,7 +149,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="5."
                 className={
-                  this.state.freeSpotIds.includes('5')
+                  this.state.freeSpotIds[5] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -120,7 +159,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="6."
                 className={
-                  this.state.freeSpotIds.includes('6')
+                  this.state.freeSpotIds[6] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -130,7 +169,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="7."
                 className={
-                  this.state.freeSpotIds.includes('7')
+                  this.state.freeSpotIds[7] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -140,7 +179,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="8."
                 className={
-                  this.state.freeSpotIds.includes('8')
+                  this.state.freeSpotIds[8] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
