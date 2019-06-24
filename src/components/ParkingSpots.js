@@ -110,7 +110,7 @@ class ParkingSpots extends React.Component {
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
-                // name={Object.values(this.state.freeSpotIds[1])}
+                name="Konrad"
               />
             </Grid.Column>
             <Grid.Column>

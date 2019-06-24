@@ -11,10 +11,12 @@ class Tile extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.name !== undefined) {
-      this.setState({
-        name: this.props.name
-      });
+    if (this.props.name !== '') {
+      if (this.props.name !== this.state.name) {
+        this.setState({
+          name: this.props.name
+        });
+      }
     }
   }
 
