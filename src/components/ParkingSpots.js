@@ -1,13 +1,106 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { DateTime } from 'luxon';
 import 'semantic-ui-css/semantic.min.css';
 import { Grid } from 'semantic-ui-react';
 
 import Separator from './Separator';
 import ActionModal from './ActionModal';
 import './scss/ParkingSpots.scss';
+import { objectTypeAnnotation } from '@babel/types';
 
 class ParkingSpots extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      freeSpotIds: {}
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const currentData = DateTime.fromISO(
+      this.props.switcherReducer.currentDay.timestamp
+    ).toFormat('dd-MM-yyyy');
+
+    // Check if current date array not exist
+    if (
+      this.props.firestoreReducer.ordered['spots-collection']['0'][
+        currentData
+      ] == null &&
+      this.props.firestoreReducer.ordered['spots-collection']['0'][
+        currentData
+      ] === undefined
+    ) {
+      if (
+        Object.entries(this.state.freeSpotIds).length === 0 &&
+        this.state.freeSpotIds.constructor === Object
+      ) {
+        this.setState({
+          freeSpotIds: {
+            1: true,
+            2: true,
+            3: true,
+            4: true,
+            5: true,
+            6: true,
+            7: true,
+            8: true
+          }
+        });
+      }
+    } else if (
+      // Check if object is empty
+      Object.entries(
+        this.props.firestoreReducer.ordered['spots-collection']['0'][
+          currentData
+        ]
+      ).length === 0 &&
+      this.props.firestoreReducer.ordered['spots-collection']['0'][currentData]
+        .constructor === Object &&
+      Object.entries(this.state.freeSpotIds).length === 0 &&
+      this.state.freeSpotIds.constructor === Object
+    ) {
+      this.setState({
+        freeSpotIds: {
+          1: true,
+          2: true,
+          3: true,
+          4: true,
+          5: true,
+          6: true,
+          7: true,
+          8: true
+        }
+      });
+    } else {
+      for (
+        let i = 0;
+        i <
+        Object.keys(
+          this.props.firestoreReducer.ordered['spots-collection']['0'][
+            currentData
+          ]
+        ).length;
+        i++
+      ) {
+        let spotId = Object.keys(
+          this.props.firestoreReducer.ordered['spots-collection']['0'][
+            currentData
+          ]
+        )[i];
+        console.log(spotId);
+
+        this.setState({
+          freeSpotIds: {
+            [spotId]: false
+          }
+        });
+
+        console.log(this.state);
+      }
+    }
+  }
+
   render() {
     return (
       <div className="spots">
@@ -15,13 +108,34 @@ class ParkingSpots extends React.Component {
           <Separator spotsType="Tymczasowe:" />
           <Grid stackable centered relaxed columns={3}>
             <Grid.Column>
-              <ActionModal car="1." />
+              <ActionModal
+                car="1."
+                className={
+                  this.state.freeSpotIds[1] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="2." />
+              <ActionModal
+                car="2."
+                className={
+                  this.state.freeSpotIds[2] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="3." />
+              <ActionModal
+                car="3."
+                className={
+                  this.state.freeSpotIds[3] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
           </Grid>
         </div>
@@ -29,19 +143,54 @@ class ParkingSpots extends React.Component {
           <Separator spotsType="Stałe:" />
           <Grid stackable centered relaxed columns={5}>
             <Grid.Column>
-              <ActionModal car="4." />
+              <ActionModal
+                car="4."
+                className={
+                  this.state.freeSpotIds[4] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="5." />
+              <ActionModal
+                car="5."
+                className={
+                  this.state.freeSpotIds[5] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="6." />
+              <ActionModal
+                car="6."
+                className={
+                  this.state.freeSpotIds[6] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="7." />
+              <ActionModal
+                car="7."
+                className={
+                  this.state.freeSpotIds[7] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal car="8." />
+              <ActionModal
+                car="8."
+                className={
+                  this.state.freeSpotIds[8] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
             </Grid.Column>
           </Grid>
         </div>

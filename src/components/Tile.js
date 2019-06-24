@@ -3,22 +3,6 @@ import { Label, Icon } from 'semantic-ui-react';
 import './scss/Tile.scss';
 
 class Tile extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: '',
-      6: '',
-      7: '',
-      8: ''
-    };
-  }
-
-  componentDidMount() {}
-
   render() {
     return (
       <div className="parking-spot">
@@ -27,9 +11,9 @@ class Tile extends React.Component {
         </div>
         <div className="text-center">
           <img
-            className="parking-place"
+            className={this.props.className}
             src={require('./tile.svg')}
-            alt="parking-pace"
+            alt="parking-place"
           />
           <Label className="spot-occupant" size="large">
             Konrad
