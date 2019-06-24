@@ -21,7 +21,7 @@ class ParkingSpots extends React.Component {
     const currentData = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
-
+    console.log(this.state);
     // Check if database contains object named as currentData.
     // If not inform user that it's not possible to book parking spot.
     if (
@@ -110,6 +110,7 @@ class ParkingSpots extends React.Component {
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
+                // name={Object.values(this.state.freeSpotIds[1])}
               />
             </Grid.Column>
             <Grid.Column>
