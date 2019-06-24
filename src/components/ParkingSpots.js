@@ -83,13 +83,20 @@ class ParkingSpots extends React.Component {
         ).length;
         i++
       ) {
-        console.log(
-          Object.keys(
-            this.props.firestoreReducer.ordered['spots-collection']['0'][
-              currentData
-            ]
-          )[i]
-        );
+        let spotId = Object.keys(
+          this.props.firestoreReducer.ordered['spots-collection']['0'][
+            currentData
+          ]
+        )[i];
+        console.log(spotId);
+
+        this.setState({
+          freeSpotIds: {
+            [spotId]: false
+          }
+        });
+
+        console.log(this.state);
       }
     }
   }
