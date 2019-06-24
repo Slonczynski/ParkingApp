@@ -21,7 +21,7 @@ class ParkingSpots extends React.Component {
     const currentData = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
-    console.log(this.state);
+
     // Check if database contains object named as currentData.
     // If not inform user that it's not possible to book parking spot.
     if (
@@ -39,58 +39,57 @@ class ParkingSpots extends React.Component {
         this.setState({
           isParkingAvaiable: true
         });
-      }
-
-      if (
-        // Check if object is empty
-        Object.entries(
+        if (
+          // Check if object is empty
+          Object.entries(
+            this.props.firestoreReducer.ordered['spots-collection']['0'][
+              currentData
+            ]
+          ).length === 0 &&
           this.props.firestoreReducer.ordered['spots-collection']['0'][
             currentData
-          ]
-        ).length === 0 &&
-        this.props.firestoreReducer.ordered['spots-collection']['0'][
-          currentData
-        ].constructor === Object &&
-        Object.entries(this.state.freeSpotIds).length === 0 &&
-        this.state.freeSpotIds.constructor === Object
-      ) {
-        this.setState({
-          freeSpotIds: {
-            1: true,
-            2: true,
-            3: true,
-            4: true,
-            5: true,
-            6: true,
-            7: true,
-            8: true
-          }
-        });
-      } else {
-        for (
-          let i = 0;
-          i <
-          Object.keys(
-            this.props.firestoreReducer.ordered['spots-collection']['0'][
-              currentData
-            ]
-          ).length;
-          i++
+          ].constructor === Object &&
+          Object.entries(this.state.freeSpotIds).length === 0 &&
+          this.state.freeSpotIds.constructor === Object
         ) {
-          let spotId = Object.keys(
-            this.props.firestoreReducer.ordered['spots-collection']['0'][
-              currentData
-            ]
-          )[i];
-          console.log(spotId);
+          this.setState({
+            freeSpotIds: {
+              1: true,
+              2: true,
+              3: true,
+              4: true,
+              5: true,
+              6: true,
+              7: true,
+              8: true
+            }
+          });
+        } else {
+          for (
+            let i = 0;
+            i <
+            Object.keys(
+              this.props.firestoreReducer.ordered['spots-collection']['0'][
+                currentData
+              ]
+            ).length;
+            i++
+          ) {
+            let spotId = Object.keys(
+              this.props.firestoreReducer.ordered['spots-collection']['0'][
+                currentData
+              ]
+            )[i];
+            console.log(spotId);
 
-          // this.setState({
-          //   freeSpotIds: {
-          //     [spotId]: false
-          //   }
-          // });
+            // this.setState({
+            //   freeSpotIds: {
+            //     [spotId]: false
+            //   }
+            // });
 
-          console.log(this.state);
+            console.log(this.state);
+          }
         }
       }
     }

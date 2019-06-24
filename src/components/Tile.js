@@ -22,6 +22,7 @@ class Tile extends React.Component {
 
   render() {
     console.log(this.state.name);
+    console.log(this.props.className);
     return (
       <div className="parking-spot">
         <div className="text-center">
