@@ -7,45 +7,31 @@ import { Grid } from 'semantic-ui-react';
 import Separator from './Separator';
 import ActionModal from './ActionModal';
 import './scss/ParkingSpots.scss';
-import { objectTypeAnnotation } from '@babel/types';
 
 class ParkingSpots extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isParkingAvaiable: true,
       freeSpotIds: {}
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const currentData = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
 
-    // Check if current date array not exist
+    // Check if database contains object named as currentData.
+    // If not inform user that it's not possible to book parking spot.
     if (
       this.props.firestoreReducer.ordered['spots-collection']['0'][
         currentData
-      ] == null &&
-      this.props.firestoreReducer.ordered['spots-collection']['0'][
-        currentData
-      ] === undefined
+      ] == null
     ) {
-      if (
-        Object.entries(this.state.freeSpotIds).length === 0 &&
-        this.state.freeSpotIds.constructor === Object
-      ) {
+      if (this.state.isParkingAvaiable !== false) {
         this.setState({
-          freeSpotIds: {
-            1: true,
-            2: true,
-            3: true,
-            4: true,
-            5: true,
-            6: true,
-            7: true,
-            8: true
-          }
+          isParkingAvaiable: false
         });
       }
     } else if (
@@ -90,11 +76,11 @@ class ParkingSpots extends React.Component {
         )[i];
         console.log(spotId);
 
-        this.setState({
-          freeSpotIds: {
-            [spotId]: false
-          }
-        });
+        // this.setState({
+        //   freeSpotIds: {
+        //     [spotId]: false
+        //   }
+        // });
 
         console.log(this.state);
       }
@@ -102,7 +88,7 @@ class ParkingSpots extends React.Component {
   }
 
   render() {
-    return (
+    return this.state.isParkingAvaiable === true ? (
       <div className="spots">
         <div className="temporary-spots">
           <Separator spotsType="Tymczasowe:" />
@@ -194,6 +180,10 @@ class ParkingSpots extends React.Component {
             </Grid.Column>
           </Grid>
         </div>
+      </div>
+    ) : (
+      <div className="parking-unavaiable">
+        <span>Parking niedostępny</span>
       </div>
     );
   }

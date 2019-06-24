@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { DateTime } from 'luxon';
 
 import './scss/App.scss';
 import NavigationBar from './NavigationBar';
