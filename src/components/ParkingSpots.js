@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 import 'semantic-ui-css/semantic.min.css';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 
 import Separator from './Separator';
 import ActionModal from './ActionModal';
@@ -17,7 +17,7 @@ class ParkingSpots extends React.Component {
     };
   }
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate() {
     const currentData = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
@@ -34,55 +34,64 @@ class ParkingSpots extends React.Component {
           isParkingAvaiable: false
         });
       }
-    } else if (
-      // Check if object is empty
-      Object.entries(
+    } else {
+      if (this.state.isParkingAvaiable !== true) {
+        this.setState({
+          isParkingAvaiable: true
+        });
+      }
+
+      if (
+        // Check if object is empty
+        Object.entries(
+          this.props.firestoreReducer.ordered['spots-collection']['0'][
+            currentData
+          ]
+        ).length === 0 &&
         this.props.firestoreReducer.ordered['spots-collection']['0'][
           currentData
-        ]
-      ).length === 0 &&
-      this.props.firestoreReducer.ordered['spots-collection']['0'][currentData]
-        .constructor === Object &&
-      Object.entries(this.state.freeSpotIds).length === 0 &&
-      this.state.freeSpotIds.constructor === Object
-    ) {
-      this.setState({
-        freeSpotIds: {
-          1: true,
-          2: true,
-          3: true,
-          4: true,
-          5: true,
-          6: true,
-          7: true,
-          8: true
-        }
-      });
-    } else {
-      for (
-        let i = 0;
-        i <
-        Object.keys(
-          this.props.firestoreReducer.ordered['spots-collection']['0'][
-            currentData
-          ]
-        ).length;
-        i++
+        ].constructor === Object &&
+        Object.entries(this.state.freeSpotIds).length === 0 &&
+        this.state.freeSpotIds.constructor === Object
       ) {
-        let spotId = Object.keys(
-          this.props.firestoreReducer.ordered['spots-collection']['0'][
-            currentData
-          ]
-        )[i];
-        console.log(spotId);
+        this.setState({
+          freeSpotIds: {
+            1: true,
+            2: true,
+            3: true,
+            4: true,
+            5: true,
+            6: true,
+            7: true,
+            8: true
+          }
+        });
+      } else {
+        for (
+          let i = 0;
+          i <
+          Object.keys(
+            this.props.firestoreReducer.ordered['spots-collection']['0'][
+              currentData
+            ]
+          ).length;
+          i++
+        ) {
+          let spotId = Object.keys(
+            this.props.firestoreReducer.ordered['spots-collection']['0'][
+              currentData
+            ]
+          )[i];
+          console.log(spotId);
 
-        // this.setState({
-        //   freeSpotIds: {
-        //     [spotId]: false
-        //   }
-        // });
+          // this.setState({
+          //   freeSpotIds: {
+          //     [spotId]: false
+          //   }
+          // });
 
-        console.log(this.state);
+          console.log(this.state);
+        }
       }
     }
   }
@@ -182,9 +191,20 @@ class ParkingSpots extends React.Component {
         </div>
       </div>
     ) : (
-      <div className="parking-unavaiable">
-        <span>Parking niedostępny</span>
-      </div>
+      <Grid centered>
+        <div className="segment">
+          <Segment
+            compact
+            padded
+            size="large"
+            textAlign="center"
+            inverted
+            color="red"
+          >
+            <span>Parking niedostępny</span>
+          </Segment>
+        </div>
+      </Grid>
     );
   }
 }
