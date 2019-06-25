@@ -80,15 +80,6 @@ class ParkingSpots extends React.Component {
                 currentData
               ]
             )[i];
-            console.log(spotId);
-
-            // this.setState({
-            //   freeSpotIds: {
-            //     [spotId]: false
-            //   }
-            // });
-
-            console.log(this.state);
           }
         }
       }
