@@ -58,25 +58,15 @@ class ParkingSpots extends React.Component {
           occupiedSpots: {}
         });
       } else {
-        console.log('dupa');
-
         // TODO: Document is not empty
-        for (
-          let i = 0;
-          i <
-          Object.keys(
-            this.props.firestoreReducer.ordered['spots-collection']['0'][
-              currentData
-            ]
-          ).length;
-          i++
-        ) {
-          let spotId = Object.fromEntries(
-            this.props.firestoreReducer.ordered['spots-collection']['0'][
-              currentData
-            ]
-          )[i];
-          console.log(spotId);
+
+        for (const [key, val] of Object.entries(
+          this.props.firestoreReducer.ordered['spots-collection']['0'][
+            currentData
+          ]
+        )) {
+          console.log(key, val);
+          this.setState;
         }
       }
     }
