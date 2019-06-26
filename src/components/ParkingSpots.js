@@ -35,52 +35,48 @@ class ParkingSpots extends React.Component {
         });
       }
     } else {
+      // Check if state is correct
       if (this.state.isParkingAvaiable !== true) {
         this.setState({
           isParkingAvaiable: true
         });
-        if (
-          // Check if object is empty
-          Object.entries(
+      }
+      if (
+        // Check if object is empty
+        Object.entries(
+          this.props.firestoreReducer.ordered['spots-collection']['0'][
+            currentData
+          ]
+        ).length === 0 &&
+        this.props.firestoreReducer.ordered['spots-collection']['0'][
+          currentData
+        ].constructor === Object &&
+        Object.entries(this.state.occupiedSpots).length !== 0 &&
+        this.state.occupiedSpots.constructor !== Object
+      ) {
+        this.setState({
+          occupiedSpots: {}
+        });
+      } else {
+        console.log('dupa');
+
+        // TODO: Document is not empty
+        for (
+          let i = 0;
+          i <
+          Object.keys(
             this.props.firestoreReducer.ordered['spots-collection']['0'][
               currentData
             ]
-          ).length === 0 &&
-          this.props.firestoreReducer.ordered['spots-collection']['0'][
-            currentData
-          ].constructor === Object &&
-          Object.entries(this.state.freeSpotIds).length === 0 &&
-          this.state.freeSpotIds.constructor === Object
+          ).length;
+          i++
         ) {
-          this.setState({
-            freeSpotIds: {
-              1: true,
-              2: true,
-              3: true,
-              4: true,
-              5: true,
-              6: true,
-              7: true,
-              8: true
-            }
-          });
-        } else {
-          for (
-            let i = 0;
-            i <
-            Object.keys(
-              this.props.firestoreReducer.ordered['spots-collection']['0'][
-                currentData
-              ]
-            ).length;
-            i++
-          ) {
-            let spotId = Object.keys(
-              this.props.firestoreReducer.ordered['spots-collection']['0'][
-                currentData
-              ]
-            )[i];
-          }
+          let spotId = Object.fromEntries(
+            this.props.firestoreReducer.ordered['spots-collection']['0'][
+              currentData
+            ]
+          )[i];
+          console.log(spotId);
         }
       }
     }
@@ -98,8 +94,8 @@ class ParkingSpots extends React.Component {
                 name="Konrad"
                 className={
                   this.state.occupiedSpots[1] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
@@ -108,8 +104,8 @@ class ParkingSpots extends React.Component {
                 car="2."
                 className={
                   this.state.occupiedSpots[2] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
@@ -118,8 +114,8 @@ class ParkingSpots extends React.Component {
                 car="3."
                 className={
                   this.state.occupiedSpots[3] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
@@ -128,8 +124,8 @@ class ParkingSpots extends React.Component {
                 car="4."
                 className={
                   this.state.occupiedSpots[4] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
@@ -143,8 +139,8 @@ class ParkingSpots extends React.Component {
                 car="5."
                 className={
                   this.state.occupiedSpots[5] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
@@ -153,8 +149,8 @@ class ParkingSpots extends React.Component {
                 car="6."
                 className={
                   this.state.occupiedSpots[6] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
@@ -163,8 +159,8 @@ class ParkingSpots extends React.Component {
                 car="7."
                 className={
                   this.state.occupiedSpots[7] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
@@ -173,8 +169,8 @@ class ParkingSpots extends React.Component {
                 car="8."
                 className={
                   this.state.occupiedSpots[8] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
