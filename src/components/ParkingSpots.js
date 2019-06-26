@@ -17,7 +17,7 @@ class ParkingSpots extends React.Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const currentData = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
@@ -65,14 +65,20 @@ class ParkingSpots extends React.Component {
             currentData
           ]
         )) {
-          console.log(key, val);
-          this.setState;
+          let oc = key + val;
+          console.log(oc);
+          if (prevState.occupiedSpots === this.state.occupiedSpots) {
+            this.setState({
+              occupiedSpots: this.state.occupiedSpots + key + ': ' + val
+            });
+          }
         }
       }
     }
   }
 
   render() {
+    console.log(this.state);
     return this.state.isParkingAvaiable === true ? (
       <div className="spots">
         <div className="temporary-spots">
