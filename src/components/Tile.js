@@ -11,15 +11,14 @@ class Tile extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.className);
     if (prevState.parkingClassname !== this.props.className) {
       this.setState({
-        parkingClassname: this.props.name
+        parkingClassname: this.props.className
       });
     }
   }
+
   render() {
-    // console.log(this.state);
     return (
       <div className="parking-spot">
         <div className="text-center">
@@ -27,7 +26,7 @@ class Tile extends React.Component {
         </div>
         <div className="text-center">
           <img
-            className={this.props.className}
+            className={this.state.parkingClassname}
             src={require('./tile.svg')}
             alt="parking-place"
           />

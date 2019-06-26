@@ -7,6 +7,14 @@ $occupiedColor: invert(12%) sepia(95%) saturate(3770%) hue-rotate(353deg)
 $hoverColor: invert(97%) sepia(75%) saturate(7458%) hue-rotate(326deg)
   brightness(103%) contrast(98%);
 
+img {
+  max-height: 40vh;
+  max-width: 20vh;
+  min-width: 5vh;
+  min-height: 10vh;
+  filter: $freeColor;
+}
+
 .parking-spot {
   margin: 5px;
   padding: 5px;
