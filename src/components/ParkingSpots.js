@@ -13,7 +13,7 @@ class ParkingSpots extends React.Component {
     super(props);
     this.state = {
       isParkingAvaiable: true,
-      freeSpotIds: {}
+      occupiedSpots: {}
     };
   }
 
@@ -91,13 +91,13 @@ class ParkingSpots extends React.Component {
       <div className="spots">
         <div className="temporary-spots">
           <Separator spotsType="Tymczasowe:" />
-          <Grid stackable centered relaxed columns={3}>
+          <Grid stackable centered relaxed columns={4}>
             <Grid.Column>
               <ActionModal
                 car="1."
                 name="Konrad"
                 className={
-                  this.state.freeSpotIds[1] === true
+                  this.state.occupiedSpots[1] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -107,7 +107,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="2."
                 className={
-                  this.state.freeSpotIds[2] === true
+                  this.state.occupiedSpots[2] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -117,7 +117,17 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="3."
                 className={
-                  this.state.freeSpotIds[3] === true
+                  this.state.occupiedSpots[3] === true
+                    ? 'parking-place-free'
+                    : 'parking-place-occupied'
+                }
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <ActionModal
+                car="4."
+                className={
+                  this.state.occupiedSpots[4] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -127,22 +137,12 @@ class ParkingSpots extends React.Component {
         </div>
         <div className="permanent-spots">
           <Separator spotsType="Stałe:" />
-          <Grid stackable centered relaxed columns={5}>
-            <Grid.Column>
-              <ActionModal
-                car="4."
-                className={
-                  this.state.freeSpotIds[4] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
-                }
-              />
-            </Grid.Column>
+          <Grid stackable centered relaxed columns={4}>
             <Grid.Column>
               <ActionModal
                 car="5."
                 className={
-                  this.state.freeSpotIds[5] === true
+                  this.state.occupiedSpots[5] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -152,7 +152,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="6."
                 className={
-                  this.state.freeSpotIds[6] === true
+                  this.state.occupiedSpots[6] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -162,7 +162,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="7."
                 className={
-                  this.state.freeSpotIds[7] === true
+                  this.state.occupiedSpots[7] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
@@ -172,7 +172,7 @@ class ParkingSpots extends React.Component {
               <ActionModal
                 car="8."
                 className={
-                  this.state.freeSpotIds[8] === true
+                  this.state.occupiedSpots[8] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
