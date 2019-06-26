@@ -3,7 +3,23 @@ import { Label, Icon } from 'semantic-ui-react';
 import './scss/Tile.scss';
 
 class Tile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      parkingClassname: ''
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.props.className);
+    if (prevState.parkingClassname !== this.props.className) {
+      this.setState({
+        parkingClassname: this.props.name
+      });
+    }
+  }
   render() {
+    // console.log(this.state);
     return (
       <div className="parking-spot">
         <div className="text-center">

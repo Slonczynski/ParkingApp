@@ -95,12 +95,12 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="1."
+                name="Konrad"
                 className={
                   this.state.freeSpotIds[1] === true
                     ? 'parking-place-free'
                     : 'parking-place-occupied'
                 }
-                name="Konrad"
               />
             </Grid.Column>
             <Grid.Column>
