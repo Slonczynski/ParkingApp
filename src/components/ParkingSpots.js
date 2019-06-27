@@ -59,19 +59,19 @@ class ParkingSpots extends React.Component {
         });
       } else {
         // TODO: Document is not empty
-
+        const keyVal = {};
         for (const [key, val] of Object.entries(
           this.props.firestoreReducer.ordered['spots-collection']['0'][
             currentData
           ]
         )) {
-          let oc = key + val;
-          console.log(oc);
-          if (prevState.occupiedSpots === this.state.occupiedSpots) {
-            this.setState({
-              occupiedSpots: this.state.occupiedSpots + key + ': ' + val
-            });
-          }
+          const id = key;
+          keyVal[id] = val;
+        }
+        if (prevState.occupiedSpots === this.state.occupiedSpots) {
+          this.setState({
+            occupiedSpots: keyVal
+          });
         }
       }
     }
