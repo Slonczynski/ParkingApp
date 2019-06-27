@@ -2,18 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 import 'semantic-ui-css/semantic.min.css';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 
 import Separator from './Separator';
 import ActionModal from './ActionModal';
 import './scss/ParkingSpots.scss';
-import { objectTypeAnnotation } from '@babel/types';
 
 class ParkingSpots extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      freeSpotIds: {}
+      isParkingAvaiable: true,
+      occupiedSpots: {}
     };
   }
 
@@ -22,118 +22,123 @@ class ParkingSpots extends React.Component {
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
 
-    // Check if current date array not exist
+    // Check if database contains object named as currentData.
+    // If not inform user that it's not possible to book parking spot.
     if (
       this.props.firestoreReducer.ordered['spots-collection']['0'][
         currentData
-      ] == null &&
-      this.props.firestoreReducer.ordered['spots-collection']['0'][
-        currentData
-      ] === undefined
+      ] == null
     ) {
-      if (
-        Object.entries(this.state.freeSpotIds).length === 0 &&
-        this.state.freeSpotIds.constructor === Object
-      ) {
+      if (this.state.isParkingAvaiable !== false) {
         this.setState({
-          freeSpotIds: {
-            1: true,
-            2: true,
-            3: true,
-            4: true,
-            5: true,
-            6: true,
-            7: true,
-            8: true
-          }
+          isParkingAvaiable: false
         });
       }
-    } else if (
-      // Check if object is empty
-      Object.entries(
+    } else {
+      // Check if state is correct
+      if (this.state.isParkingAvaiable !== true) {
+        this.setState({
+          isParkingAvaiable: true
+        });
+      }
+      if (
+        // Check if object is empty
+        Object.entries(
+          this.props.firestoreReducer.ordered['spots-collection']['0'][
+            currentData
+          ]
+        ).length === 0 &&
         this.props.firestoreReducer.ordered['spots-collection']['0'][
           currentData
-        ]
-      ).length === 0 &&
-      this.props.firestoreReducer.ordered['spots-collection']['0'][currentData]
-        .constructor === Object &&
-      Object.entries(this.state.freeSpotIds).length === 0 &&
-      this.state.freeSpotIds.constructor === Object
-    ) {
-      this.setState({
-        freeSpotIds: {
-          1: true,
-          2: true,
-          3: true,
-          4: true,
-          5: true,
-          6: true,
-          7: true,
-          8: true
-        }
-      });
-    } else {
-      for (
-        let i = 0;
-        i <
-        Object.keys(
-          this.props.firestoreReducer.ordered['spots-collection']['0'][
-            currentData
-          ]
-        ).length;
-        i++
+        ].constructor === Object &&
+        Object.entries(this.state.occupiedSpots).length !== 0 &&
+        this.state.occupiedSpots.constructor !== Object
       ) {
-        let spotId = Object.keys(
+        this.setState({
+          occupiedSpots: {}
+        });
+      } else {
+        // TODO: Document is not empty
+        const keyVal = {};
+        for (const [key, val] of Object.entries(
           this.props.firestoreReducer.ordered['spots-collection']['0'][
             currentData
           ]
-        )[i];
-        console.log(spotId);
-
-        this.setState({
-          freeSpotIds: {
-            [spotId]: false
-          }
-        });
-
-        console.log(this.state);
+        )) {
+          keyVal[key] = val;
+        }
+        if (prevState.occupiedSpots === this.state.occupiedSpots) {
+          this.setState({
+            occupiedSpots: keyVal
+          });
+        }
       }
     }
   }
 
   render() {
-    return (
+    return this.state.isParkingAvaiable === true ? (
       <div className="spots">
         <div className="temporary-spots">
           <Separator spotsType="Tymczasowe:" />
-          <Grid stackable centered relaxed columns={3}>
+          <Grid stackable centered relaxed columns={4}>
             <Grid.Column>
               <ActionModal
                 car="1."
+                name={
+                  this.state.occupiedSpots[1]
+                    ? Object.values(this.state.occupiedSpots[1])
+                    : null
+                }
                 className={
-                  this.state.freeSpotIds[1] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                  this.state.occupiedSpots[1]
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
             <Grid.Column>
               <ActionModal
                 car="2."
+                name={
+                  this.state.occupiedSpots[2]
+                    ? Object.values(this.state.occupiedSpots[2])
+                    : null
+                }
                 className={
-                  this.state.freeSpotIds[2] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                  this.state.occupiedSpots[2]
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
             <Grid.Column>
               <ActionModal
                 car="3."
+                name={
+                  this.state.occupiedSpots[3]
+                    ? Object.values(this.state.occupiedSpots[3])
+                    : null
+                }
                 className={
-                  this.state.freeSpotIds[3] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                  this.state.occupiedSpots[3]
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
+                }
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <ActionModal
+                car="4."
+                name={
+                  this.state.occupiedSpots[4]
+                    ? Object.values(this.state.occupiedSpots[4])
+                    : null
+                }
+                className={
+                  this.state.occupiedSpots[4]
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
@@ -141,60 +146,85 @@ class ParkingSpots extends React.Component {
         </div>
         <div className="permanent-spots">
           <Separator spotsType="Stałe:" />
-          <Grid stackable centered relaxed columns={5}>
-            <Grid.Column>
-              <ActionModal
-                car="4."
-                className={
-                  this.state.freeSpotIds[4] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
-                }
-              />
-            </Grid.Column>
+          <Grid stackable centered relaxed columns={4}>
             <Grid.Column>
               <ActionModal
                 car="5."
+                name={
+                  this.state.occupiedSpots[5]
+                    ? Object.values(this.state.occupiedSpots[5])
+                    : null
+                }
                 className={
-                  this.state.freeSpotIds[5] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                  this.state.occupiedSpots[5]
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
             <Grid.Column>
               <ActionModal
                 car="6."
+                name={
+                  this.state.occupiedSpots[6]
+                    ? Object.values(this.state.occupiedSpots[6])
+                    : null
+                }
                 className={
-                  this.state.freeSpotIds[6] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                  this.state.occupiedSpots[6]
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
             <Grid.Column>
               <ActionModal
                 car="7."
+                name={
+                  this.state.occupiedSpots[7]
+                    ? Object.values(this.state.occupiedSpots[7])
+                    : null
+                }
                 className={
-                  this.state.freeSpotIds[7] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                  this.state.occupiedSpots[7]
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
             <Grid.Column>
               <ActionModal
                 car="8."
+                name={
+                  this.state.occupiedSpots[8]
+                    ? Object.values(this.state.occupiedSpots[8])
+                    : null
+                }
                 className={
-                  this.state.freeSpotIds[8] === true
-                    ? 'parking-place-free'
-                    : 'parking-place-occupied'
+                  this.state.occupiedSpots[8]
+                    ? 'parking-place-occupied'
+                    : 'parking-place-free'
                 }
               />
             </Grid.Column>
           </Grid>
         </div>
       </div>
+    ) : (
+      <Grid centered>
+        <div className="segment">
+          <Segment
+            compact
+            padded
+            size="large"
+            textAlign="center"
+            inverted
+            color="red"
+          >
+            <span>Parking niedostępny</span>
+          </Segment>
+        </div>
+      </Grid>
     );
   }
 }
