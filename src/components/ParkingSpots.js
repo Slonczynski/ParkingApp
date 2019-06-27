@@ -65,8 +65,7 @@ class ParkingSpots extends React.Component {
             currentData
           ]
         )) {
-          const id = key;
-          keyVal[id] = val;
+          keyVal[key] = val;
         }
         if (prevState.occupiedSpots === this.state.occupiedSpots) {
           this.setState({
