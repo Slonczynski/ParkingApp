@@ -15,7 +15,11 @@ class ActionModal extends React.Component {
         size="small"
         trigger={
           <div>
-            <Tile car={this.props.car} />
+            <Tile
+              car={this.props.car}
+              className={this.props.className}
+              name={this.props.name}
+            />
           </div>
         }
         closeIcon={{
