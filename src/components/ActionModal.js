@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Header, Icon, Button } from 'semantic-ui-react';
+import { Modal, Header, Icon, Button, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 
@@ -12,7 +12,7 @@ class ActionModal extends React.Component {
     return (
       <Modal
         centered
-        size="small"
+        size="mini"
         trigger={
           <div>
             <Tile
@@ -29,21 +29,33 @@ class ActionModal extends React.Component {
         }}
       >
         <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
-        <Modal.Content>
-          <AdjustableInput
-            label="Data"
-            disabled={true}
-            value={DateTime.fromISO(
-              this.props.switcherReducer.currentDay.timestamp
-            ).toFormat('dd-MM-yyyy')}
-          />
-          <AdjustableInput
-            label="Imię"
-            disabled={false}
-            value=""
-            placeholder="Nazwa"
-          />
-        </Modal.Content>
+        <Grid>
+          <Grid.Row columns={3}>
+            <Grid.Column>
+              <Modal.Content>
+                <AdjustableInput
+                  label="Miejsce:"
+                  disabled={true}
+                  value={this.props.car}
+                />
+
+                <AdjustableInput
+                  label="Data:"
+                  disabled={true}
+                  value={DateTime.fromISO(
+                    this.props.switcherReducer.currentDay.timestamp
+                  ).toFormat('dd-MM-yyyy')}
+                />
+                <AdjustableInput
+                  label="Imię:"
+                  disabled={false}
+                  value=""
+                  placeholder="Nazwa"
+                />
+              </Modal.Content>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         <Modal.Actions>
           <Button color="red">
             <Icon name="remove" /> Wróć

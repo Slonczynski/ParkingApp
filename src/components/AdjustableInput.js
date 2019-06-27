@@ -7,6 +7,7 @@ class AdjustableInput extends React.Component {
       <div className="input">
         <span>{this.props.inputHeader}</span>
         <Input
+          size="large"
           label={this.props.label}
           disabled={this.props.disabled}
           value={this.props.value}
