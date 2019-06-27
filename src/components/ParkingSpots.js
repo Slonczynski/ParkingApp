@@ -77,7 +77,6 @@ class ParkingSpots extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return this.state.isParkingAvaiable === true ? (
       <div className="spots">
         <div className="temporary-spots">
@@ -86,9 +85,13 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="1."
-                name="Konrad"
+                name={
+                  this.state.occupiedSpots[1]
+                    ? Object.values(this.state.occupiedSpots[1])
+                    : null
+                }
                 className={
-                  this.state.occupiedSpots[1] === true
+                  this.state.occupiedSpots[1]
                     ? 'parking-place-occupied'
                     : 'parking-place-free'
                 }
@@ -97,8 +100,13 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="2."
+                name={
+                  this.state.occupiedSpots[2]
+                    ? Object.values(this.state.occupiedSpots[2])
+                    : null
+                }
                 className={
-                  this.state.occupiedSpots[2] === true
+                  this.state.occupiedSpots[2]
                     ? 'parking-place-occupied'
                     : 'parking-place-free'
                 }
@@ -107,8 +115,13 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="3."
+                name={
+                  this.state.occupiedSpots[3]
+                    ? Object.values(this.state.occupiedSpots[3])
+                    : null
+                }
                 className={
-                  this.state.occupiedSpots[3] === true
+                  this.state.occupiedSpots[3]
                     ? 'parking-place-occupied'
                     : 'parking-place-free'
                 }
@@ -117,8 +130,13 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="4."
+                name={
+                  this.state.occupiedSpots[4]
+                    ? Object.values(this.state.occupiedSpots[4])
+                    : null
+                }
                 className={
-                  this.state.occupiedSpots[4] === true
+                  this.state.occupiedSpots[4]
                     ? 'parking-place-occupied'
                     : 'parking-place-free'
                 }
@@ -132,8 +150,13 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="5."
+                name={
+                  this.state.occupiedSpots[5]
+                    ? Object.values(this.state.occupiedSpots[5])
+                    : null
+                }
                 className={
-                  this.state.occupiedSpots[5] === true
+                  this.state.occupiedSpots[5]
                     ? 'parking-place-occupied'
                     : 'parking-place-free'
                 }
@@ -142,8 +165,13 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="6."
+                name={
+                  this.state.occupiedSpots[6]
+                    ? Object.values(this.state.occupiedSpots[6])
+                    : null
+                }
                 className={
-                  this.state.occupiedSpots[6] === true
+                  this.state.occupiedSpots[6]
                     ? 'parking-place-occupied'
                     : 'parking-place-free'
                 }
@@ -152,8 +180,13 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="7."
+                name={
+                  this.state.occupiedSpots[7]
+                    ? Object.values(this.state.occupiedSpots[7])
+                    : null
+                }
                 className={
-                  this.state.occupiedSpots[7] === true
+                  this.state.occupiedSpots[7]
                     ? 'parking-place-occupied'
                     : 'parking-place-free'
                 }
@@ -162,8 +195,13 @@ class ParkingSpots extends React.Component {
             <Grid.Column>
               <ActionModal
                 car="8."
+                name={
+                  this.state.occupiedSpots[8]
+                    ? Object.values(this.state.occupiedSpots[8])
+                    : null
+                }
                 className={
-                  this.state.occupiedSpots[8] === true
+                  this.state.occupiedSpots[8]
                     ? 'parking-place-occupied'
                     : 'parking-place-free'
                 }
