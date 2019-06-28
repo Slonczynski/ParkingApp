@@ -1,0 +1,10 @@
+.ui.labeled.input:not([class*='corner labeled']) .label:first-child {
+  background-color: #03a9f4;
+  color: #000000;
+  width: 10vh;
+  text-align: center;
+  font-weight: 600;
+}
+.ui.labeled.input:not([class*='corner labeled']) .label:first-child + input {
+  font-weight: 900;
+}

@@ -30,7 +30,7 @@ class ActionModal extends React.Component {
       >
         <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
         <Grid>
-          <Grid.Row columns={3}>
+          <Grid.Row centered columns={1}>
             <Grid.Column>
               <Modal.Content>
                 <AdjustableInput
