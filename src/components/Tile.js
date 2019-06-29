@@ -31,7 +31,7 @@ class Tile extends React.Component {
             alt="parking-place"
           />
           {this.props.className === 'parking-place-free' ? null : (
-            <Label className="spot-occupant" size="large">
+            <Label className="spot-occupant" size="big">
               {this.props.name}
               <Icon name="delete" />
             </Label>
