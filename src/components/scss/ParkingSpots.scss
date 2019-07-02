@@ -18,22 +18,21 @@ img {
     cursor: pointer;
     filter: $hoverColor;
   }
-
-  .parking-spot {
-    margin: 5px;
-    padding: 5px;
-  }
-  .spot-number {
-    margin-bottom: 2%;
-    font-size: 1.5rem;
-  }
-  .parking-place-free {
-    max-height: 40vh;
-    max-width: 20vh;
-    min-width: 5vh;
-    min-height: 10vh;
-    filter: $freeColor;
-  }
+}
+.parking-spot {
+  margin: 5px;
+  padding: 5px;
+}
+.spot-number {
+  margin-bottom: 2%;
+  font-size: 1.5rem;
+}
+.parking-place-free {
+  max-height: 40vh;
+  max-width: 20vh;
+  min-width: 5vh;
+  min-height: 10vh;
+  filter: $freeColor;
 }
 .parking-place-occupied {
   max-height: 40vh;
