@@ -2,6 +2,7 @@ import React from 'react';
 import { Label, Icon } from 'semantic-ui-react';
 
 import ActionModal from './ActionModal';
+import ConfirmationModal from './ConfirmationModal';
 import './scss/Tile.scss';
 
 class Tile extends React.Component {
@@ -47,18 +48,22 @@ class Tile extends React.Component {
             car={this.props.car}
           />
         ) : (
-          <Label className="spot-occupant" size="big">
-            {this.props.name}
-            <Icon name="delete" />
-          </Label>
+          <div>
+            <Label className="spot-occupant" size="big">
+              {this.props.name.join('')}
+              <Icon name="delete" />
+            </Label>
+            <ConfirmationModal
+              open={this.state.openModal}
+              handleClose={this.hideModal}
+              car={this.props.car}
+              name={this.props.name.join('')}
+            />
+          </div>
         )}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return state;
-};
-
-export default mapStateToProps(Tile);
+export default Tile;

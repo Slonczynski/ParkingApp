@@ -7,4 +7,6 @@
 }
 .ui.labeled.input:not([class*='corner labeled']) .label:first-child + input {
   font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 0.05vh;
 }
