@@ -5,12 +5,6 @@ import {
   UPDATE_NEXT_DAY
 } from './actionTypes';
 
-import { reduxFirestore, getFirestore } from 'redux-firestore';
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-import fbConfig from '../../config/fbConfig';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-
 export const previousToCurrentDay = (
   day1,
   day2,
@@ -20,24 +14,24 @@ export const previousToCurrentDay = (
   type: PREVIOUS_TO_CURRENT_DAY,
   previousDay: day1,
   currentDay: day2,
-  prevTimestamp: prevTimestamp,
-  currTimestamp: currTimestamp
+  prevTimestamp,
+  currTimestamp
 });
 
 export const nextToCurrentDay = (day1, day2, nextTimestamp, currTimestamp) => ({
   type: NEXT_TO_CURRENT_DAY,
   nextDay: day1,
   currentDay: day2,
-  nextTimestamp: nextTimestamp,
-  currTimestamp: currTimestamp
+  nextTimestamp,
+  currTimestamp
 });
 
 export const updatePreviousDay = value => ({
   type: UPDATE_PREVIOUS_DAY,
-  value: value
+  value
 });
 
 export const updateNextDay = value => ({
   type: UPDATE_NEXT_DAY,
-  value: value
+  value
 });

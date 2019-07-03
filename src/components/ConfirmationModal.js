@@ -1,13 +1,15 @@
 import React from 'react';
-import { Modal, Header, Icon, Button, Grid } from 'semantic-ui-react';
-import { connect } from 'react-redux';
+import { Modal, Header, Grid, Button, Icon } from 'semantic-ui-react';
 import { DateTime } from 'luxon';
+import { connect } from 'react-redux';
 
 import AdjustableInput from './AdjustableInput';
-import './scss/ActionModal.scss';
 
-class ActionModal extends React.Component {
+class ConfirmationModal extends React.Component {
   render() {
+    const currentDate = DateTime.fromISO(
+      this.props.switcherReducer.currentDay.timestamp
+    ).toFormat('dd-MM-yyyy');
     return (
       <Modal
         open={this.props.open}
@@ -21,7 +23,7 @@ class ActionModal extends React.Component {
           name: 'close'
         }}
       >
-        <Header icon="car" content="Czy na pewno chcesz zająć to miejsce?" />
+        <Header icon="car" content="Czy na pewno chcesz zwolnić to miejsce?" />
         <Grid>
           <Grid.Row centered columns={1}>
             <Grid.Column>
@@ -35,15 +37,12 @@ class ActionModal extends React.Component {
                 <AdjustableInput
                   label="Data:"
                   disabled={true}
-                  value={DateTime.fromISO(
-                    this.props.switcherReducer.currentDay.timestamp
-                  ).toFormat('dd-MM-yyyy')}
+                  value={currentDate}
                 />
                 <AdjustableInput
                   label="Imię:"
-                  disabled={false}
-                  value=""
-                  placeholder="Nazwa"
+                  disabled={true}
+                  value={this.props.name}
                 />
               </Modal.Content>
             </Grid.Column>
@@ -54,15 +53,16 @@ class ActionModal extends React.Component {
             <Icon name="remove" /> Wróć
           </Button>
           <Button color="green">
-            <Icon name="checkmark" /> Zajmij
+            <Icon name="checkmark" /> Zwolnij
           </Button>
         </Modal.Actions>
       </Modal>
     );
   }
 }
+
 const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(ActionModal);
+export default connect(mapStateToProps)(ConfirmationModal);

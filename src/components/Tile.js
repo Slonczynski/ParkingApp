@@ -1,12 +1,16 @@
 import React from 'react';
 import { Label, Icon } from 'semantic-ui-react';
+
+import ActionModal from './ActionModal';
+import ConfirmationModal from './ConfirmationModal';
 import './scss/Tile.scss';
 
 class Tile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      parkingClassname: ''
+      parkingClassname: '',
+      openModal: false
     };
   }
 
@@ -18,25 +22,45 @@ class Tile extends React.Component {
     }
   }
 
+  showModal = () => {
+    this.setState({ ...this.state, openModal: true });
+  };
+
+  hideModal = () => {
+    this.setState({ ...this.state, openModal: false });
+  };
+
   render() {
     return (
       <div className="parking-spot">
-        <div className="text-center">
-          <div className="spot-number">{this.props.car}</div>
-        </div>
-        <div className="text-center">
-          <img
-            className={this.state.parkingClassname}
-            src={require('./tile.svg')}
-            alt="parking-place"
+        <div className="spot-number">{this.props.car}</div>
+        <img
+          onClick={this.showModal}
+          className={this.state.parkingClassname}
+          src={require('./tile.svg')}
+          alt="parking-place"
+        />
+
+        {this.props.className === 'parking-place-free' ? (
+          <ActionModal
+            open={this.state.openModal}
+            handleClose={this.hideModal}
+            car={this.props.car}
           />
-          {this.props.className === 'parking-place-free' ? null : (
-            <Label className="spot-occupant" size="large">
-              {this.props.name}
+        ) : (
+          <div>
+            <Label className="spot-occupant" size="big">
+              {this.props.name.join('')}
               <Icon name="delete" />
             </Label>
-          )}
-        </div>
+            <ConfirmationModal
+              open={this.state.openModal}
+              handleClose={this.hideModal}
+              car={this.props.car}
+              name={this.props.name.join('')}
+            />
+          </div>
+        )}
       </div>
     );
   }
