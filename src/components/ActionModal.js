@@ -3,7 +3,6 @@ import { Modal, Header, Icon, Button, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 
-import Tile from './Tile';
 import AdjustableInput from './AdjustableInput';
 import './scss/ActionModal.scss';
 
@@ -11,18 +10,12 @@ class ActionModal extends React.Component {
   render() {
     return (
       <Modal
+        open={this.props.open}
+        onClose={this.props.handleClose}
         centered
         size="mini"
-        trigger={
-          <div>
-            <Tile
-              car={this.props.car}
-              className={this.props.className}
-              name={this.props.name}
-            />
-          </div>
-        }
         closeIcon={{
+          onClick: this.props.handleClose,
           style: { top: '1.0535rem', right: '1rem' },
           color: 'black',
           name: 'close'
@@ -57,7 +50,7 @@ class ActionModal extends React.Component {
           </Grid.Row>
         </Grid>
         <Modal.Actions>
-          <Button color="red">
+          <Button onClick={this.props.handleClose} color="red">
             <Icon name="remove" /> Wróć
           </Button>
           <Button color="green">

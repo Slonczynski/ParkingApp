@@ -5,3 +5,5 @@ export const UPDATE_NEXT_DAY = 'UPDATE_NEXT_DAY';
 export const FETCH_DATA = 'FETCH_DATA';
 export const SEND_DATA = 'SEND_DATA';
 export const SEND_DATA_ERROR = 'SEND_DATA_ERROR';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';

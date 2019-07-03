@@ -4,7 +4,7 @@ import databaseReducer from './databaseReducer';
 import { firestoreReducer } from 'redux-firestore';
 
 export default combineReducers({
+  firestoreReducer,
   switcherReducer,
-  databaseReducer,
-  firestoreReducer
+  databaseReducer
 });

@@ -2,8 +2,7 @@ import {
   PREVIOUS_TO_CURRENT_DAY,
   NEXT_TO_CURRENT_DAY,
   UPDATE_PREVIOUS_DAY,
-  UPDATE_NEXT_DAY,
-  OPEN_MODAL
+  UPDATE_NEXT_DAY
 } from './actionTypes';
 
 export const previousToCurrentDay = (

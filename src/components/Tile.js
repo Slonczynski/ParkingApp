@@ -1,12 +1,15 @@
 import React from 'react';
-import { Grid, Label, Icon } from 'semantic-ui-react';
+import { Label, Icon } from 'semantic-ui-react';
+
+import ActionModal from './ActionModal';
 import './scss/Tile.scss';
 
 class Tile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      parkingClassname: ''
+      parkingClassname: '',
+      openModal: false
     };
   }
 
@@ -18,17 +21,32 @@ class Tile extends React.Component {
     }
   }
 
+  showModal = () => {
+    this.setState({ ...this.state, openModal: true });
+  };
+
+  hideModal = () => {
+    this.setState({ ...this.state, openModal: false });
+  };
+
   render() {
     return (
       <div className="parking-spot">
         <div className="spot-number">{this.props.car}</div>
-
         <img
+          onClick={this.showModal}
           className={this.state.parkingClassname}
           src={require('./tile.svg')}
           alt="parking-place"
         />
-        {this.props.className === 'parking-place-free' ? null : (
+
+        {this.props.className === 'parking-place-free' ? (
+          <ActionModal
+            open={this.state.openModal}
+            handleClose={this.hideModal}
+            car={this.props.car}
+          />
+        ) : (
           <Label className="spot-occupant" size="big">
             {this.props.name}
             <Icon name="delete" />
@@ -39,4 +57,8 @@ class Tile extends React.Component {
   }
 }
 
-export default Tile;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default mapStateToProps(Tile);
