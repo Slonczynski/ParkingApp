@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { Grid, Segment } from 'semantic-ui-react';
 
 import Separator from './Separator';
-import ActionModal from './ActionModal';
+import Tile from './Tile';
 import './scss/ParkingSpots.scss';
 
 class ParkingSpots extends React.Component {
@@ -83,7 +83,7 @@ class ParkingSpots extends React.Component {
           <Separator spotsType="Tymczasowe:" />
           <Grid stackable centered relaxed columns={4}>
             <Grid.Column>
-              <ActionModal
+              <Tile
                 car="1."
                 name={
                   this.state.occupiedSpots[1]
@@ -98,7 +98,7 @@ class ParkingSpots extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal
+              <Tile
                 car="2."
                 name={
                   this.state.occupiedSpots[2]
@@ -113,7 +113,7 @@ class ParkingSpots extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal
+              <Tile
                 car="3."
                 name={
                   this.state.occupiedSpots[3]
@@ -128,7 +128,7 @@ class ParkingSpots extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal
+              <Tile
                 car="4."
                 name={
                   this.state.occupiedSpots[4]
@@ -148,7 +148,7 @@ class ParkingSpots extends React.Component {
           <Separator spotsType="Stałe:" />
           <Grid stackable centered relaxed columns={4}>
             <Grid.Column>
-              <ActionModal
+              <Tile
                 car="5."
                 name={
                   this.state.occupiedSpots[5]
@@ -163,7 +163,7 @@ class ParkingSpots extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal
+              <Tile
                 car="6."
                 name={
                   this.state.occupiedSpots[6]
@@ -178,7 +178,7 @@ class ParkingSpots extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal
+              <Tile
                 car="7."
                 name={
                   this.state.occupiedSpots[7]
@@ -193,7 +193,7 @@ class ParkingSpots extends React.Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <ActionModal
+              <Tile
                 car="8."
                 name={
                   this.state.occupiedSpots[8]
