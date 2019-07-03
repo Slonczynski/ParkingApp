@@ -49,9 +49,12 @@ class Tile extends React.Component {
           />
         ) : (
           <div>
-            <Label className="spot-occupant" size="big">
+            <Label
+              onClick={this.showModal}
+              className="spot-occupant"
+              size="big"
+            >
               {this.props.name.join('')}
-              <Icon name="delete" />
             </Label>
             <ConfirmationModal
               open={this.state.openModal}
