@@ -15,6 +15,7 @@ class ConfirmationModal extends React.Component {
         open={this.props.open}
         onClose={this.props.handleClose}
         centered
+        basic
         size="tiny"
         closeIcon={{
           onClick: this.props.handleClose,
