@@ -2,12 +2,25 @@ import React from 'react';
 import { Modal, Header, Icon, Button, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
+import firebase from 'firebase/app';
 
 import AdjustableInput from './AdjustableInput';
 import './scss/ActionModal.scss';
 
 class ActionModal extends React.Component {
   render() {
+    const saveData = () => {
+      const db = firebase.firestore();
+      db.collection('spots-collection')
+        .doc('spots')
+        .update('spot')
+        .set({
+          '04-07-2019': {
+            2: 'Konrad'
+          }
+        });
+    };
+
     return (
       <Modal
         open={this.props.open}
@@ -53,7 +66,7 @@ class ActionModal extends React.Component {
           <Button onClick={this.props.handleClose} color="red">
             <Icon name="remove" /> Wróć
           </Button>
-          <Button color="green">
+          <Button onClick={saveData} color="green">
             <Icon name="checkmark" /> Zajmij
           </Button>
         </Modal.Actions>
