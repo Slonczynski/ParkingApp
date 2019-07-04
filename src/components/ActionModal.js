@@ -8,6 +8,17 @@ import AdjustableInput from './AdjustableInput';
 import './scss/ActionModal.scss';
 
 class ActionModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { inputValue: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ inputValue: event.target.value });
+  }
+
   render() {
     const saveData = () => {
       const currentDate = DateTime.fromISO(
@@ -20,13 +31,13 @@ class ActionModal extends React.Component {
         .set(
           {
             [currentDate]: {
-              [this.props.car.slice(0, -1)]: 'Jordan'
+              [this.props.car.slice(0, -1)]: [this.state.inputValue]
             }
           },
           { merge: true }
         );
     };
-    console.log(this.props.inputValue);
+
     return (
       <Modal
         open={this.props.open}
@@ -61,8 +72,9 @@ class ActionModal extends React.Component {
                 <AdjustableInput
                   label="Imię:"
                   disabled={false}
-                  value=""
                   placeholder="Nazwa"
+                  value={this.state.value}
+                  onChange={() => e => e.target.value}
                 />
               </Modal.Content>
             </Grid.Column>
