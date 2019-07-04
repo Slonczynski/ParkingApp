@@ -13,11 +13,14 @@ class ActionModal extends React.Component {
       const db = firebase.firestore();
       db.collection('spots-collection')
         .doc('spots')
-        .update({
-          '04-07-2019': {
-            2: 'Konrad'
-          }
-        });
+        .set(
+          {
+            '04-07-2019': {
+              2: 'Konrad'
+            }
+          },
+          { merge: true }
+        );
     };
 
     return (
