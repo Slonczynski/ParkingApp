@@ -11,33 +11,30 @@ class ActionModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = { inputValue: '' };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     this.setState({ inputValue: event.target.value });
   }
+  saveData() {
+    const currentDate = DateTime.fromISO(
+      this.props.switcherReducer.currentDay.timestamp
+    ).toFormat('dd-MM-yyyy');
+
+    const db = firebase.firestore();
+    db.collection('spots-collection')
+      .doc('spots')
+      .set(
+        {
+          [currentDate]: {
+            [this.props.car.slice(0, -1)]: [this.state.value]
+          }
+        },
+        { merge: true }
+      );
+  }
 
   render() {
-    const saveData = () => {
-      const currentDate = DateTime.fromISO(
-        this.props.switcherReducer.currentDay.timestamp
-      ).toFormat('dd-MM-yyyy');
-
-      const db = firebase.firestore();
-      db.collection('spots-collection')
-        .doc('spots')
-        .set(
-          {
-            [currentDate]: {
-              [this.props.car.slice(0, -1)]: [this.state.inputValue]
-            }
-          },
-          { merge: true }
-        );
-    };
-
     return (
       <Modal
         open={this.props.open}
@@ -74,7 +71,7 @@ class ActionModal extends React.Component {
                   disabled={false}
                   placeholder="Nazwa"
                   value={this.state.value}
-                  onChange={() => e => e.target.value}
+                  onChange={e => this.setState({ inputValue: e.target.value })}
                 />
               </Modal.Content>
             </Grid.Column>
@@ -84,7 +81,7 @@ class ActionModal extends React.Component {
           <Button onClick={this.props.handleClose} color="red">
             <Icon name="remove" /> Wróć
           </Button>
-          <Button onClick={saveData} color="green">
+          <Button onClick={this.saveData} color="green">
             <Icon name="checkmark" /> Zajmij
           </Button>
         </Modal.Actions>
