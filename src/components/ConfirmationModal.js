@@ -15,7 +15,6 @@ class ConfirmationModal extends React.Component {
         open={this.props.open}
         onClose={this.props.handleClose}
         centered
-        basic
         size="tiny"
         closeIcon={{
           onClick: this.props.handleClose,
@@ -24,7 +23,10 @@ class ConfirmationModal extends React.Component {
           name: 'close'
         }}
       >
-        <Header icon="car" content="Czy na pewno chcesz zwolnić to miejsce?" />
+        <Header
+          icon="bicycle"
+          content="Czy na pewno chcesz zwolnić to miejsce?"
+        />
         <Grid>
           <Grid.Row centered columns={1}>
             <Grid.Column>

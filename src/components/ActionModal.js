@@ -10,19 +10,23 @@ import './scss/ActionModal.scss';
 class ActionModal extends React.Component {
   render() {
     const saveData = () => {
+      const currentDate = DateTime.fromISO(
+        this.props.switcherReducer.currentDay.timestamp
+      ).toFormat('dd-MM-yyyy');
+
       const db = firebase.firestore();
       db.collection('spots-collection')
         .doc('spots')
         .set(
           {
-            '04-07-2019': {
-              2: 'Konrad'
+            [currentDate]: {
+              [this.props.car.slice(0, -1)]: 'Jordan'
             }
           },
           { merge: true }
         );
     };
-
+    console.log(this.props.inputValue);
     return (
       <Modal
         open={this.props.open}
