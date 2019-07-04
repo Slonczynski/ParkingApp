@@ -13,8 +13,7 @@ class ActionModal extends React.Component {
       const db = firebase.firestore();
       db.collection('spots-collection')
         .doc('spots')
-        .update('spot')
-        .set({
+        .update({
           '04-07-2019': {
             2: 'Konrad'
           }
