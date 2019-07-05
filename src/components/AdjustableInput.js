@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input } from 'semantic-ui-react';
 
+
 import './scss/AdjustableInput.scss';
 
 class AdjustableInput extends React.Component {
