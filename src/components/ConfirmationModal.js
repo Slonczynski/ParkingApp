@@ -2,11 +2,33 @@ import React from 'react';
 import { Modal, Header, Grid, Button, Icon } from 'semantic-ui-react';
 import { DateTime } from 'luxon';
 import { connect } from 'react-redux';
+import firebase from 'firebase/app';
 
 import AdjustableInput from './AdjustableInput';
 
 class ConfirmationModal extends React.Component {
+  
+
   render() {
+     const deleteData = () => {
+      const currentDate = DateTime.fromISO(
+        this.props.switcherReducer.currentDay.timestamp
+      ).toFormat('dd-MM-yyyy');
+
+      const db = firebase.firestore();
+      db.collection('spots-collection')
+        .doc('spots')
+        .set(
+          {
+            [currentDate]: {
+              [this.props.car.slice(0, -1)]: ''
+            }
+          },
+          { merge: true }
+        );
+      // add callback
+      this.props.handleClose();
+    };
     const currentDate = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
@@ -15,7 +37,6 @@ class ConfirmationModal extends React.Component {
         open={this.props.open}
         onClose={this.props.handleClose}
         centered
-        basic
         size="tiny"
         closeIcon={{
           onClick: this.props.handleClose,
@@ -24,7 +45,10 @@ class ConfirmationModal extends React.Component {
           name: 'close'
         }}
       >
-        <Header icon="car" content="Czy na pewno chcesz zwolnić to miejsce?" />
+        <Header
+          icon="bicycle"
+          content="Czy na pewno chcesz zwolnić to miejsce?"
+        />
         <Grid>
           <Grid.Row centered columns={1}>
             <Grid.Column>
@@ -53,7 +77,7 @@ class ConfirmationModal extends React.Component {
           <Button onClick={this.props.handleClose} color="red">
             <Icon name="remove" /> Wróć
           </Button>
-          <Button color="green">
+          <Button onClick={deleteData} color="green">
             <Icon name="checkmark" /> Zwolnij
           </Button>
         </Modal.Actions>
