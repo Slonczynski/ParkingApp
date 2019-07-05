@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label, Icon } from 'semantic-ui-react';
+import { Label } from 'semantic-ui-react';
 
 import ActionModal from './ActionModal';
 import ConfirmationModal from './ConfirmationModal';
@@ -49,9 +49,12 @@ class Tile extends React.Component {
           />
         ) : (
           <div>
-            <Label className="spot-occupant" size="big">
+            <Label
+              onClick={this.showModal}
+              className="spot-occupant"
+              size="big"
+            >
               {this.props.name.join('')}
-              <Icon name="delete" />
             </Label>
             <ConfirmationModal
               open={this.state.openModal}

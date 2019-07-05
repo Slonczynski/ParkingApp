@@ -1,13 +1,43 @@
 import React from 'react';
-import { Modal, Header, Icon, Button, Grid } from 'semantic-ui-react';
+import { Modal, Header, Icon, Button, Grid, Input } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
+import firebase from 'firebase/app';
 
 import AdjustableInput from './AdjustableInput';
 import './scss/ActionModal.scss';
 
 class ActionModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { inputValue: '' };
+  }
+
+  handleChange(event) {
+    this.setState({ inputValue: event.target.value });
+  }
+
   render() {
+    const saveData = () => {
+      const currentDate = DateTime.fromISO(
+        this.props.switcherReducer.currentDay.timestamp
+      ).toFormat('dd-MM-yyyy');
+
+      const db = firebase.firestore();
+      db.collection('spots-collection')
+        .doc('spots')
+        .set(
+          {
+            [currentDate]: {
+              [this.props.car.slice(0, -1)]: this.state.inputValue
+            }
+          },
+          { merge: true }
+        );
+      // add callback
+      this.props.handleClose();
+    };
+
     return (
       <Modal
         open={this.props.open}
@@ -39,11 +69,12 @@ class ActionModal extends React.Component {
                     this.props.switcherReducer.currentDay.timestamp
                   ).toFormat('dd-MM-yyyy')}
                 />
-                <AdjustableInput
+                <Input
                   label="Imię:"
                   disabled={false}
-                  value=""
                   placeholder="Nazwa"
+                  value={this.state.value}
+                  onChange={e => this.setState({ inputValue: e.target.value })}
                 />
               </Modal.Content>
             </Grid.Column>
@@ -53,7 +84,7 @@ class ActionModal extends React.Component {
           <Button onClick={this.props.handleClose} color="red">
             <Icon name="remove" /> Wróć
           </Button>
-          <Button color="green">
+          <Button onClick={saveData} color="green">
             <Icon name="checkmark" /> Zajmij
           </Button>
         </Modal.Actions>
