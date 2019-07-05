@@ -29,7 +29,7 @@ class ActionModal extends React.Component {
         .set(
           {
             [currentDate]: {
-              [this.props.car.slice(0, -1)]: [this.state.inputValue]
+              [this.props.car.slice(0, -1)]: this.state.inputValue
             }
           },
           { merge: true }
