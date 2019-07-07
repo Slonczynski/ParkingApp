@@ -61,7 +61,7 @@ class SpotsCounter extends React.Component {
               color="green"
             >
               <div className="free-spots">
-                <span>
+                <span className="free-spots-text">
                   Wolnych miejsc: <br />
                 </span>
                 <span className="free-spots-number">
@@ -78,7 +78,9 @@ class SpotsCounter extends React.Component {
               inverted
               color="red"
             >
-              <div className="no-free-spots">Brak wolnych miejsc</div>
+              <div className="no-free-spots">
+                <span className="no-free-spots-text">Brak wolnych miejsc</span>
+              </div>
             </Segment>
           )}
         </div>
