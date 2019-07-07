@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
-import { Grid, Segment } from 'semantic-ui-react';
 
 import './scss/Weekday.scss';
 
@@ -22,17 +21,9 @@ class Weekday extends React.Component {
 
     return (
       <div className="weekday-container">
-        <Grid centered>
-          <Segment
-            compact
-            size="large"
-            textAlign="center"
-            inverted
-            color="blue"
-          >
-            <span className="weekday">{days[currentDate]}</span>
-          </Segment>
-        </Grid>
+        <span>{this.props.requestedDay}</span>
+        <br />
+        <span className="weekday">{days[currentDate]}</span>
       </div>
     );
   }

@@ -12,11 +12,13 @@ import {
 import './scss/App.scss';
 
 import DayButton from './DayButton';
+import Weekday from './Weekday';
+import { Grid } from 'semantic-ui-react';
 
 class NavigationBar extends React.Component {
   render() {
     return (
-      <div className="d-flex justify-content-between align-items-center">
+      <div className="d-flex justify-content-between align-items-start">
         <DayButton
           icon="left"
           text="Poprzedni"
@@ -45,18 +47,22 @@ class NavigationBar extends React.Component {
           }}
         />
         <DayButton
-          text="Aktywny"
           icon="home"
-          requestedDay={DateTime.fromISO(
-            this.props.switcherReducer.currentDay.timestamp
-          ).toFormat('dd-MM-yyyy')}
           id="active"
+          weekday={
+            <Weekday
+              requestedDay={DateTime.fromISO(
+                this.props.switcherReducer.currentDay.timestamp
+              ).toFormat('dd-MM-yyyy')}
+            />
+          }
           // TODO:
           // Shouldn't reload the app
           onClickValue={() => {
             window.location.reload();
           }}
         />
+
         <DayButton
           icon="right"
           text="Następny"
