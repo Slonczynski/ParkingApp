@@ -6,7 +6,6 @@ import { compose } from 'redux';
 
 import './scss/App.scss';
 import NavigationBar from './NavigationBar';
-import SpotsCounter from './SpotsCounter';
 import ParkingSpots from './ParkingSpots';
 
 class App extends React.Component {
@@ -14,7 +13,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <NavigationBar />
-        <SpotsCounter />
         <ParkingSpots />
       </div>
     );

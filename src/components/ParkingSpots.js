@@ -6,6 +6,7 @@ import { Grid, Segment } from 'semantic-ui-react';
 
 import Separator from './Separator';
 import Tile from './Tile';
+import SpotsCounter from './SpotsCounter';
 import './scss/ParkingSpots.scss';
 
 class ParkingSpots extends React.Component {
@@ -79,6 +80,7 @@ class ParkingSpots extends React.Component {
   render() {
     return this.state.isParkingAvaiable === true ? (
       <div className="spots">
+        <SpotsCounter />
         <div className="temporary-spots">
           <Separator spotsType="Tymczasowe:" />
           <Grid stackable centered relaxed columns={4}>
