@@ -56,7 +56,7 @@ class ConfirmationModal extends React.Component {
           icon="bicycle"
           content={`${
             this.props.name
-          } czy na pewno chcesz zwolnić to miejsce? `}
+          }, czy na pewno chcesz zwolnić to miejsce? `}
         />
         <Grid>
           <Grid.Row centered columns={1}>
