@@ -1,10 +1,10 @@
 import React from 'react';
-import { Modal, Header, Grid, Button, Icon } from 'semantic-ui-react';
+import { Modal, Header, Grid, Button, Icon, Input } from 'semantic-ui-react';
 import { DateTime } from 'luxon';
 import { connect } from 'react-redux';
 import firebase from 'firebase/app';
 
-import AdjustableInput from './AdjustableInput';
+import './scss/Input.scss';
 
 class ConfirmationModal extends React.Component {
   render() {
@@ -54,18 +54,21 @@ class ConfirmationModal extends React.Component {
           <Grid.Row centered columns={1}>
             <Grid.Column>
               <Modal.Content>
-                <AdjustableInput
+                <Input
+                  fluid
                   label="Miejsce:"
                   disabled={true}
                   value={this.props.car}
                 />
 
-                <AdjustableInput
+                <Input
+                  fluid
                   label="Data:"
                   disabled={true}
                   value={currentDate}
                 />
-                <AdjustableInput
+                <Input
+                  fluid
                   label="Imię:"
                   disabled={true}
                   value={this.props.name}
