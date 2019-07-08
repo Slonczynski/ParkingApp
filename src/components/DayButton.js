@@ -11,7 +11,7 @@ const DayButton = props => {
           className={`circular inverted teal large arrow 
           ${props.icon} icon`}
         />
-        <Segment inverted size="small" color="blue">
+        <Segment compact inverted size="small" color="blue">
           <div className="day-button-text">
             {props.text}
             {props.weekday}

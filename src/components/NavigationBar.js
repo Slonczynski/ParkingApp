@@ -13,7 +13,6 @@ import './scss/App.scss';
 
 import DayButton from './DayButton';
 import Weekday from './Weekday';
-import { Grid } from 'semantic-ui-react';
 
 class NavigationBar extends React.Component {
   render() {
