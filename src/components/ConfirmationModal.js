@@ -24,15 +24,21 @@ class ConfirmationModal extends React.Component {
       // Combine previous values
       const fullReference = currentDate + '.' + spotNumber;
       // Delete data
-      spotRef.update({
-        [fullReference]: firebase.firestore.FieldValue.delete()
-      });
-      // add callback
+      spotRef
+        .update({
+          [fullReference]: firebase.firestore.FieldValue.delete()
+        })
+        .then()
+        .catch(error => {
+          console.log('Data could not be saved.' + error);
+        });
+
       this.props.handleClose();
     };
     const currentDate = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
+
     return (
       <Modal
         open={this.props.open}
@@ -48,7 +54,9 @@ class ConfirmationModal extends React.Component {
       >
         <Header
           icon="bicycle"
-          content="Czy na pewno chcesz zwolnić to miejsce?"
+          content={`${
+            this.props.name
+          } czy na pewno chcesz zwolnić to miejsce? `}
         />
         <Grid>
           <Grid.Row centered columns={1}>
@@ -56,6 +64,7 @@ class ConfirmationModal extends React.Component {
               <Modal.Content>
                 <Input
                   fluid
+                  size="big"
                   label="Miejsce:"
                   disabled={true}
                   value={this.props.car}
@@ -63,12 +72,14 @@ class ConfirmationModal extends React.Component {
 
                 <Input
                   fluid
+                  size="big"
                   label="Data:"
                   disabled={true}
                   value={currentDate}
                 />
                 <Input
                   fluid
+                  size="big"
                   label="Imię:"
                   disabled={true}
                   value={this.props.name}

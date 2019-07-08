@@ -33,8 +33,12 @@ class ActionModal extends React.Component {
             }
           },
           { merge: true }
-        );
-      // add callback
+        )
+        .then(() => console.log('Data saved.'))
+        .catch(error => {
+          console.log('Data could not be saved.' + error);
+        });
+
       this.props.handleClose();
     };
 
@@ -58,13 +62,16 @@ class ActionModal extends React.Component {
               <Modal.Content>
                 <Input
                   fluid
+                  size="big"
                   label="Miejsce:"
+                  labelPosition="left"
                   disabled={true}
                   value={this.props.car}
                 />
 
                 <Input
                   fluid
+                  size="big"
                   label="Data:"
                   disabled={true}
                   value={DateTime.fromISO(
@@ -73,6 +80,7 @@ class ActionModal extends React.Component {
                 />
                 <Input
                   fluid
+                  size="big"
                   label="Imię:"
                   disabled={false}
                   placeholder="Nazwa"
