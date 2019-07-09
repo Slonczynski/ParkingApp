@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 import firebase from 'firebase/app';
 
-import AdjustableInput from './AdjustableInput';
 import './scss/ActionModal.scss';
+import './scss/Input.scss';
 
 class ActionModal extends React.Component {
   constructor(props) {
@@ -33,8 +33,12 @@ class ActionModal extends React.Component {
             }
           },
           { merge: true }
-        );
-      // add callback
+        )
+        .then(() => console.log('Data saved.'))
+        .catch(error => {
+          console.log('Data could not be saved.' + error);
+        });
+
       this.props.handleClose();
     };
 
@@ -56,13 +60,18 @@ class ActionModal extends React.Component {
           <Grid.Row centered columns={1}>
             <Grid.Column>
               <Modal.Content>
-                <AdjustableInput
+                <Input
+                  fluid
+                  size="big"
                   label="Miejsce:"
+                  labelPosition="left"
                   disabled={true}
                   value={this.props.car}
                 />
 
-                <AdjustableInput
+                <Input
+                  fluid
+                  size="big"
                   label="Data:"
                   disabled={true}
                   value={DateTime.fromISO(
@@ -70,6 +79,8 @@ class ActionModal extends React.Component {
                   ).toFormat('dd-MM-yyyy')}
                 />
                 <Input
+                  fluid
+                  size="big"
                   label="Imię:"
                   disabled={false}
                   placeholder="Nazwa"

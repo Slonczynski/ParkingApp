@@ -9,17 +9,8 @@ class Tile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      parkingClassname: '',
       openModal: false
     };
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.parkingClassname !== this.props.className) {
-      this.setState({
-        parkingClassname: this.props.className
-      });
-    }
   }
 
   showModal = () => {
@@ -36,7 +27,7 @@ class Tile extends React.Component {
         <div className="spot-number">{this.props.car}</div>
         <img
           onClick={this.showModal}
-          className={this.state.parkingClassname}
+          className={this.props.className}
           src={require('./tile.svg')}
           alt="parking-place"
         />
