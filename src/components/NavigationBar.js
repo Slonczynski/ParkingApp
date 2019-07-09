@@ -13,6 +13,7 @@ import './scss/App.scss';
 
 import DayButton from './DayButton';
 import Weekday from './Weekday';
+import CalendarPicker from './CalendarPicker';
 
 class NavigationBar extends React.Component {
   render() {
@@ -57,9 +58,7 @@ class NavigationBar extends React.Component {
           }
           // TODO:
           // Shouldn't reload the app
-          onClickValue={() => {
-            window.location.reload();
-          }}
+          onClickValue={() => <CalendarPicker />}
         />
 
         <DayButton
