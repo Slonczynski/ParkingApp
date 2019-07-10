@@ -1,37 +1,44 @@
 import React from 'react';
-import { Modal, Header, Grid, Button, Icon } from 'semantic-ui-react';
+import { Modal, Header, Grid, Button, Icon, Input } from 'semantic-ui-react';
 import { DateTime } from 'luxon';
 import { connect } from 'react-redux';
 import firebase from 'firebase/app';
 
-import AdjustableInput from './AdjustableInput';
+import './scss/Input.scss';
 
 class ConfirmationModal extends React.Component {
-  
-
   render() {
-     const deleteData = () => {
+    const deleteData = () => {
+      // Initialize database
+      const db = firebase.firestore();
+
+      // Get current date
       const currentDate = DateTime.fromISO(
         this.props.switcherReducer.currentDay.timestamp
       ).toFormat('dd-MM-yyyy');
 
-      const db = firebase.firestore();
-      db.collection('spots-collection')
-        .doc('spots')
-        .set(
-          {
-            [currentDate]: {
-              [this.props.car.slice(0, -1)]: ''
-            }
-          },
-          { merge: true }
-        );
-      // add callback
+      // Create reference to document
+      const spotRef = db.collection('spots-collection').doc('spots');
+      // Get spot number
+      const spotNumber = this.props.car.slice(0, -1);
+      // Combine previous values
+      const fullReference = currentDate + '.' + spotNumber;
+      // Delete data
+      spotRef
+        .update({
+          [fullReference]: firebase.firestore.FieldValue.delete()
+        })
+        .then()
+        .catch(error => {
+          console.log('Data could not be saved.' + error);
+        });
+
       this.props.handleClose();
     };
     const currentDate = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
+
     return (
       <Modal
         open={this.props.open}
@@ -47,24 +54,32 @@ class ConfirmationModal extends React.Component {
       >
         <Header
           icon="bicycle"
-          content="Czy na pewno chcesz zwolnić to miejsce?"
+          content={`${
+            this.props.name
+          }, czy na pewno chcesz zwolnić to miejsce? `}
         />
         <Grid>
           <Grid.Row centered columns={1}>
             <Grid.Column>
               <Modal.Content>
-                <AdjustableInput
+                <Input
+                  fluid
+                  size="big"
                   label="Miejsce:"
                   disabled={true}
                   value={this.props.car}
                 />
 
-                <AdjustableInput
+                <Input
+                  fluid
+                  size="big"
                   label="Data:"
                   disabled={true}
                   value={currentDate}
                 />
-                <AdjustableInput
+                <Input
+                  fluid
+                  size="big"
                   label="Imię:"
                   disabled={true}
                   value={this.props.name}
