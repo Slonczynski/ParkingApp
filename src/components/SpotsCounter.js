@@ -17,14 +17,13 @@ class SpotsCounter extends React.Component {
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
 
+    // Check if document doesn't exist in DB
     if (
       this.props.firestoreReducer.ordered['spots-collection']['0'][
         currentData
-      ] !== null &&
-      this.props.firestoreReducer.ordered['spots-collection']['0'][
-        currentData
-      ] !== undefined
+      ] !== null
     ) {
+      // If it exist, check if it's lenght isn't already the same as in state
       if (
         this.state.occupiedSpotsNumber !==
         Object.keys(
@@ -33,6 +32,14 @@ class SpotsCounter extends React.Component {
           ]
         ).length
       ) {
+        console.log(
+          Object.keys(
+            this.props.firestoreReducer.ordered['spots-collection']['0'][
+              currentData
+            ]
+          ).length
+        );
+        // If it's not the same as in state => set state to
         this.setState({
           occupiedSpotsNumber: Object.keys(
             this.props.firestoreReducer.ordered['spots-collection']['0'][
@@ -41,10 +48,11 @@ class SpotsCounter extends React.Component {
           ).length
         });
       }
-    } else if (this.state.occupiedSpotsNumber !== 0)
+    } else if (this.state.occupiedSpotsNumber !== 0) {
       this.setState({
         occupiedSpotsNumber: 0
       });
+    }
   }
 
   freeSpots() {

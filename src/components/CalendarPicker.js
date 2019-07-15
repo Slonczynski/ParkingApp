@@ -18,7 +18,7 @@ class CalendarPicker extends React.Component {
     const activeDay = DateTime.fromJSDate(this.state.date).toFormat(
       'dd-MM-yyyy'
     );
-    console.log(activeDay);
+
     return (
       <div>
         <Grid centered>
