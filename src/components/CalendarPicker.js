@@ -16,9 +16,12 @@ import './scss/CalendarPicker.scss';
 
 class CalendarPicker extends React.Component {
   // Getting current date from switcherReducer timestamp to maintain data coherency.
-  state = {
-    date: new Date(this.props.switcherReducer.currentDay.timestamp)
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: new Date(this.props.switcherReducer.currentDay.timestamp)
+    };
+  }
 
   onChange = date => {
     this.setState({ date });
@@ -37,11 +40,7 @@ class CalendarPicker extends React.Component {
   render() {
     return (
       <div>
-        <Modal
-          basic
-          open={this.props.handleOpen}
-          onClose={this.props.handleClose}
-        >
+        <Modal basic open onClose={this.props.handleClose}>
           <Header
             className="calendar-header"
             centered
