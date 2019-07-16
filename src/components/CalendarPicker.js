@@ -19,13 +19,15 @@ class CalendarPicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(this.props.switcherReducer.currentDay.timestamp)
+      date: new Date(this.props.switcherReducer.currentDay.timestamp),
+      openModal: true
     };
   }
 
   onChange = date => {
     this.setState({ date });
     const chosenDay = DateTime.fromJSDate(this.state.date);
+    this.hideModal();
     // Check if date in chosenDayTime is the same as the one in store
     if (
       chosenDay.toISODate() !==
@@ -36,11 +38,17 @@ class CalendarPicker extends React.Component {
       this.props.updatePreviousDay(chosenDay.minus({ days: 1 }));
     }
   };
+  hideModal = () => {
+    if (this.state.openModal !== false) {
+      this.setState({ ...this.state, openModal: false });
+    }
+  };
 
   render() {
+    console.log(this.state);
     return (
       <div>
-        <Modal basic open onClose={this.props.handleClose}>
+        <Modal basic open={this.state.openModal} handleClose={this.hideModal}>
           <Header
             className="calendar-header"
             centered
