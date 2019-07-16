@@ -22,9 +22,6 @@ class CalendarPicker extends React.Component {
 
   onChange = date => {
     this.setState({ date });
-  };
-
-  componentDidUpdate() {
     const chosenDay = DateTime.fromJSDate(this.state.date);
     // Check if date in chosenDayTime is the same as the one in store
     if (
@@ -35,7 +32,7 @@ class CalendarPicker extends React.Component {
       this.props.updateNextDay(chosenDay.plus({ days: 1 }));
       this.props.updatePreviousDay(chosenDay.minus({ days: 1 }));
     }
-  }
+  };
 
   render() {
     return (
