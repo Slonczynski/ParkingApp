@@ -24,16 +24,16 @@ class CalendarPicker extends React.Component {
     this.setState({ date });
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    const chosenDayTimestamp = DateTime.fromJSDate(this.state.date);
-    console.log(chosenDayTimestamp);
+  componentDidUpdate() {
+    const chosenDay = DateTime.fromJSDate(this.state.date);
+    // Check if date in chosenDayTime is the same as the one in store
     if (
-      chosenDayTimestamp.toISODate() !==
+      chosenDay.toISODate() !==
       this.props.switcherReducer.currentDay.timestamp.toISODate()
     ) {
-      this.props.updateCurrentDay(chosenDayTimestamp);
-      this.props.updateNextDay(chosenDayTimestamp.plus({ days: 1 }));
-      this.props.updatePreviousDay(chosenDayTimestamp.minus({ days: 1 }));
+      this.props.updateCurrentDay(chosenDay);
+      this.props.updateNextDay(chosenDay.plus({ days: 1 }));
+      this.props.updatePreviousDay(chosenDay.minus({ days: 1 }));
     }
   }
 
