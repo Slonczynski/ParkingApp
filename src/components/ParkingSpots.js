@@ -60,7 +60,7 @@ class ParkingSpots extends React.Component {
           occupiedSpots: {}
         });
       } else {
-        // TODO: Document is not empty
+        // If document is not empty get keys from it and put them into state.occupiedSpots
         const keyVal = {};
         for (const [key, val] of Object.entries(
           this.props.firestoreReducer.ordered['spots-collection']['0'][
