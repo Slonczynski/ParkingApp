@@ -58,7 +58,6 @@ class NavigationBar extends React.Component {
           }
           // TODO:
           // Shouldn't reload the app
-          onClickValue={() => <CalendarPicker />}
         />
 
         <DayButton
