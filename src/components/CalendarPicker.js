@@ -2,7 +2,7 @@ import React from 'react';
 import Calendar from 'react-calendar';
 import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { DateTime } from 'luxon';
+// import { DateTime } from 'luxon';
 
 import './scss/CalendarPicker.scss';
 
@@ -15,9 +15,9 @@ class CalendarPicker extends React.Component {
   onChange = date => this.setState({ date });
 
   render() {
-    const activeDay = DateTime.fromJSDate(this.state.date).toFormat(
-      'dd-MM-yyyy'
-    );
+    // const activeDay = DateTime.fromJSDate(this.state.date).toFormat(
+    //   'dd-MM-yyyy'
+    // );
 
     return (
       <div>
