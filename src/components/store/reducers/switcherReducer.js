@@ -72,6 +72,14 @@ export default (state = initialState(), action) => {
           timestamp: action.value
         }
       };
+    case 'UPDATE_CURRENT_DAY':
+      return {
+        ...state,
+        currentDay: {
+          ...state.currentDay,
+          timestamp: action.value
+        }
+      };
     default:
       return state;
   }

@@ -47,7 +47,7 @@ class NavigationBar extends React.Component {
           }}
         />
         <DayButton
-          icon="home"
+          icon="calendar alternate"
           id="active"
           weekday={
             <Weekday
