@@ -1,6 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Modal, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 import { bindActionCreators } from 'redux';
@@ -40,15 +40,28 @@ class CalendarPicker extends React.Component {
   render() {
     return (
       <div>
-        <Grid centered>
-          <Calendar
-            className="react-calendar"
-            calendarType="ISO 8601"
-            locale="pl-PL"
-            onChange={this.onChange}
-            value={this.state.date}
+        <Modal
+          basic
+          open={this.props.handleOpen}
+          onClose={this.props.handleClose}
+        >
+          <Header
+            className="calendar-header"
+            centered
+            content="Wybierz datę:"
           />
-        </Grid>
+          <Modal.Content>
+            <Grid centered>
+              <Calendar
+                className="react-calendar"
+                calendarType="ISO 8601"
+                locale="pl-PL"
+                onChange={this.onChange}
+                value={this.state.date}
+              />
+            </Grid>
+          </Modal.Content>
+        </Modal>
       </div>
     );
   }
