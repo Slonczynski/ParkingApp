@@ -81,7 +81,9 @@ class ParkingSpots extends React.Component {
   render() {
     return this.state.isParkingAvaiable === true ? (
       <div className="spots">
-        <SpotsCounter />
+        <SpotsCounter
+          occupiedSpotsNumber={Object.keys(this.state.occupiedSpots).length}
+        />
         <CalendarPicker />
         <div className="temporary-spots">
           <Separator spotsType="Tymczasowe:" />
