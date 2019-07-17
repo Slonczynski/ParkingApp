@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Grid, Segment } from 'semantic-ui-react';
 
 import '../components/scss/SpotsCounter.scss';
@@ -46,8 +45,5 @@ class SpotsCounter extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return state;
-};
 
-export default connect(mapStateToProps)(SpotsCounter);
+export default SpotsCounter;
