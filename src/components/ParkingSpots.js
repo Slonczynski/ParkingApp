@@ -8,7 +8,6 @@ import Separator from './Separator';
 import Tile from './Tile';
 import SpotsCounter from './SpotsCounter';
 import './scss/ParkingSpots.scss';
-import CalendarPicker from './CalendarPicker';
 
 class ParkingSpots extends React.Component {
   constructor(props) {
@@ -84,7 +83,6 @@ class ParkingSpots extends React.Component {
         <SpotsCounter
           occupiedSpotsNumber={Object.keys(this.state.occupiedSpots).length}
         />
-        <CalendarPicker />
         <div className="temporary-spots">
           <Separator spotsType="Tymczasowe:" />
           <Grid stackable centered relaxed columns={4}>

@@ -13,7 +13,6 @@ import './scss/App.scss';
 
 import DayButton from './DayButton';
 import Weekday from './Weekday';
-import CalendarPicker from './CalendarPicker';
 
 class NavigationBar extends React.Component {
   render() {
@@ -47,7 +46,7 @@ class NavigationBar extends React.Component {
           }}
         />
         <DayButton
-          icon="home"
+          icon="calendar alternate"
           id="active"
           weekday={
             <Weekday
@@ -56,9 +55,6 @@ class NavigationBar extends React.Component {
               ).toFormat('dd-MM-yyyy')}
             />
           }
-          // TODO:
-          // Shouldn't reload the app
-          onClickValue={() => <CalendarPicker />}
         />
 
         <DayButton
