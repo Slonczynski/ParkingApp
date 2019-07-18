@@ -21,13 +21,26 @@ class CalendarPicker extends React.Component {
       openModal: true
     };
   }
+  componentDidUpdate() {
+    // To update the calendar current value if someone changes date through Navigation Bar
+    const dateFromState = new Date(this.state.date);
+    const dateFromReducer = new Date(
+      this.props.switcherReducer.currentDay.timestamp
+    );
+    if (dateFromState.toISOString() !== dateFromReducer.toISOString()) {
+      this.setState({
+        ...this.state,
+        date: new Date(this.props.switcherReducer.currentDay.timestamp)
+      });
+    }
+  }
 
   onChange = date => {
     this.setState(
       { ...this.state, date },
-      // Making callback here prevents the state being one step behind
+      // Making callback here prevents the state from being one step behind
       () => (
-        this.props.updateCurrentDay(DateTime.fromJSDate(this.state.date)),
+        this.props.updateCurrentDay(DateTime.fromJSDate(this.state.date)), // eslint-disable-line
         this.props.updateNextDay(
           DateTime.fromJSDate(this.state.date).plus({ days: 1 })
         ),
