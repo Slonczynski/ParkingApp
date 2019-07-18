@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 import { bindActionCreators } from 'redux';
 import {
-  previousToCurrentDay,
-  nextToCurrentDay,
   updatePreviousDay,
   updateNextDay,
   updateCurrentDay
@@ -25,30 +23,22 @@ class CalendarPicker extends React.Component {
   }
 
   onChange = date => {
-    this.setState({ date });
-    const chosenDay = DateTime.fromJSDate(this.state.date);
-    this.hideModal();
-    // Check if date in chosenDayTime is the same as the one in store
-    if (
-      chosenDay.toISODate() !==
-      this.props.switcherReducer.currentDay.timestamp.toISODate()
-    ) {
-      this.props.updateCurrentDay(chosenDay);
-      this.props.updateNextDay(chosenDay.plus({ days: 1 }));
-      this.props.updatePreviousDay(chosenDay.minus({ days: 1 }));
-    }
+    // Calling this.hideModal here prevents being one step behind
+    this.setState({ ...this.state, date }, this.hideModal);
   };
+
   hideModal = () => {
-    if (this.state.openModal !== false) {
-      this.setState({ ...this.state, openModal: false });
-    }
+    const chosenDay = DateTime.fromJSDate(this.state.date);
+    this.props.updateCurrentDay(chosenDay);
+    this.props.updateNextDay(chosenDay.plus({ days: 1 }));
+    this.props.updatePreviousDay(chosenDay.minus({ days: 1 }));
+    this.setState({ ...this.state, openModal: false });
   };
 
   render() {
-    console.log(this.state);
     return (
       <div>
-        <Modal basic open={this.state.openModal} handleClose={this.hideModal}>
+        <Modal basic open={this.state.openModal} onClose={this.hideModal}>
           <Header
             className="calendar-header"
             centered
@@ -60,8 +50,8 @@ class CalendarPicker extends React.Component {
                 className="react-calendar"
                 calendarType="ISO 8601"
                 locale="pl-PL"
-                onChange={this.onChange}
                 value={this.state.date}
+                onChange={this.onChange}
               />
             </Grid>
           </Modal.Content>
@@ -78,8 +68,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      previousToCurrentDay,
-      nextToCurrentDay,
       updatePreviousDay,
       updateNextDay,
       updateCurrentDay
