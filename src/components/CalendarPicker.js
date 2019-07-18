@@ -23,25 +23,33 @@ class CalendarPicker extends React.Component {
   }
 
   onChange = date => {
-    // Calling this.hideModal here prevents being one step behind
-    this.setState({ ...this.state, date }, this.hideModal);
-  };
-
-  hideModal = () => {
-    const chosenDay = DateTime.fromJSDate(this.state.date);
-    this.props.updateCurrentDay(chosenDay);
-    this.props.updateNextDay(chosenDay.plus({ days: 1 }));
-    this.props.updatePreviousDay(chosenDay.minus({ days: 1 }));
-    this.setState({ ...this.state, openModal: false });
+    this.setState(
+      { ...this.state, date },
+      // Making callback here prevents the state being one step behind
+      () => (
+        this.props.updateCurrentDay(DateTime.fromJSDate(this.state.date)),
+        this.props.updateNextDay(
+          DateTime.fromJSDate(this.state.date).plus({ days: 1 })
+        ),
+        this.props.updatePreviousDay(
+          DateTime.fromJSDate(this.state.date).minus({ days: 1 })
+        )
+      )
+    );
+    this.props.handleClose();
   };
 
   render() {
     return (
       <div>
-        <Modal basic open={this.state.openModal} onClose={this.hideModal}>
+        <Modal
+          basic
+          open={this.props.openModal}
+          onClose={this.props.handleClose}
+        >
           <Header
             className="calendar-header"
-            centered
+            centered="true"
             content="Wybierz datę:"
           />
           <Modal.Content>
