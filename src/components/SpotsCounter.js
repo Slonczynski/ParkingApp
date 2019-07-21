@@ -6,7 +6,6 @@ import '../components/scss/SpotsCounter.scss';
 class SpotsCounter extends React.Component {
   render() {
     //  Destructuring assignment
-
     const { occupiedSpotsNumber } = this.props;
     return (
       <Grid centered>

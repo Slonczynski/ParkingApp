@@ -8,13 +8,15 @@ import './scss/Input.scss';
 
 class ConfirmationModal extends React.Component {
   render() {
+    //  Destructuring assignment
+    const { switcherReducer, open, name, car } = this.props;
     const deleteData = () => {
       // Initialize database
       const db = firebase.firestore();
 
       // Get current date
       const currentDate = DateTime.fromISO(
-        this.props.switcherReducer.currentDay.timestamp
+        switcherReducer.currentDay.timestamp
       ).toFormat('dd-MM-yyyy');
 
       // Create reference to document
@@ -36,12 +38,12 @@ class ConfirmationModal extends React.Component {
       this.props.handleClose();
     };
     const currentDate = DateTime.fromISO(
-      this.props.switcherReducer.currentDay.timestamp
+      switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
 
     return (
       <Modal
-        open={this.props.open}
+        open={open}
         onClose={this.props.handleClose}
         centered
         size="tiny"
@@ -54,9 +56,7 @@ class ConfirmationModal extends React.Component {
       >
         <Header
           icon="bicycle"
-          content={`${
-            this.props.name
-          }, czy na pewno chcesz zwolnić to miejsce? `}
+          content={`${name}, czy na pewno chcesz zwolnić to miejsce? `}
         />
         <Grid>
           <Grid.Row centered columns={1}>
@@ -67,7 +67,7 @@ class ConfirmationModal extends React.Component {
                   size="big"
                   label="Miejsce:"
                   disabled={true}
-                  value={this.props.car}
+                  value={car}
                 />
 
                 <Input
@@ -82,7 +82,7 @@ class ConfirmationModal extends React.Component {
                   size="big"
                   label="Imię:"
                   disabled={true}
-                  value={this.props.name}
+                  value={name}
                 />
               </Modal.Content>
             </Grid.Column>

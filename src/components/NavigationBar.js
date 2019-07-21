@@ -16,29 +16,37 @@ import Weekday from './Weekday';
 
 class NavigationBar extends React.Component {
   render() {
+    //  Destructuring assignment
+    const {
+      switcherReducer,
+      previousToCurrentDay,
+      updatePreviousDay,
+      nextToCurrentDay,
+      updateNextDay
+    } = this.props;
     return (
       <div className="d-flex justify-content-between align-items-start">
         <DayButton
           icon="left"
           text="Poprzedni"
           requestedDay={DateTime.fromISO(
-            this.props.switcherReducer.previousDay.timestamp
+            switcherReducer.previousDay.timestamp
           ).toFormat('dd-MM-yyyy')}
           id="previous"
           onClickValue={() => {
-            this.props.previousToCurrentDay(
-              this.props.switcherReducer.previousDay.value,
-              this.props.switcherReducer.currentDay.value,
-              this.props.switcherReducer.previousDay.timestamp,
-              this.props.switcherReducer.currentDay.timestamp
+            previousToCurrentDay(
+              switcherReducer.currentDay.value,
+              switcherReducer.previousDay.value,
+              switcherReducer.previousDay.timestamp,
+              switcherReducer.currentDay.timestamp
             );
 
             if (
-              this.props.switcherReducer.previousDay.timestamp !==
-              this.props.switcherReducer.currentDay.timestamp
+              switcherReducer.previousDay.timestamp !==
+              switcherReducer.currentDay.timestamp
             ) {
-              this.props.updatePreviousDay(
-                this.props.switcherReducer.previousDay.timestamp
+              updatePreviousDay(
+                switcherReducer.previousDay.timestamp
                   .minus({ days: 1 })
                   .setZone('Europe/Warsaw')
               );
@@ -51,7 +59,7 @@ class NavigationBar extends React.Component {
           weekday={
             <Weekday
               requestedDay={DateTime.fromISO(
-                this.props.switcherReducer.currentDay.timestamp
+                switcherReducer.currentDay.timestamp
               ).toFormat('dd-MM-yyyy')}
             />
           }
@@ -61,22 +69,22 @@ class NavigationBar extends React.Component {
           icon="right"
           text="Następny"
           requestedDay={DateTime.fromISO(
-            this.props.switcherReducer.nextDay.timestamp
+            switcherReducer.nextDay.timestamp
           ).toFormat('dd-MM-yyyy')}
           id="next"
           onClickValue={() => {
-            this.props.nextToCurrentDay(
-              this.props.switcherReducer.nextDay.value,
-              this.props.switcherReducer.currentDay.value,
-              this.props.switcherReducer.nextDay.timestamp,
-              this.props.switcherReducer.currentDay.timestamp
+            nextToCurrentDay(
+              switcherReducer.nextDay.value,
+              switcherReducer.currentDay.value,
+              switcherReducer.nextDay.timestamp,
+              switcherReducer.currentDay.timestamp
             );
             if (
-              this.props.switcherReducer.nextDay.timestamp !==
-              this.props.switcherReducer.currentDay.timestamp
+              switcherReducer.nextDay.timestamp !==
+              switcherReducer.currentDay.timestamp
             ) {
-              this.props.updateNextDay(
-                this.props.switcherReducer.nextDay.timestamp
+              updateNextDay(
+                switcherReducer.nextDay.timestamp
                   .plus({ days: 1 })
                   .setZone('Europe/Warsaw')
               );

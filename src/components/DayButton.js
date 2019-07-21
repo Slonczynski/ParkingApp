@@ -21,16 +21,18 @@ class DayButton extends React.Component {
   };
 
   render() {
-    return this.props.weekday ? (
+    //  Destructuring assignment
+    const { weekday, icon, text, id, requestedDay, onClickValue } = this.props;
+    return weekday ? (
       <div className="text-center">
-        <div className="switcher" id={this.props.id} onClick={this.showModal}>
+        <div className="switcher" id={id} onClick={this.showModal}>
           <CalendarPicker
             openModal={this.state.openModal}
             handleClose={this.hideModal}
           />
           <i
             className={`circular inverted teal large arrow 
-          ${this.props.icon} icon`}
+          ${icon} icon`}
           />
 
           <Segment
@@ -41,27 +43,23 @@ class DayButton extends React.Component {
             color="blue"
           >
             <div className="day-button-weekday">
-              {this.props.text}
-              {this.props.weekday}
+              {text}
+              {weekday}
             </div>
           </Segment>
         </div>
       </div>
     ) : (
       <div className="text-center">
-        <div
-          className="switcher"
-          id={this.props.id}
-          onClick={this.props.onClickValue}
-        >
+        <div className="switcher" id={id} onClick={onClickValue}>
           <i
             className={`circular inverted teal large arrow 
-        ${this.props.icon} icon`}
+        ${icon} icon`}
           />
           <div className="day-button-text">
-            {this.props.text}
+            {text}
             <br />
-            {this.props.requestedDay}
+            {requestedDay}
           </div>
         </div>
       </div>
