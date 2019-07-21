@@ -10,7 +10,7 @@ import './scss/Input.scss';
 class ActionModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { inputValue: '' };
+    this.state = { inputValue: '', placeholderValue: 'Nazwa', error: false };
   }
 
   handleChange(event) {
@@ -19,27 +19,35 @@ class ActionModal extends React.Component {
 
   render() {
     const saveData = () => {
-      const currentDate = DateTime.fromISO(
-        this.props.switcherReducer.currentDay.timestamp
-      ).toFormat('dd-MM-yyyy');
+      // Validate if input is not empty
+      if (this.state.inputValue !== '') {
+        const currentDate = DateTime.fromISO(
+          this.props.switcherReducer.currentDay.timestamp
+        ).toFormat('dd-MM-yyyy');
 
-      const db = firebase.firestore();
-      db.collection('spots-collection')
-        .doc('spots')
-        .set(
-          {
-            [currentDate]: {
-              [this.props.car.slice(0, -1)]: this.state.inputValue
-            }
-          },
-          { merge: true }
-        )
-        .then(() => console.log('Data saved.'))
-        .catch(error => {
-          console.log('Data could not be saved.' + error);
+        const db = firebase.firestore();
+        db.collection('spots-collection')
+          .doc('spots')
+          .set(
+            {
+              [currentDate]: {
+                [this.props.car.slice(0, -1)]: this.state.inputValue
+              }
+            },
+            { merge: true }
+          )
+          .then(() => console.log('Data saved.'))
+          .catch(error => {
+            console.log('Data could not be saved.' + error);
+          });
+
+        this.props.handleClose();
+      } else {
+        this.setState({
+          placeholderValue: 'Zapomniałeś się przedstawić!',
+          error: true
         });
-
-      this.props.handleClose();
+      }
     };
 
     return (
@@ -83,9 +91,10 @@ class ActionModal extends React.Component {
                   size="big"
                   label="Imię:"
                   disabled={false}
-                  placeholder="Nazwa"
+                  placeholder={this.state.placeholderValue}
                   value={this.state.value}
                   onChange={e => this.setState({ inputValue: e.target.value })}
+                  error={this.state.error}
                 />
               </Modal.Content>
             </Grid.Column>

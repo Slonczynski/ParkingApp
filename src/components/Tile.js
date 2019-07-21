@@ -28,7 +28,7 @@ class Tile extends React.Component {
         <img
           onClick={this.showModal}
           className={this.props.className}
-          src={require('./tile.svg')}
+          src={require('./svg/tile.svg')}
           alt="parking-place"
         />
 
