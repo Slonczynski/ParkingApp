@@ -5,10 +5,13 @@ import '../components/scss/SpotsCounter.scss';
 
 class SpotsCounter extends React.Component {
   render() {
+    //  Destructuring assignment
+
+    const { occupiedSpotsNumber } = this.props;
     return (
       <Grid centered>
         <div className="segment">
-          {this.props.occupiedSpotsNumber < 8 ? (
+          {occupiedSpotsNumber < 8 ? (
             <Segment
               compact
               padded
@@ -22,7 +25,7 @@ class SpotsCounter extends React.Component {
                   Wolnych miejsc: <br />
                 </span>
                 <span className="free-spots-number">
-                  {8 - this.props.occupiedSpotsNumber}
+                  {8 - occupiedSpotsNumber}
                 </span>
               </div>
             </Segment>
