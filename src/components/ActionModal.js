@@ -44,7 +44,7 @@ class ActionModal extends React.Component {
         this.props.handleClose();
       } else {
         this.setState({
-          placeholderValue: 'Zapomniałeś się przedstawić!',
+          placeholderValue: 'Say your name!',
           error: true
         });
       }
