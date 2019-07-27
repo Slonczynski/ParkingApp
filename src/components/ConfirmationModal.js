@@ -22,7 +22,7 @@ class ConfirmationModal extends React.Component {
       // Create reference to document
       const spotRef = db.collection('spots-collection').doc('spots');
       // Get spot number
-      const spotNumber = this.props.car.slice(0, -1);
+      const spotNumber = car.slice(0, -1);
       // Combine previous values
       const fullReference = currentDate + '.' + spotNumber;
       // Delete data
