@@ -10,15 +10,33 @@ import './scss/Input.scss';
 class ActionModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { inputValue: '', placeholderValue: 'Nazwa', error: false };
+    this.state = {
+      inputValue: '',
+      placeholderValue: 'Nazwa',
+      error: false,
+      isDisconnected: false
+    };
   }
 
   handleChange(event) {
     this.setState({ inputValue: event.target.value });
   }
 
+  handleConnectionChange() {
+    var connectedRef = firebase.database().ref('.info/connected');
+    connectedRef.on('value', function(snap) {
+      if (snap.val() === true) {
+        // We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)
+        this.setState({ isDisconnected: false });
+      } else {
+        this.setState({ isDisconnected: true });
+      }
+    });
+  }
+
   render() {
     const saveData = () => {
+      this.handleConnectionChange();
       // Validate if input is not empty
       if (this.state.inputValue !== '') {
         const currentDate = DateTime.fromISO(
