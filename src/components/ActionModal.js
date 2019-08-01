@@ -14,7 +14,7 @@ class ActionModal extends React.Component {
       inputValue: '',
       placeholderValue: 'Nazwa',
       error: false,
-      isDisconnected: false
+      isConnected: false
     };
   }
 
@@ -22,49 +22,51 @@ class ActionModal extends React.Component {
     this.setState({ inputValue: event.target.value });
   }
 
-  handleConnectionChange() {
-    var connectedRef = firebase.database().ref('.info/connected');
-    connectedRef.on('value', function(snap) {
-      if (snap.val() === true) {
-        // We're connected (or reconnected)! Do anything here that should happen only if online (or on reconnect)
-        this.setState({ isDisconnected: false });
-      } else {
-        this.setState({ isDisconnected: true });
-      }
-    });
-  }
-
   render() {
-    const saveData = () => {
-      this.handleConnectionChange();
-      // Validate if input is not empty
-      if (this.state.inputValue !== '') {
-        const currentDate = DateTime.fromISO(
-          this.props.switcherReducer.currentDay.timestamp
-        ).toFormat('dd-MM-yyyy');
-
-        const db = firebase.firestore();
-        db.collection('spots-collection')
-          .doc('spots')
-          .set(
-            {
-              [currentDate]: {
-                [this.props.car.slice(0, -1)]: this.state.inputValue
-              }
-            },
-            { merge: true }
-          )
-          .then(() => console.log('Data saved.'))
-          .catch(error => {
-            console.log('Data could not be saved.' + error);
-          });
-
-        this.props.handleClose();
-      } else {
-        this.setState({
-          placeholderValue: 'Say your name!',
-          error: true
+    const saveData = async () => {
+      const self = this;
+      await fetch('https://google.com', { mode: 'no-cors' })
+        .then(function(text) {
+          console.log('Request successful', text);
+          self.setState({ isConnected: true });
+        })
+        .catch(function(error) {
+          console.log('Request failed', error);
+          self.setState({ isConnected: false });
         });
+
+      if (this.state.isConnected) {
+        // Validate if input is not empty
+        if (this.state.inputValue !== '') {
+          const currentDate = DateTime.fromISO(
+            this.props.switcherReducer.currentDay.timestamp
+          ).toFormat('dd-MM-yyyy');
+
+          const db = firebase.firestore();
+          db.collection('spots-collection')
+            .doc('spots')
+            .set(
+              {
+                [currentDate]: {
+                  [this.props.car.slice(0, -1)]: this.state.inputValue
+                }
+              },
+              { merge: true }
+            )
+            .then(() => console.log('Data saved.'))
+            .catch(error => {
+              console.log('Data could not be saved.' + error);
+            });
+
+          this.props.handleClose();
+        } else {
+          this.setState({
+            placeholderValue: 'Say your name!',
+            error: true
+          });
+        }
+      } else {
+        alert('brak neta');
       }
     };
 
