@@ -25,13 +25,13 @@ class ActionModal extends React.Component {
   render() {
     const saveData = async () => {
       const self = this;
-      await fetch('https://google.com', { mode: 'no-cors' })
-        .then(function(text) {
-          console.log('Request successful', text);
+      await fetch('https://parkingapp-5d88e.firebaseapp.com', {
+        mode: 'no-cors'
+      })
+        .then(() => {
           self.setState({ isConnected: true });
         })
-        .catch(function(error) {
-          console.log('Request failed', error);
+        .catch(() => {
           self.setState({ isConnected: false });
         });
 
@@ -66,7 +66,9 @@ class ActionModal extends React.Component {
           });
         }
       } else {
-        alert('brak neta');
+        alert(
+          'Dane nie zostały zapisane. Sprawdź swoje połączenie z internetem i odśwież stronę'
+        );
       }
     };
 
