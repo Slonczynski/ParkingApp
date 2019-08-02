@@ -1,5 +1,13 @@
 import React from 'react';
-import { Modal, Header, Icon, Button, Grid, Input } from 'semantic-ui-react';
+import {
+  Modal,
+  Header,
+  Icon,
+  Button,
+  Grid,
+  Input,
+  Message
+} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 import firebase from 'firebase/app';
@@ -8,46 +16,61 @@ import './scss/ActionModal.scss';
 import './scss/Input.scss';
 
 class ActionModal extends React.Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
-    this.state = { inputValue: '', placeholderValue: 'Nazwa', error: false };
+    this.state = {
+      inputValue: '',
+      sendDataError: false,
+      isLoading: false
+    };
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
   }
 
   handleChange(event) {
     this.setState({ inputValue: event.target.value });
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+    this.props.handleClose();
+  }
+
   render() {
     const saveData = () => {
+      this.setState({ isLoading: true });
       // Validate if input is not empty
-      if (this.state.inputValue !== '') {
-        const currentDate = DateTime.fromISO(
-          this.props.switcherReducer.currentDay.timestamp
-        ).toFormat('dd-MM-yyyy');
 
-        const db = firebase.firestore();
-        db.collection('spots-collection')
-          .doc('spots')
-          .set(
-            {
-              [currentDate]: {
-                [this.props.car.slice(0, -1)]: this.state.inputValue
-              }
-            },
-            { merge: true }
-          )
-          .then(() => console.log('Data saved.'))
-          .catch(error => {
-            console.log('Data could not be saved.' + error);
-          });
+      const currentDate = DateTime.fromISO(
+        this.props.switcherReducer.currentDay.timestamp
+      ).toFormat('dd-MM-yyyy');
 
-        this.props.handleClose();
-      } else {
-        this.setState({
-          placeholderValue: 'Say your name!',
-          error: true
+      const db = firebase.firestore();
+      const docRef = db.collection('spots-collection').doc('spots');
+
+      // Using transaction to make sure that data is synced with db
+      db.runTransaction(async transaction => {
+        transaction.set(
+          docRef,
+          {
+            [currentDate]: {
+              [this.props.car.slice(0, -1)]: this.state.inputValue
+            }
+          },
+          { merge: true }
+        );
+      })
+        .then(() => {
+          if (this._isMounted) {
+            this.setState({ isLoading: false });
+          }
+        })
+        .catch(error => {
+          this.setState({ sendDataError: true, isLoading: false });
         });
-      }
     };
 
     return (
@@ -76,7 +99,6 @@ class ActionModal extends React.Component {
                   disabled={true}
                   value={this.props.car}
                 />
-
                 <Input
                   fluid
                   size="big"
@@ -91,11 +113,19 @@ class ActionModal extends React.Component {
                   size="big"
                   label="Imię:"
                   disabled={false}
-                  placeholder={this.state.placeholderValue}
+                  placeholder="Nazwa"
                   value={this.state.value}
-                  onChange={e => this.setState({ inputValue: e.target.value })}
-                  error={this.state.error}
+                  onChange={event =>
+                    this.setState({ inputValue: event.target.value })
+                  }
                 />
+                {this.state.sendDataError ? (
+                  <Message
+                    error
+                    header="Dane nie zostały zapisane"
+                    content="Sprawdź swoje połączenie z interentem i spróbuj ponownie."
+                  />
+                ) : null}
               </Modal.Content>
             </Grid.Column>
           </Grid.Row>
@@ -104,7 +134,12 @@ class ActionModal extends React.Component {
           <Button onClick={this.props.handleClose} color="red">
             <Icon name="remove" /> Wróć
           </Button>
-          <Button onClick={saveData} color="green">
+          <Button
+            onClick={saveData}
+            loading={this.state.isLoading}
+            disabled={!this.state.inputValue}
+            color="green"
+          >
             <Icon name="checkmark" /> Zajmij
           </Button>
         </Modal.Actions>
