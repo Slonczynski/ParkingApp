@@ -1,5 +1,13 @@
 import React from 'react';
-import { Modal, Header, Grid, Button, Icon, Input } from 'semantic-ui-react';
+import {
+  Modal,
+  Header,
+  Grid,
+  Button,
+  Icon,
+  Input,
+  Message
+} from 'semantic-ui-react';
 import { DateTime } from 'luxon';
 import { connect } from 'react-redux';
 import firebase from 'firebase/app';
@@ -7,10 +15,28 @@ import firebase from 'firebase/app';
 import './scss/Input.scss';
 
 class ConfirmationModal extends React.Component {
+  _isMounted = false;
+  constructor(props) {
+    super(props);
+    this.state = {
+      sendDataError: false,
+      isLoading: false
+    };
+  }
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+    this.props.handleClose();
+  }
+
   render() {
     //  Destructuring assignment
     const { switcherReducer, open, name, car } = this.props;
     const deleteData = () => {
+      this.setState({ isLoading: true });
       // Initialize database
       const db = firebase.firestore();
 
@@ -26,16 +52,19 @@ class ConfirmationModal extends React.Component {
       // Combine previous values
       const fullReference = currentDate + '.' + spotNumber;
       // Delete data
-      spotRef
-        .update({
+      db.runTransaction(async transaction => {
+        transaction.update(spotRef, {
           [fullReference]: firebase.firestore.FieldValue.delete()
-        })
-        .then()
-        .catch(error => {
-          console.log('Data could not be saved.' + error);
         });
-
-      this.props.handleClose();
+      })
+        .then(() => {
+          if (this._isMounted) {
+            this.setState({ isLoading: false });
+          }
+        })
+        .catch(error => {
+          this.setState({ sendDataError: true, isLoading: false });
+        });
     };
     const currentDate = DateTime.fromISO(
       switcherReducer.currentDay.timestamp
@@ -69,7 +98,6 @@ class ConfirmationModal extends React.Component {
                   disabled={true}
                   value={car}
                 />
-
                 <Input
                   fluid
                   size="big"
@@ -84,6 +112,13 @@ class ConfirmationModal extends React.Component {
                   disabled={true}
                   value={name}
                 />
+                {this.state.sendDataError ? (
+                  <Message
+                    error
+                    header="Dane nie zostały zapisane"
+                    content="Sprawdź swoje połączenie z internetem i spróbuj ponownie."
+                  />
+                ) : null}
               </Modal.Content>
             </Grid.Column>
           </Grid.Row>
@@ -92,7 +127,11 @@ class ConfirmationModal extends React.Component {
           <Button onClick={this.props.handleClose} color="red">
             <Icon name="remove" /> Wróć
           </Button>
-          <Button onClick={deleteData} color="green">
+          <Button
+            onClick={deleteData}
+            loading={this.state.isLoading}
+            color="green"
+          >
             <Icon name="checkmark" /> Zwolnij
           </Button>
         </Modal.Actions>
