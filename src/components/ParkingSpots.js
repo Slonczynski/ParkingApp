@@ -225,7 +225,7 @@ class ParkingSpots extends React.Component {
             inverted
             color="red"
           >
-            <span>Parking niedostępny</span>
+            <span className="no-avaiable-spots-text">Parking niedostępny</span>
           </Segment>
         </div>
       </Grid>
