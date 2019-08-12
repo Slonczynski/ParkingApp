@@ -54,30 +54,24 @@ class CalendarPicker extends React.Component {
 
   render() {
     return (
-      <div>
-        <Modal
-          basic
-          open={this.props.openModal}
-          onClose={this.props.handleClose}
-        >
-          <Header
-            className="calendar-header"
-            centered="true"
-            content="Wybierz datę:"
-          />
-          <Modal.Content>
-            <Grid centered>
-              <Calendar
-                className="react-calendar"
-                calendarType="ISO 8601"
-                locale="pl-PL"
-                value={this.state.date}
-                onChange={this.onChange}
-              />
-            </Grid>
-          </Modal.Content>
-        </Modal>
-      </div>
+      <Modal basic open={this.props.openModal} onClose={this.props.handleClose}>
+        <Header
+          className="calendar-header"
+          centered="true"
+          content="Wybierz datę:"
+        />
+        <Modal.Content>
+          <Grid centered>
+            <Calendar
+              className="react-calendar"
+              calendarType="ISO 8601"
+              locale="pl-PL"
+              value={this.state.date}
+              onChange={this.onChange}
+            />
+          </Grid>
+        </Modal.Content>
+      </Modal>
     );
   }
 }
