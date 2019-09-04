@@ -1,16 +1,27 @@
 const { DateTime } = require('luxon');
 
 module.exports = {
-  TC1: function(browser) {
-    function getCurrentDate() {
-      const dt = DateTime.local().setZone('Europe/Warsaw');
-      const today = dt.fromISO().toFormat('dd-MM-yyyy');
-      return today;
-    }
+  'TC1 - Check dates': function(browser) {
+    const currentDay = DateTime.fromISO(new Date().toISOString());
+    const today = DateTime.fromISO(new Date().toISOString()).toFormat(
+      'dd-MM-yyyy'
+    );
+    const tomorrow = currentDay.plus({ days: 1 }).toFormat('dd-MM-yyyy');
+    const yesterday = currentDay.minus({ days: 1 }).toFormat('dd-MM-yyyy');
 
     browser
-      .url('http://172.23.64.248:3000/')
+      .url('localhost:3000')
       .waitForElementVisible('.weekday-container')
-      .assert.containsText(getCurrentDate());
+      .assert.containsText('.weekday-container', today)
+      .assert.containsText('#next', tomorrow)
+      .assert.containsText('#previous', yesterday)
+      .end();
+  },
+
+  'TC2 - Check menu bar': function(browser) {
+    browser
+      .url('localhost:3000')
+      .waitForElementVisible('.weekday-container')
+      .click('#next');
   }
 };

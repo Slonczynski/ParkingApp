@@ -3,15 +3,19 @@ module.exports = {
 
   webdriver: {
     start_process: true,
-    server_path: '/usr/local/bin/chromedriver',
+    server_path: 'C:\\Users\\Konrad\\chromedriver.exe',
     cli_args: ['--verbose'],
-    port: 8000
+    port: 9515
   },
 
   test_settings: {
     default: {
       desiredCapabilities: {
-        browserName: 'chrome'
+        browserName: 'chrome',
+        javascriptEnabled: true,
+        chromeOptions: {
+          //args: ['--headless']
+        }
       }
     }
   }
