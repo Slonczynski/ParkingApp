@@ -28,15 +28,14 @@ const ActionModal = ({ car, handleClose, open, switcherReducer }: ActionModalPro
   const [sendDataError, setSendDataError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-useEffect(() => {
-  setIsMounted(true)
+  useEffect(() => {
+    setIsMounted(true)
 
-  return () => { 
-    setIsMounted(false)
-    handleClose()
-  }
-
-},[])
+    return () => { 
+      setIsMounted(false)
+      handleClose()
+    }
+  },[])
 
     const saveData = () => {
       setIsLoading(true);
