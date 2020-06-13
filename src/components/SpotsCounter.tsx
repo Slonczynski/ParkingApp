@@ -3,7 +3,11 @@ import { Grid, Segment } from 'semantic-ui-react';
 
 import '../components/scss/SpotsCounter.scss';
 
-class SpotsCounter extends React.Component {
+type Props = {
+  occupiedSpotsNumber: number;
+}
+
+class SpotsCounter extends React.Component<Props> {
   render() {
     //  Destructuring assignment
     const { occupiedSpotsNumber } = this.props;

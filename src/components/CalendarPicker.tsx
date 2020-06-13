@@ -13,10 +13,10 @@ import {
 import './scss/CalendarPicker.scss';
 
 type Props = {
-  switcherReducer: any;
-  updateCurrentDay: any;
-  updateNextDay: any;
-  updatePreviousDay: any;
+  switcherReducer?: any;
+  updateCurrentDay?: any;
+  updateNextDay?: any;
+  updatePreviousDay?: any;
   handleClose: any;
   openModal: any;
 }

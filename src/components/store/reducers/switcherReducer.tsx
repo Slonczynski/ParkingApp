@@ -24,7 +24,7 @@ const initialState = () => {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-export default (state = initialState(), action) => {
+export default (state = initialState(), action: any) => {
   switch (action.type) {
     case 'PREVIOUS_TO_CURRENT_DAY':
       return {

@@ -16,7 +16,7 @@ import './scss/Input.scss';
 
 type Props = {
   handleClose: any;
-  switcherReducer: any;
+  switcherReducer?: any;
   open: boolean;
   name: string;
   car: string;

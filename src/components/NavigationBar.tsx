@@ -14,7 +14,15 @@ import './scss/App.scss';
 import DayButton from './DayButton';
 import Weekday from './Weekday';
 
-class NavigationBar extends React.Component {
+type Props = {
+  switcherReducer?: any;
+  previousToCurrentDay?: any;
+  updatePreviousDay?: any;
+  nextToCurrentDay?: any;
+  updateNextDay?: any;
+}
+
+class NavigationBar extends React.Component<Props> {
   render() {
     //  Destructuring assignment
     const {
@@ -95,11 +103,11 @@ class NavigationBar extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return state;
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators(
     {
       previousToCurrentDay,

@@ -9,8 +9,18 @@ import Tile from './Tile';
 import SpotsCounter from './SpotsCounter';
 import './scss/ParkingSpots.scss';
 
-class ParkingSpots extends React.Component {
-  constructor(props) {
+type Props = {
+  switcherReducer?: any;
+  firestoreReducer?: any;
+}
+
+type State = {
+  isParkingAvaiable: boolean;
+  occupiedSpots: any;
+}
+
+class ParkingSpots extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       isParkingAvaiable: true,
@@ -18,7 +28,7 @@ class ParkingSpots extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     const currentData = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).toFormat('dd-MM-yyyy');
@@ -60,7 +70,7 @@ class ParkingSpots extends React.Component {
         });
       } else {
         // If document is not empty get keys from it and put them into state.occupiedSpots
-        const keyVal = {};
+        const keyVal: any = {};
         for (const [key, val] of Object.entries(
           this.props.firestoreReducer.ordered['spots-collection']['0'][
             currentData
@@ -233,7 +243,7 @@ class ParkingSpots extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return state;
 };
 

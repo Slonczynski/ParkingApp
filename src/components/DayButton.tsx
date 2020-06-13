@@ -4,8 +4,21 @@ import { Segment } from 'semantic-ui-react';
 import CalendarPicker from './CalendarPicker';
 import './scss/DayButton.scss';
 
-class DayButton extends React.Component {
-  constructor(props) {
+type Props = {
+  weekday?: any;
+  icon?: any;
+  text?: string;
+  id?: string;
+  requestedDay?: any;
+  onClickValue?: any;
+}
+
+type State = {
+  openModal: any;
+}
+
+class DayButton extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       openModal: false

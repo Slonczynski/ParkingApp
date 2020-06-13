@@ -7,10 +7,10 @@ import {
 } from './actionTypes';
 
 export const previousToCurrentDay = (
-  day1,
-  day2,
-  prevTimestamp,
-  currTimestamp
+  day1: any,
+  day2: any,
+  prevTimestamp: any,
+  currTimestamp: any
 ) => ({
   type: PREVIOUS_TO_CURRENT_DAY,
   previousDay: day1,
@@ -19,7 +19,7 @@ export const previousToCurrentDay = (
   currTimestamp
 });
 
-export const nextToCurrentDay = (day1, day2, nextTimestamp, currTimestamp) => ({
+export const nextToCurrentDay = (day1: any, day2: any, nextTimestamp: any, currTimestamp: any) => ({
   type: NEXT_TO_CURRENT_DAY,
   nextDay: day1,
   currentDay: day2,
@@ -27,17 +27,17 @@ export const nextToCurrentDay = (day1, day2, nextTimestamp, currTimestamp) => ({
   currTimestamp
 });
 
-export const updatePreviousDay = value => ({
+export const updatePreviousDay = (value: any) => ({
   type: UPDATE_PREVIOUS_DAY,
   value
 });
 
-export const updateNextDay = value => ({
+export const updateNextDay = (value: any) => ({
   type: UPDATE_NEXT_DAY,
   value
 });
 
-export const updateCurrentDay = value => ({
+export const updateCurrentDay = (value: any) => ({
   type: UPDATE_CURRENT_DAY,
   value
 });

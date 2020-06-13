@@ -17,9 +17,9 @@ import './scss/Input.scss';
 
 type ActionModalProps = {
   car: string;
-  handleClose: any;
-  open: boolean;
-  switcherReducer: any;
+  handleClose?: any;
+  open?: boolean;
+  switcherReducer?: any;
 }
 
 const ActionModal = ({ car, handleClose, open, switcherReducer }: ActionModalProps) => {

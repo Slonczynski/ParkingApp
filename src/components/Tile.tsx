@@ -5,8 +5,18 @@ import ActionModal from './ActionModal';
 import ConfirmationModal from './ConfirmationModal';
 import './scss/Tile.scss';
 
-class Tile extends React.Component {
-  constructor(props) {
+type Props = {
+  car: string;
+  className?: string;
+  name: any;
+}
+
+type State = {
+  openModal: any;
+}
+
+class Tile extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       openModal: false

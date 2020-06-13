@@ -4,12 +4,19 @@ import { DateTime } from 'luxon';
 
 import './scss/Weekday.scss';
 
-class Weekday extends React.Component {
+type Props = {
+  days?: any;
+  requestedDay?: any;
+  switcherReducer?: any;
+}
+
+class Weekday extends React.Component<Props> {
   render() {
-    const currentDate = DateTime.fromISO(
+    const currentDate: any = DateTime.fromISO(
       this.props.switcherReducer.currentDay.timestamp
     ).weekday;
-    const days = {
+
+    const days: any = {
       1: 'Poniedziałek',
       2: 'Wtorek',
       3: 'Środa',
@@ -29,7 +36,7 @@ class Weekday extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return state;
 };
 
