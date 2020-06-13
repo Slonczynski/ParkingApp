@@ -19,11 +19,11 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return state;
 };
 
-export default compose(
+export default compose<any>(
   connect(mapStateToProps),
   firestoreConnect([{ collection: 'spots-collection' }])
 )(App);

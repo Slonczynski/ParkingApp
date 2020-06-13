@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   Header,
@@ -15,37 +15,35 @@ import firebase from 'firebase/app';
 import './scss/ActionModal.scss';
 import './scss/Input.scss';
 
-class ActionModal extends React.Component {
-  _isMounted = false;
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: '',
-      sendDataError: false,
-      isLoading: false
-    };
+type ActionModalProps = {
+  car: string;
+  handleClose: any;
+  open: boolean;
+  switcherReducer: any;
+}
+
+const ActionModal = ({ car, handleClose, open, switcherReducer }: ActionModalProps) => {
+  const [isMounted, setIsMounted] = useState(true)
+  const [inputValue, setInputValue] = useState('')
+  const [sendDataError, setSendDataError] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+useEffect(() => {
+  setIsMounted(true)
+
+  return () => { 
+    setIsMounted(false)
+    handleClose()
   }
 
-  componentDidMount() {
-    this._isMounted = true;
-  }
+},[])
 
-  handleChange(event) {
-    this.setState({ inputValue: event.target.value });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-    this.props.handleClose();
-  }
-
-  render() {
     const saveData = () => {
-      this.setState({ isLoading: true });
+      setIsLoading(true);
       // Validate if input is not empty
 
       const currentDate = DateTime.fromISO(
-        this.props.switcherReducer.currentDay.timestamp
+        switcherReducer.currentDay.timestamp
       ).toFormat('dd-MM-yyyy');
 
       const db = firebase.firestore();
@@ -57,30 +55,31 @@ class ActionModal extends React.Component {
           docRef,
           {
             [currentDate]: {
-              [this.props.car.slice(0, -1)]: this.state.inputValue
+              [car.slice(0, -1)]: inputValue
             }
           },
           { merge: true }
         );
       })
         .then(() => {
-          if (this._isMounted) {
-            this.setState({ isLoading: false });
+          if (isMounted) {
+            setIsLoading(false);
           }
         })
         .catch(error => {
-          this.setState({ sendDataError: true, isLoading: false });
+          setSendDataError(true);
+          setIsLoading(false);
         });
     };
 
     return (
       <Modal
-        open={this.props.open}
-        onClose={this.props.handleClose}
+        open={open}
+        onClose={handleClose}
         centered
         size="tiny"
         closeIcon={{
-          onClick: this.props.handleClose,
+          onClick: handleClose,
           style: { top: '1.0535rem', right: '1rem' },
           color: 'black',
           name: 'close'
@@ -97,7 +96,7 @@ class ActionModal extends React.Component {
                   label="Miejsce:"
                   labelPosition="left"
                   disabled={true}
-                  value={this.props.car}
+                  value={car}
                 />
                 <Input
                   fluid
@@ -105,7 +104,7 @@ class ActionModal extends React.Component {
                   label="Data:"
                   disabled={true}
                   value={DateTime.fromISO(
-                    this.props.switcherReducer.currentDay.timestamp
+                    switcherReducer.currentDay.timestamp
                   ).toFormat('dd-MM-yyyy')}
                 />
                 <Input
@@ -114,12 +113,12 @@ class ActionModal extends React.Component {
                   label="Imię:"
                   disabled={false}
                   placeholder="Nazwa"
-                  value={this.state.value}
+                  value={inputValue}
                   onChange={event =>
-                    this.setState({ inputValue: event.target.value })
+                    setInputValue(event.target.value)
                   }
                 />
-                {this.state.sendDataError ? (
+                {sendDataError ? (
                   <Message
                     error
                     header="Dane nie zostały zapisane"
@@ -131,13 +130,13 @@ class ActionModal extends React.Component {
           </Grid.Row>
         </Grid>
         <Modal.Actions>
-          <Button onClick={this.props.handleClose} color="red">
+          <Button onClick={handleClose} color="red">
             <Icon name="remove" /> Wróć
           </Button>
           <Button
             onClick={saveData}
-            loading={this.state.isLoading}
-            disabled={!this.state.inputValue}
+            loading={isLoading}
+            disabled={!inputValue}
             color="green"
           >
             <Icon name="checkmark" /> Zajmij
@@ -146,8 +145,8 @@ class ActionModal extends React.Component {
       </Modal>
     );
   }
-}
-const mapStateToProps = state => {
+
+const mapStateToProps = (state: any) => {
   return state;
 };
 
