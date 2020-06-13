@@ -12,9 +12,23 @@ import {
 
 import './scss/CalendarPicker.scss';
 
-class CalendarPicker extends React.Component {
+type Props = {
+  switcherReducer: any;
+  updateCurrentDay: any;
+  updateNextDay: any;
+  updatePreviousDay: any;
+  handleClose: any;
+  openModal: any;
+}
+
+type State = {
+  date: any;
+  openModal: any;
+}
+
+class CalendarPicker extends React.Component<Props, State> {
   // Getting current date from switcherReducer timestamp to maintain data coherency.
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       date: new Date(this.props.switcherReducer.currentDay.timestamp),
@@ -35,7 +49,7 @@ class CalendarPicker extends React.Component {
     }
   }
 
-  onChange = date => {
+  onChange = (date: any) => {
     this.setState(
       { ...this.state, date },
       // Making callback here prevents the state from being one step behind
@@ -76,11 +90,11 @@ class CalendarPicker extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return state;
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators(
     {
       updatePreviousDay,

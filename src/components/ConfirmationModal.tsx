@@ -14,9 +14,22 @@ import firebase from 'firebase/app';
 
 import './scss/Input.scss';
 
-class ConfirmationModal extends React.Component {
+type Props = {
+  handleClose: any;
+  switcherReducer: any;
+  open: boolean;
+  name: string;
+  car: string;
+}
+
+type State = {
+  sendDataError: boolean;
+  isLoading: boolean;
+}
+
+class ConfirmationModal extends React.Component<Props, State> {
   _isMounted = false;
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       sendDataError: false,
@@ -33,7 +46,6 @@ class ConfirmationModal extends React.Component {
   }
 
   render() {
-    //  Destructuring assignment
     const { switcherReducer, open, name, car } = this.props;
     const deleteData = () => {
       this.setState({ isLoading: true });
@@ -140,7 +152,7 @@ class ConfirmationModal extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return state;
 };
 
