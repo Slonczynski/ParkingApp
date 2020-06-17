@@ -1,6 +1,9 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux'
+
+import { AppState } from '../store/reducers/mainReducer';
 
 import './Weekday.scss';
 
@@ -9,9 +12,9 @@ type WeekdayProps = {
   switcherReducer: object;
 }
 
-const Weekday = ({requestedDay, switcherReducer}: WeekdayProps) => {
+const Weekday = ({requestedDay}: WeekdayProps) => {
+  const switcherReducer = useSelector((state:AppState) => state.switcherReducer);
   const currentDate: any = DateTime.fromISO(switcherReducer.currentDay.timestamp).weekday;
-console.log(switcherReducer)
   const weekdays: any = {
     1: 'Poniedziałek',
     2: 'Wtorek',

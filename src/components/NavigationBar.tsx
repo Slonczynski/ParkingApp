@@ -24,7 +24,6 @@ type Props = {
 
 class NavigationBar extends React.Component<Props> {
   render() {
-    //  Destructuring assignment
     const {
       switcherReducer,
       previousToCurrentDay,
