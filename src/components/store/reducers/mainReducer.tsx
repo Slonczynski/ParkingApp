@@ -7,6 +7,6 @@ const rootReducer = combineReducers({
   switcherReducer: switcherReducer
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

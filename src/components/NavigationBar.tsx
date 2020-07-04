@@ -12,7 +12,7 @@ import {
 import './scss/App.scss';
 
 import DayButton from './DayButton';
-import Weekday from './Weekday';
+import Weekday from './Weekday/WeekdayContainer';
 
 type Props = {
   switcherReducer?: any;
@@ -31,6 +31,11 @@ class NavigationBar extends React.Component<Props> {
       nextToCurrentDay,
       updateNextDay
     } = this.props;
+
+    const weekdayProps = {
+      requestedDay: DateTime.fromISO(switcherReducer.currentDay.timestamp).toFormat('dd-MM-yyyy')
+    }
+
     return (
       <div className="d-flex justify-content-between align-items-start">
         <DayButton
@@ -64,11 +69,7 @@ class NavigationBar extends React.Component<Props> {
           icon="calendar alternate"
           id="active"
           weekday={
-            <Weekday
-              requestedDay={DateTime.fromISO(
-                switcherReducer.currentDay.timestamp
-              ).toFormat('dd-MM-yyyy')}
-            />
+            <Weekday {...weekdayProps} />
           }
         />
 

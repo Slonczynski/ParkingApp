@@ -3,17 +3,16 @@ import { DateTime } from 'luxon';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux'
 
-import { AppState } from '../store/reducers/mainReducer';
+import { RootState } from '../store/reducers/mainReducer';
 
 import './Weekday.scss';
 
 type WeekdayProps = {
-  requestedDay?: string;
-  switcherReducer: object;
+  requestedDay: string;
+  switcherReducer: string;
 }
 
-const Weekday = ({requestedDay}: WeekdayProps) => {
-  const switcherReducer = useSelector((state:AppState) => state.switcherReducer);
+const Weekday = ({requestedDay, switcherReducer}: WeekdayProps) => {
   const currentDate: any = DateTime.fromISO(switcherReducer.currentDay.timestamp).weekday;
   const weekdays: any = {
     1: 'Poniedziałek',
@@ -35,9 +34,7 @@ const Weekday = ({requestedDay}: WeekdayProps) => {
 }
 
 Weekday.propTypes = {
-  days: PropTypes.string,
   requestedDay: PropTypes.string,
-  switcherReducer: PropTypes.object.isRequired,
 }
 
 export default Weekday;
