@@ -14,7 +14,7 @@ import Weekday from './Weekday';
 
 import './scss/App.scss';
 
-type Props = {
+type NavigationBarProps = {
   switcherReducer?: any;
   previousToCurrentDay?: any;
   updatePreviousDay?: any;
@@ -22,87 +22,84 @@ type Props = {
   updateNextDay?: any;
 }
 
-class NavigationBar extends React.Component<Props> {
-  render() {
-    const {
-      switcherReducer,
-      previousToCurrentDay,
-      updatePreviousDay,
-      nextToCurrentDay,
-      updateNextDay
-    } = this.props;
+const NavigationBar = (props: NavigationBarProps) => {
+  const {
+    switcherReducer,
+    previousToCurrentDay,
+    updatePreviousDay,
+    nextToCurrentDay,
+    updateNextDay
+  } = props;
 
-    const weekdayProps = {
-      requestedDay: DateTime.fromISO(switcherReducer.currentDay.timestamp).toFormat('dd-MM-yyyy')
-    }
-
-    return (
-      <div className="d-flex justify-content-between align-items-start">
-        <DayButton
-          icon="left"
-          text="Poprzedni"
-          requestedDay={DateTime.fromISO(
-            switcherReducer.previousDay.timestamp
-          ).toFormat('dd-MM-yyyy')}
-          id="previous"
-          onClickValue={() => {
-            previousToCurrentDay(
-              switcherReducer.currentDay.value,
-              switcherReducer.previousDay.value,
-              switcherReducer.previousDay.timestamp,
-              switcherReducer.currentDay.timestamp
-            );
-
-            if (
-              switcherReducer.previousDay.timestamp !==
-              switcherReducer.currentDay.timestamp
-            ) {
-              updatePreviousDay(
-                switcherReducer.previousDay.timestamp
-                  .minus({ days: 1 })
-                  .setZone('Europe/Warsaw')
-              );
-            }
-          }}
-        />
-        <DayButton
-          icon="calendar alternate"
-          id="active"
-          weekday={
-            <Weekday {...weekdayProps} />
-          }
-        />
-
-        <DayButton
-          icon="right"
-          text="Następny"
-          requestedDay={DateTime.fromISO(
-            switcherReducer.nextDay.timestamp
-          ).toFormat('dd-MM-yyyy')}
-          id="next"
-          onClickValue={() => {
-            nextToCurrentDay(
-              switcherReducer.nextDay.value,
-              switcherReducer.currentDay.value,
-              switcherReducer.nextDay.timestamp,
-              switcherReducer.currentDay.timestamp
-            );
-            if (
-              switcherReducer.nextDay.timestamp !==
-              switcherReducer.currentDay.timestamp
-            ) {
-              updateNextDay(
-                switcherReducer.nextDay.timestamp
-                  .plus({ days: 1 })
-                  .setZone('Europe/Warsaw')
-              );
-            }
-          }}
-        />
-      </div>
-    );
+  const weekdayProps = {
+    requestedDay: DateTime.fromISO(switcherReducer.currentDay.timestamp).toFormat('dd-MM-yyyy')
   }
+  return (
+    <div className="d-flex justify-content-between align-items-start">
+      <DayButton
+        icon="left"
+        text="Poprzedni"
+        requestedDay={DateTime.fromISO(
+          switcherReducer.previousDay.timestamp
+        ).toFormat('dd-MM-yyyy')}
+        id="previous"
+        onClickValue={() => {
+          previousToCurrentDay(
+            switcherReducer.currentDay.value,
+            switcherReducer.previousDay.value,
+            switcherReducer.previousDay.timestamp,
+            switcherReducer.currentDay.timestamp
+          );
+
+          if (
+            switcherReducer.previousDay.timestamp !==
+            switcherReducer.currentDay.timestamp
+          ) {
+            updatePreviousDay(
+              switcherReducer.previousDay.timestamp
+                .minus({ days: 1 })
+                .setZone('Europe/Warsaw')
+            );
+          }
+        }}
+      />
+      <DayButton
+        icon="calendar alternate"
+        id="active"
+        weekday={
+          <Weekday {...weekdayProps} />
+        }
+      />
+      <DayButton
+        icon="right"
+        text="Następny"
+        requestedDay={DateTime.fromISO(
+          switcherReducer.nextDay.timestamp
+        ).toFormat('dd-MM-yyyy')}
+        id="next"
+        onClickValue={() => {
+          nextToCurrentDay(
+            switcherReducer.nextDay.value,
+            switcherReducer.currentDay.value,
+            switcherReducer.nextDay.timestamp,
+            switcherReducer.currentDay.timestamp
+          );
+          if (
+            switcherReducer.nextDay.timestamp !==
+            switcherReducer.currentDay.timestamp
+          ) {
+            updateNextDay(
+              switcherReducer.nextDay.timestamp
+                .plus({ days: 1 })
+                .setZone('Europe/Warsaw')
+            );
+          }
+        }}
+      />
+    </div>
+  );
 }
+
 const mapStateToProps = (state: any) => {
   return state;
 };
