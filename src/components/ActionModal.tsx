@@ -35,7 +35,7 @@ const ActionModal = ({ car, handleClose, open, switcherReducer }: ActionModalPro
       setIsMounted(false)
       handleClose()
     }
-  },[])
+  }, [])
 
     const saveData = () => {
       setIsLoading(true);

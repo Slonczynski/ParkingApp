@@ -9,10 +9,10 @@ import {
   updateNextDay
 } from './store/actions/actionCreator';
 
-import './scss/App.scss';
-
 import DayButton from './DayButton';
-import Weekday from './Weekday/WeekdayContainer';
+import Weekday from './Weekday';
+
+import './scss/App.scss';
 
 type Props = {
   switcherReducer?: any;

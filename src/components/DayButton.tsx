@@ -1,82 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Segment } from 'semantic-ui-react';
 
 import CalendarPicker from './CalendarPicker';
 import './scss/DayButton.scss';
 
-type Props = {
+type DayButtonProps = {
   weekday?: any;
-  icon?: any;
+  icon: any;
   text?: string;
   id?: string;
   requestedDay?: any;
   onClickValue?: any;
 }
 
-type State = {
-  openModal: any;
-}
+const DayButton = (props: DayButtonProps) => {
+  const { weekday, icon, text, id, requestedDay, onClickValue } = props;
+  const [openModal, setOpenModal] = useState(false)
 
-class DayButton extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      openModal: false
-    };
-  }
-
-  showModal = () => {
-    this.setState({ ...this.state, openModal: true });
+  const showModal = () => {
+    setOpenModal(true)
   };
 
-  hideModal = () => {
-    this.setState({ ...this.state, openModal: false });
+  const hideModal = () => {
+    setOpenModal(false)
   };
 
-  render() {
-    //  Destructuring assignment
-    const { weekday, icon, text, id, requestedDay, onClickValue } = this.props;
-    return weekday ? (
-      <div className="text-center">
-        <div className="switcher" id={id} onClick={this.showModal}>
-          <CalendarPicker
-            openModal={this.state.openModal}
-            handleClose={this.hideModal}
-          />
-          <i
-            className={`circular inverted teal large arrow 
-          ${icon} icon`}
-          />
-
-          <Segment
-            compact
-            inverted
-            textAlign="center"
-            size="small"
-            color="blue"
-          >
-            <div className="day-button-weekday">
-              {text}
-              {weekday}
-            </div>
-          </Segment>
-        </div>
-      </div>
-    ) : (
-      <div className="text-center">
-        <div className="switcher" id={id} onClick={onClickValue}>
-          <i
-            className={`circular inverted teal large arrow 
+  return weekday ? (
+    <div className="text-center">
+      <div className="switcher" id={id} onClick={showModal}>
+        <CalendarPicker
+          openModal={openModal}
+          handleClose={hideModal}
+        />
+        <i
+          className={`circular inverted teal large arrow 
         ${icon} icon`}
-          />
-          <div className="day-button-text">
+        />
+        <Segment
+          compact
+          inverted
+          textAlign="center"
+          size="small"
+          color="blue"
+        >
+          <div className="day-button-weekday">
             {text}
-            <br />
-            {requestedDay}
+            {weekday}
           </div>
+        </Segment>
+      </div>
+    </div>
+  ) : (
+    <div className="text-center">
+      <div className="switcher" id={id} onClick={onClickValue}>
+        <i
+          className={`circular inverted teal large arrow 
+      ${icon} icon`}
+        />
+        <div className="day-button-text">
+          {text}
+          <br />
+          {requestedDay}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
 export default DayButton;

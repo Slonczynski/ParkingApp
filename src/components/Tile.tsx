@@ -12,7 +12,7 @@ type Props = {
 }
 
 type State = {
-  openModal: any;
+  openModal: boolean;
 }
 
 class Tile extends React.Component<Props, State> {
