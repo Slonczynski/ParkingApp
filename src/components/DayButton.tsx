@@ -10,7 +10,7 @@ type DayButtonProps = {
   text?: string;
   id?: string;
   requestedDay?: any;
-  onClickValue?: any;
+  onClickValue?: () => void;
 }
 
 const DayButton = (props: DayButtonProps) => {

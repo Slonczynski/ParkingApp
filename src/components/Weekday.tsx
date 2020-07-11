@@ -5,8 +5,8 @@ import { DateTime } from 'luxon';
 import './scss/Weekday.scss';	
 
 type WeekdayProps = {	
-  days?: any;	
-  requestedDay?: any;	
+  days?: string;
+  requestedDay?: string;	
   switcherReducer?: any;	
 }	
 

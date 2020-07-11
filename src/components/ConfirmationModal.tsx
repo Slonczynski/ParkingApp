@@ -15,7 +15,7 @@ import firebase from 'firebase/app';
 import './scss/Input.scss';
 
 type Props = {
-  handleClose: any;
+  handleClose: () => void;
   switcherReducer?: any;
   open: boolean;
   name: string;
