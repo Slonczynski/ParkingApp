@@ -17,8 +17,8 @@ type Props = {
   updateCurrentDay?: any;
   updateNextDay?: any;
   updatePreviousDay?: any;
-  handleClose: any;
-  openModal: any;
+  handleClose: () => void;
+  openModal: boolean;
 }
 
 type State = {

@@ -9,7 +9,7 @@ type DayButtonProps = {
   icon: any;
   text?: string;
   id?: string;
-  requestedDay?: any;
+  requestedDay?: string;
   onClickValue?: () => void;
 }
 
