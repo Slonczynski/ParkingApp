@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import firebase from 'firebase/app';
 
 import './scss/Input.scss';
+import { RootState } from './store/reducers/mainReducer';
 
 type Props = {
   handleClose: () => void;
@@ -152,7 +153,7 @@ class ConfirmationModal extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return state;
 };
 

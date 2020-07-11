@@ -13,6 +13,7 @@ import DayButton from './DayButton';
 import Weekday from './Weekday';
 
 import './scss/App.scss';
+import { RootState } from './store/reducers/mainReducer';
 
 type NavigationBarProps = {
   switcherReducer?: any;
@@ -100,7 +101,7 @@ const NavigationBar = (props: NavigationBarProps) => {
   );
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return state;
 };
 

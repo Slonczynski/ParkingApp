@@ -8,6 +8,7 @@ import Separator from './Separator';
 import Tile from './Tile';
 import SpotsCounter from './SpotsCounter';
 import './scss/ParkingSpots.scss';
+import { RootState } from './store/reducers/mainReducer';
 
 type Props = {
   switcherReducer?: any;
@@ -243,7 +244,7 @@ class ParkingSpots extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return state;
 };
 

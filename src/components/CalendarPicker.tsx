@@ -11,6 +11,7 @@ import {
 } from './store/actions/actionCreator';
 
 import './scss/CalendarPicker.scss';
+import { RootState } from './store/reducers/mainReducer';
 
 type Props = {
   switcherReducer?: any;
@@ -90,7 +91,7 @@ class CalendarPicker extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return state;
 };
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { DateTime } from 'luxon';	
 
 import './scss/Weekday.scss';	
+import { RootState } from './store/reducers/mainReducer';
 
 type WeekdayProps = {	
   days?: string;
@@ -32,7 +33,7 @@ const Weekday = (props: WeekdayProps) => {
   );	
 }
 
-const mapStateToProps = (state: any) => {	
+const mapStateToProps = (state: RootState) => {	
   return state;	
 };	
 

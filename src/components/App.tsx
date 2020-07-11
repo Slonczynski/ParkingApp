@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import './scss/App.scss';
 import NavigationBar from './NavigationBar';
 import ParkingSpots from './ParkingSpots';
+import { RootState } from './store/reducers/mainReducer';
 
 class App extends React.Component {
   render() {
@@ -19,7 +20,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return state;
 };
 

@@ -14,6 +14,7 @@ import firebase from 'firebase/app';
 
 import './scss/ActionModal.scss';
 import './scss/Input.scss';
+import { RootState } from './store/reducers/mainReducer';
 
 type ActionModalProps = {
   car: string;
@@ -145,7 +146,7 @@ const ActionModal = ({ car, handleClose, open, switcherReducer }: ActionModalPro
     );
   }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return state;
 };
 
